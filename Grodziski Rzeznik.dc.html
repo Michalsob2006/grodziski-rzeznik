@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&amp;family=Mulish:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:88px}
+  body{margin:0;background:#16100C;color:#F0E7D8;font-family:'Mulish',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#C6A15E;text-decoration:none}
+  a:hover{color:#E3C482}
+  ::selection{background:#872B2F;color:#F5ECDD}
+  input,textarea,button{font-family:inherit}
+  @keyframes gr-pulse{0%,100%{box-shadow:0 0 0 0 rgba(198,161,94,.45),0 14px 30px -8px rgba(0,0,0,.75)}50%{box-shadow:0 0 0 12px rgba(198,161,94,0),0 14px 30px -8px rgba(0,0,0,.75)}}
+  @keyframes gr-fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes gr-slidein{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+  .gr-nav{background-image:linear-gradient(#C6A15E,#C6A15E);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1.5px;transition:background-size .35s ease,color .3s ease}
+  .gr-nav:hover{background-size:100% 1.5px;color:#F3E9D7}
+  .gr-hoverbrass{transition:color .25s ease}
+  .gr-hoverbrass:hover{color:#C6A15E}
+  .gr-btn{transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+  .gr-btn:hover{transform:translateY(-3px) scale(1.03)}
+  .gr-icon{transition:transform .25s ease,border-color .25s ease,background .25s ease}
+  .gr-icon:hover{transform:translateY(-2px) scale(1.06);border-color:#C6A15E;color:#E3C482}
+  .gr-card{transition:transform .38s cubic-bezier(.2,.7,.3,1),box-shadow .38s,border-color .38s}
+  .gr-card:hover{transform:translateY(-6px);box-shadow:0 34px 60px -24px rgba(0,0,0,.9);border-color:rgba(198,161,94,.5)}
+  .gr-card:hover .gr-zoom{transform:scale(1.07)}
+  .gr-card:hover .gr-reveal{opacity:1}
+  .gr-zoom{transition:transform .6s ease}
+  .gr-reveal{opacity:0;transition:opacity .4s ease}
+  .gr-catovl{opacity:0;transition:opacity .4s ease}
+  .gr-cattitle{overflow:hidden;max-height:82px;transition:max-height .42s cubic-bezier(.2,.7,.3,1),opacity .3s ease,padding .42s ease}
+  @media(hover:hover){
+    .gr-card:hover .gr-catovl{opacity:1}
+    .gr-card:hover .gr-cattitle{max-height:0;opacity:0;padding-top:0 !important;padding-bottom:0 !important}
+  }
+  .gr-catovl.is-open{opacity:1}
+  .gr-cattitle.is-open{max-height:0;opacity:0;padding-top:0 !important;padding-bottom:0 !important}
+  .gr-tile{transition:transform .35s ease,box-shadow .35s ease}
+  .gr-tile:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 26px 46px -20px rgba(0,0,0,.9)}
+  .gr-tile:hover .gr-zoom{transform:scale(1.09)}
+  .gr-tile:hover .gr-mag{opacity:1}
+  .gr-mag{opacity:0;transition:opacity .35s ease}
+  .gr-flink{transition:color .25s ease}
+  .gr-flink:hover{color:#F0E7D8}
+  .gr-logo{transition:transform .3s ease,filter .3s ease}
+  .gr-logo:hover{transform:scale(1.04)}
+  .gr-cta1{transition:transform .28s ease,background .28s ease,color .28s ease,box-shadow .28s ease}
+  .gr-cta1:hover{background:#F0E7D8 !important;color:#872B2F !important;border-color:#F0E7D8 !important;transform:translateY(-3px) scale(1.03);box-shadow:0 20px 40px -12px rgba(0,0,0,.6)}
+  .gr-cta2{transition:transform .28s ease,background .28s ease,color .28s ease,box-shadow .28s ease}
+  .gr-cta2:hover{background:#C6A15E !important;color:#17100B !important;border-color:#C6A15E !important;transform:translateY(-3px) scale(1.03);box-shadow:0 20px 40px -12px rgba(198,161,94,.4)}
+  .gr-openpulse{animation:gr-openpulse 2.2s ease-in-out infinite}
+  @keyframes gr-openpulse{0%,100%{box-shadow:0 0 0 0 rgba(111,191,111,.5)}50%{box-shadow:0 0 0 6px rgba(111,191,111,0)}}
+  @media (max-width:1024px){
+    .gr-logo{height:76px !important;margin:4px 0 -14px !important}
+    .gr-grid-prod{grid-template-columns:1fr 1fr !important}
+    .gr-grid-gal{grid-template-columns:repeat(3,1fr) !important}
+    .gr-contact-grid{grid-template-columns:1fr !important}
+    .gr-form-sticky{position:static !important;top:auto !important}
+  }
+  @media (max-width:600px){
+    .gr-logo{height:56px !important;margin:2px 0 0 !important}
+    .gr-grid-prod{grid-template-columns:1fr !important}
+    .gr-grid-gal{grid-template-columns:1fr 1fr !important}
+    .gr-grid-cat{grid-template-columns:1fr !important}
+    .gr-form-row{grid-template-columns:1fr !important}
+    .gr-hero-cta{flex-direction:column;align-items:stretch}
+    .gr-cta-btn{width:100%;justify-content:center}
+    .gr-tabs{flex-wrap:nowrap !important;justify-content:flex-start !important;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+    .gr-tabs > *{flex:0 0 auto}
+    .gr-chat{left:10px !important;right:10px !important;width:auto !important;bottom:94px !important}
+    #onas,#opinie,#oferta,#galeria,#kontakt{padding-top:62px !important;padding-bottom:62px !important;padding-left:16px !important;padding-right:16px !important}
+  }
+  @media (max-width:600px){
+    .gr-hero-bg{background-position:22% center !important}
+    .gr-cta2{background:rgba(12,8,5,.5) !important}
+    .gr-shopimg{height:auto !important;max-height:none !important}
+    .gr-tabs{padding-right:20px}
+    .gr-tabs::after{content:'';flex:0 0 6px}
+  }
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:#120C08}
+  ::-webkit-scrollbar-thumb{background:#3a2d22;border-radius:6px}
+</style>
+</helmet>
+
+<div style="min-height:100vh;position:relative;overflow-x:clip">
+
+<!-- ============ HEADER ============ -->
+<header style="position:sticky;top:0;z-index:60;background:rgba(20,14,10,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(198,161,94,.22)">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+
+    <!-- logo -->
+    <a href="#start" style="display:flex;align-items:center;text-decoration:none;flex:none">
+      <img src="uploads/logo-17c7c13c.png" alt="Grodziski Rzeźnik" class="gr-logo" style="height:108px;width:auto;margin:6px 0 -28px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.65))">
+    </a>
+
+    <!-- desktop nav -->
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;align-items:center;gap:34px;margin-left:auto">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+          <a href="{{ link.href }}" class="gr-nav" style="font-size:13.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#E7DDCC;padding-bottom:3px">{{ link.label }}</a>
+        </sc-for>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:18px;flex:none">
+        <a href="tel:513300130" class="gr-hoverbrass" style="display:flex;align-items:center;gap:9px;color:#F0E7D8;font-weight:700;font-size:14px">
+          <span style="display:flex;width:34px;height:34px;align-items:center;justify-content:center;border:1px solid rgba(198,161,94,.4);border-radius:50%;color:#C6A15E">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </span>
+          513 300 130
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" aria-label="Facebook" class="gr-icon" style="display:flex;width:34px;height:34px;align-items:center;justify-content:center;border:1px solid rgba(198,161,94,.28);border-radius:50%;color:#C6A15E">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.6H6.61v3.56h3.07V22h3.68v-9.14h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73z"></path></svg>
+        </a>
+
+        <!-- cart -->
+        <button onClick="{{ toggleCart }}" class="gr-btn" style="position:relative;display:flex;align-items:center;gap:9px;background:{{ cartBtnBg }};color:#F5ECDD;border:1px solid rgba(198,161,94,.5);border-radius:999px;padding:9px 18px;font-weight:700;font-size:13.5px;cursor:pointer;box-shadow:0 8px 18px -8px rgba(135,43,47,.7)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span>{{ cartBtnLabel }}</span>
+          <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute;top:-7px;right:-7px;min-width:22px;height:22px;padding:0 5px;display:flex;align-items:center;justify-content:center;background:#C6A15E;color:#17100B;border-radius:999px;font-size:12px;font-weight:800">{{ cartCount }}</span>
+          </sc-if>
+        </button>
+      </div>
+    </sc-if>
+
+    <!-- mobile controls -->
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:12px;margin-left:auto">
+        <a href="tel:513300130" aria-label="Zadzwoń" style="display:flex;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(198,161,94,.4);border-radius:12px;color:#C6A15E">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </a>
+        <button onClick="{{ toggleCart }}" aria-label="Koszyk" style="position:relative;display:flex;width:44px;height:44px;align-items:center;justify-content:center;background:{{ cartBtnBg }};border:1px solid rgba(198,161,94,.5);border-radius:12px;color:#F5ECDD;cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 4px;display:flex;align-items:center;justify-content:center;background:#C6A15E;color:#17100B;border-radius:999px;font-size:11px;font-weight:800">{{ cartCount }}</span>
+          </sc-if>
+        </button>
+        <button onClick="{{ toggleNav }}" aria-label="Menu" style="display:flex;flex-direction:column;gap:5px;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(198,161,94,.4);border-radius:12px;cursor:pointer">
+          <span style="width:20px;height:2px;background:#E7DDCC;border-radius:2px"></span>
+          <span style="width:20px;height:2px;background:#E7DDCC;border-radius:2px"></span>
+          <span style="width:20px;height:2px;background:#E7DDCC;border-radius:2px"></span>
+        </button>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- mobile dropdown -->
+  <sc-if value="{{ navDropdownOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid rgba(198,161,94,.2);background:rgba(18,12,8,.98);padding:14px 24px 22px;animation:gr-fade .3s ease">
+      <nav style="display:flex;flex-direction:column;gap:4px">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+          <a href="{{ link.href }}" onClick="{{ closeNav }}" style="font-size:16px;font-weight:600;color:#E7DDCC;padding:12px 6px;border-bottom:1px solid rgba(198,161,94,.12)">{{ link.label }}</a>
+        </sc-for>
+      </nav>
+      <div style="margin-top:8px">
+        <a href="tel:513300130" style="display:flex;align-items:center;gap:11px;color:#E7DDCC;font-weight:600;font-size:16px;padding:12px 6px;border-bottom:1px solid rgba(198,161,94,.12)"><span style="display:flex;color:#C6A15E"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>513 300 130</a>
+        <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:11px;color:#E7DDCC;font-weight:600;font-size:16px;padding:12px 6px"><span style="display:flex;color:#C6A15E"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.6H6.61v3.56h3.07V22h3.68v-9.14h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73z"></path></svg></span>Odwiedź nas na Facebooku</a>
+      </div>
+    </div>
+  </sc-if>
+</header>
+
+<!-- ============ 1. HERO ============ -->
+<section id="start" ref="{{ setHeroRef }}" style="position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;background:#100B08">
+  <div style="position:absolute;inset:0;background-image:url('uploads/zdjecia/hero-glowna.png');background-size:cover;background-position:center right" class="gr-hero-bg"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,8,5,.92) 0%,rgba(12,8,5,.6) 42%,rgba(12,8,5,.1) 74%,rgba(12,8,5,.2) 100%)"></div>
+  <div ref="{{ setFlashRef }}" style="position:absolute;inset:0;pointer-events:none;background:rgba(6,4,2,0.55)"></div>
+
+  <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;padding:80px 24px;width:100%">
+    <div style="max-width:640px;animation:gr-fade .8s ease both">
+      <div style="display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border:1px solid rgba(198,161,94,.4);border-radius:999px;font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:26px">Delikatesy · Grodzisk Mazowiecki</div>
+      <h1 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(48px,7vw,86px);line-height:.98;margin:0 0 20px;color:#F5ECDD;text-shadow:0 4px 30px rgba(0,0,0,.5)">Grodziski<br>Rzeźnik</h1>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(20px,2.6vw,27px);color:#C6A15E;margin:0 0 18px;font-weight:500">Premium delikatesy mięsne w Grodzisku Mazowieckim</p>
+      <p style="font-size:clamp(15px,1.7vw,18px);line-height:1.65;color:#D7CBB6;max-width:520px;margin:0 0 34px">Wołowina sezonowana na sucho, wędliny własnej roboty, sery i wina z całego świata — dobierane osobiście, nie z automatu.</p>
+      <div class="gr-hero-cta" style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px">
+        <a href="#oferta" class="gr-cta1 gr-cta-btn" style="display:inline-flex;align-items:center;gap:10px;background:#872B2F;color:#F5ECDD;padding:16px 32px;border-radius:999px;font-weight:700;font-size:15px;border:1px solid #872B2F;box-shadow:0 14px 30px -10px rgba(135,43,47,.8)">Zobacz ofertę →</a>
+        <a href="#oferta" onClick="{{ openCartCta }}" class="gr-cta2 gr-cta-btn" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#F0E7D8;padding:16px 32px;border-radius:999px;font-weight:700;font-size:15px;border:1px solid rgba(198,161,94,.55)">Zamów online</a>
+      </div>
+      <!-- trust bar -->
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;padding-top:26px;border-top:1px solid rgba(198,161,94,.22);font-size:13.5px;color:#C4B8A3">
+        <span style="display:inline-flex;align-items:center;gap:7px"><span style="color:#C6A15E;letter-spacing:1px">★★★★★</span><strong style="color:#F0E7D8">4,6</strong> · 42 opinie Google</span>
+        <span style="width:4px;height:4px;border-radius:50%;background:rgba(198,161,94,.5)"></span>
+        <a href="https://maps.app.goo.gl/dtkfF8sSwej8EvR39" target="_blank" rel="noopener" class="gr-hoverbrass" style="color:#C4B8A3">ul. Krzysztofa Arciszewskiego 1, Grodzisk Mazowiecki</a>
+        <span style="width:4px;height:4px;border-radius:50%;background:rgba(198,161,94,.5)"></span>
+        <span>Pon–Pt 8:00–19:00 · Sob 7:00–15:00</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;background:{{ status.pillBg }};border:1px solid {{ status.pillBorder }};color:{{ status.pillColor }};font-weight:700;font-size:12.5px">
+          <span class="{{ status.dotClass }}" style="width:8px;height:8px;border-radius:50%;background:{{ status.dotColor }};display:inline-block"></span>{{ status.label }}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. O NAS ============ -->
+<section id="onas" style="background:#1B140F;padding:96px 24px;border-top:1px solid rgba(198,161,94,.14)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="max-width:760px;margin-bottom:56px">
+      <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:16px">O nas</div>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.2vw,46px);line-height:1.08;margin:0 0 22px;color:#F5ECDD;text-wrap:balance">Więcej niż sklep mięsny</h2>
+      <p style="font-size:17px;line-height:1.7;color:#CFC3AE;margin:0">Grodziski Rzeźnik to coś więcej niż sklep mięsny. Mięso i wędliny dobieramy osobiście, nie z automatu — a obok nich znajdziesz sery, wina i przetwory z całego świata. Wpadnij, powiedz co gotujesz, a doradzimy odpowiedni kawałek.</p>
+    </div>
+
+    <div class="gr-grid-cat" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px">
+      <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+        <div class="gr-card" onClick="{{ cat.onToggle }}" style="display:flex;flex-direction:column;height:404px;cursor:pointer;background:linear-gradient(168deg,#2C2118,#211812);border:1px solid rgba(198,161,94,.24);border-radius:18px;overflow:hidden;box-shadow:0 20px 44px -22px rgba(0,0,0,.8)">
+          <div style="position:relative;flex:1;min-height:0;overflow:hidden;background:#17100B">
+            <img class="gr-zoom" src="{{ cat.img }}" alt="{{ cat.title }}" style="width:100%;height:100%;object-fit:cover;display:block">
+            <div class="gr-catovl {{ cat.ovlOpen }}" style="position:absolute;inset:0;background:rgba(8,5,3,.68);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px">
+              <span style="width:36px;height:2px;background:#C6A15E;margin-bottom:16px"></span>
+              <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:26px;margin:0 0 12px;color:#F5ECDD">{{ cat.title }}</h3>
+              <p style="font-size:14.5px;line-height:1.6;color:#E4D9C6;margin:0;max-width:270px">{{ cat.desc }}</p>
+            </div>
+          </div>
+          <div class="gr-cattitle {{ cat.titleOpen }}" style="flex:none;padding:20px 24px 22px;display:flex;align-items:center;gap:12px">
+            <span style="width:26px;height:2px;background:#C6A15E;flex:none"></span>
+            <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:24px;margin:0;color:#F3E9D7">{{ cat.title }}</h3>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. OPINIE ============ -->
+<section id="opinie" style="background:#16100C;padding:90px 24px;border-top:1px solid rgba(198,161,94,.14)">
+  <div style="max-width:1000px;margin:0 auto;text-align:center">
+    <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:14px">Opinie</div>
+    <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(26px,3.6vw,40px);margin:0 0 8px;color:#F5ECDD"><span style="color:#C6A15E;letter-spacing:2px">★★★★★</span> 4,6 na Google</h2>
+    <a href="https://www.google.com/search?q=Grodziski+Rze%C5%BAnik+Opinie" target="_blank" rel="noopener" style="display:inline-block;font-size:14px;font-weight:600;margin-bottom:44px">Zobacz wszystkie opinie →</a>
+
+    <div onTouchStart="{{ onTestiTouchStart }}" onTouchEnd="{{ onTestiTouchEnd }}" style="position:relative;overflow:hidden;border:1px solid rgba(198,161,94,.2);border-radius:22px;background:linear-gradient(165deg,#221913,#1A130E);box-shadow:0 24px 50px -24px rgba(0,0,0,.8)">
+      <div style="display:flex;transition:transform .7s cubic-bezier(.4,0,.2,1);transform:{{ testiTransform }}">
+        <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="6">
+          <div style="flex:0 0 100%;padding:54px 8vw 46px;display:flex;flex-direction:column;align-items:center">
+            <div style="color:#C6A15E;font-size:19px;letter-spacing:2px;margin-bottom:22px">★★★★★</div>
+            <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);line-height:1.55;color:#EDE3D2;margin:0 0 26px;max-width:680px;text-wrap:pretty">„{{ t.text }}”</p>
+            <div style="width:40px;height:1px;background:rgba(198,161,94,.55);margin-bottom:16px"></div>
+            <div style="font-weight:700;font-size:15px;letter-spacing:1px;color:#C6A15E">{{ t.name }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:center;gap:10px;margin-top:26px">
+      <sc-for list="{{ testiDots }}" as="dot" hint-placeholder-count="6">
+        <button onClick="{{ dot.onClick }}" aria-label="Opinia" style="width:{{ dot.w }};height:9px;border-radius:999px;border:none;background:{{ dot.bg }};cursor:pointer;transition:all .3s;padding:0"></button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. OFERTA ============ -->
+<section id="oferta" style="background:#120C08;padding:96px 24px;border-top:1px solid rgba(198,161,94,.18)">
+  <div style="max-width:1240px;margin:0 auto">
+    <div style="text-align:center;max-width:680px;margin:0 auto 44px">
+      <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:16px">Sklep online</div>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);margin:0 0 16px;color:#F5ECDD;text-wrap:balance">Zamów bezpośrednio online</h2>
+      <p style="font-size:16.5px;line-height:1.65;color:#C4B8A3;margin:0">Wybierz produkty i dodaj do koszyka — odbiór osobisty lub dostawa wg kodu pocztowego.</p>
+    </div>
+
+    <!-- status otwarcia + sprawdzarka dostawy -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:940px;margin:0 auto 40px;align-items:stretch">
+      <!-- open status -->
+      <div style="display:flex;align-items:center;gap:15px;padding:20px 24px;background:linear-gradient(165deg,rgba(240,231,216,.04),rgba(240,231,216,.015));border:1px solid rgba(198,161,94,.24);border-radius:16px">
+        <span style="flex:none;display:flex;width:46px;height:46px;align-items:center;justify-content:center;border-radius:50%;background:{{ status.pillBg }};border:1px solid {{ status.pillBorder }}">
+          <span class="{{ status.dotClass }}" style="width:13px;height:13px;border-radius:50%;background:{{ status.dotColor }};display:inline-block"></span>
+        </span>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:19px;color:#F3E9D7;line-height:1.2">{{ status.shopLabel }}</div>
+          <div style="font-size:13px;line-height:1.5;color:#B9AB97;margin-top:3px">{{ status.subline }}</div>
+        </div>
+      </div>
+      <!-- delivery checker -->
+      <div style="padding:20px 24px;background:linear-gradient(165deg,rgba(240,231,216,.04),rgba(240,231,216,.015));border:1px solid rgba(198,161,94,.24);border-radius:16px">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;font-weight:700;font-size:15.5px;color:#F0E7D8">
+          <span style="flex:none;color:#C6A15E;display:flex"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"></rect><path d="M16 8h4l3 3v5h-7z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></span>
+          Sprawdź, czy dowozimy do Ciebie
+        </div>
+        <form onSubmit="{{ checkDelivery }}" style="display:flex;gap:10px;flex-wrap:wrap">
+          <input value="{{ postal }}" onInput="{{ onPostalInput }}" placeholder="np. 05-825" maxlength="6" inputmode="numeric" aria-label="Kod pocztowy" style="flex:1;min-width:120px;background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.3);border-radius:12px;padding:12px 15px;color:#F0E7D8;font-size:15px;letter-spacing:.5px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+          <button type="submit" class="gr-btn" style="background:#872B2F;color:#F5ECDD;border:none;border-radius:12px;padding:12px 26px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 10px 22px -12px rgba(135,43,47,.9)">Sprawdź</button>
+        </form>
+        <sc-if value="{{ delivery.show }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:12px;display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border-radius:12px;background:{{ delivery.bg }};border:1px solid {{ delivery.border }};font-size:13px;line-height:1.5;color:{{ delivery.color }};animation:gr-fade .3s ease">
+            <span style="flex:none;display:flex;margin-top:1px;color:{{ delivery.iconColor }}">
+              <sc-if value="{{ delivery.ok }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path></svg></sc-if>
+              <sc-if value="{{ delivery.notOk }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></sc-if>
+            </span>
+            <span>{{ delivery.text }}</span>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- tabs -->
+    <div class="gr-tabs" style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:44px">
+      <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="3">
+        <button onClick="{{ tab.onClick }}" style="padding:12px 26px;border-radius:999px;font-weight:700;font-size:14.5px;cursor:pointer;transition:all .3s;border:1px solid {{ tab.border }};background:{{ tab.bg }};color:{{ tab.color }}">{{ tab.label }}</button>
+      </sc-for>
+    </div>
+
+    <!-- product grid -->
+    <div class="gr-grid-prod" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px">
+      <sc-for list="{{ allProducts }}" as="p" hint-placeholder-count="8">
+        <div class="gr-card" style="display:{{ p.display }};flex-direction:column;background:linear-gradient(168deg,#2C2118,#211812);border:1px solid rgba(198,161,94,.28);border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -20px rgba(0,0,0,.85)">
+          <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#17100B">
+            <img class="gr-zoom" src="{{ p.img }}" alt="{{ p.name }}" loading="eager" style="width:100%;height:100%;object-fit:cover">
+            <span style="position:absolute;top:12px;left:12px;background:rgba(18,12,8,.82);backdrop-filter:blur(4px);border:1px solid rgba(198,161,94,.35);color:#C6A15E;font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 11px;border-radius:999px;white-space:nowrap">{{ p.weight }}</span>
+          </div>
+          <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+            <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:19px;line-height:1.22;margin:0 0 4px;color:#F3E9D7;min-height:46px">{{ p.name }}</h3>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:auto;padding-top:12px">
+              <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:24px;color:#C6A15E">{{ p.priceStr }}</span>
+            </div>
+            <button onClick="{{ p.onAdd }}" class="gr-btn" style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#872B2F;color:#F5ECDD;border:none;border-radius:12px;padding:13px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 10px 22px -12px rgba(135,43,47,.9)">＋ Dodaj do koszyka</button>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. GALERIA ============ -->
+<section id="galeria" style="background:#1B140F;padding:96px 24px;border-top:1px solid rgba(198,161,94,.14)">
+  <div style="max-width:1240px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:48px">
+      <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:16px">Galeria</div>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);margin:0;color:#F5ECDD">Zajrzyj do środka</h2>
+    </div>
+
+    <div class="gr-grid-gal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">
+      <sc-for list="{{ visibleGallery }}" as="g" hint-placeholder-count="8">
+        <button onClick="{{ g.onOpen }}" class="gr-tile" style="position:relative;padding:0;border:1px solid rgba(198,161,94,.2);border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:1/1;background:#17100B;box-shadow:0 14px 30px -18px rgba(0,0,0,.8);animation:gr-fade .5s ease both">
+          <img class="gr-zoom" src="{{ g.src }}" alt="{{ g.caption }}" style="width:100%;height:100%;object-fit:cover;display:block">
+          <div class="gr-mag" style="position:absolute;inset:0;background:rgba(11,7,4,.5);display:flex;align-items:center;justify-content:center">
+            <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(242,236,221,.85);color:#F2ECDD;background:rgba(20,14,10,.35)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </span>
+          </div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(12,8,5,.82) 0%,rgba(12,8,5,0) 45%);display:flex;align-items:flex-end;padding:16px;pointer-events:none">
+            <span style="font-size:13.5px;font-weight:600;color:#F0E7D8;text-align:left;text-shadow:0 1px 6px rgba(0,0,0,.6)">{{ g.caption }}</span>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ hasMoreGallery }}" hint-placeholder-val="{{ true }}">
+      <div style="text-align:center;margin-top:40px">
+        <button onClick="{{ loadMore }}" class="gr-btn" style="display:inline-flex;align-items:center;gap:10px;background:rgba(240,231,216,.05);color:#F0E7D8;padding:15px 34px;border-radius:999px;font-weight:700;font-size:14.5px;border:1px solid rgba(198,161,94,.45);cursor:pointer">Zobacz więcej ↓</button>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<!-- ============ 6. KONTAKT ============ -->
+<section id="kontakt" style="background:#16100C;padding:96px 24px;border-top:1px solid rgba(198,161,94,.18)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:56px">
+      <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:16px">Kontakt</div>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);margin:0;color:#F5ECDD">Odwiedź nas</h2>
+    </div>
+
+    <div class="gr-contact-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px;align-items:start">
+      <!-- left -->
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(198,161,94,.22);box-shadow:0 20px 44px -22px rgba(0,0,0,.8)">
+          <img src="./lokal-mrghfios.png" alt="Wnętrze sklepu Grodziski Rzeźnik" class="gr-shopimg" style="width: 100%; height: 300px; object-fit: cover; display: block">
+        </div>
+
+        <div style="background:linear-gradient(165deg,#241A13,#1A130E);border:1px solid rgba(198,161,94,.22);border-radius:18px;padding:26px 28px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 18px">
+            <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:21px;margin:0;color:#F3E9D7">Godziny otwarcia</h3>
+            <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:{{ status.pillBg }};border:1px solid {{ status.pillBorder }};color:{{ status.pillColor }};font-weight:700;font-size:13px">
+              <span class="{{ status.dotClass }}" style="width:8px;height:8px;border-radius:50%;background:{{ status.dotColor }};display:inline-block"></span>{{ status.label }}
+            </span>
+          </div>
+          <sc-if value="{{ status.closed }}" hint-placeholder-val="{{ false }}">
+            <div style="margin:-4px 0 16px;font-size:13px;color:#B9AB97">{{ status.nextText }}</div>
+          </sc-if>
+          <div style="display:flex;flex-direction:column;gap:11px;font-size:15px">
+            <div style="display:flex;justify-content:space-between;gap:12px;padding-bottom:11px;border-bottom:1px solid rgba(198,161,94,.14)"><span style="color:#C4B8A3">Poniedziałek – Piątek</span><strong style="color:#F0E7D8">8:00 – 19:00</strong></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;padding-bottom:11px;border-bottom:1px solid rgba(198,161,94,.14)"><span style="color:#C4B8A3">Sobota</span><strong style="color:#F0E7D8">7:00 – 15:00</strong></div>
+            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#C4B8A3">Niedziela</span><strong style="color:#9C7A6B">Nieczynne</strong></div>
+          </div>
+          <div style="margin-top:20px;display:flex;align-items:center;gap:11px;padding:13px 16px;background:rgba(198,161,94,.08);border:1px solid rgba(198,161,94,.2);border-radius:12px;font-size:14px;color:#D7CBB6">
+            <span style="font-size:18px">🅿</span> Parking: bezpłatny, bezpośrednio przed sklepem
+          </div>
+          <div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(198,161,94,.14);display:flex;flex-direction:column;gap:12px;font-size:14.5px">
+            <a href="https://maps.app.goo.gl/dtkfF8sSwej8EvR39" target="_blank" rel="noopener" class="gr-hoverbrass" style="color:#D7CBB6;display:flex;align-items:flex-start;gap:11px">
+              <span style="display:flex;flex:none;color:#C6A15E;margin-top:1px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+              ul. Krzysztofa Arciszewskiego 1, 05-827 Grodzisk Mazowiecki
+            </a>
+            <a href="tel:513300130" class="gr-hoverbrass" style="color:#D7CBB6;display:flex;align-items:center;gap:11px">
+              <span style="display:flex;flex:none;color:#C6A15E"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
+              513 300 130
+            </a>
+            <a href="mailto:sklep@grodziskirzeznik.pl" class="gr-hoverbrass" style="color:#D7CBB6;display:flex;align-items:center;gap:11px">
+              <span style="display:flex;flex:none;color:#C6A15E"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg></span>
+              sklep@grodziskirzeznik.pl
+            </a>
+          </div>
+        </div>
+
+        <!-- map -->
+        <div style="position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(198,161,94,.22);box-shadow:0 20px 44px -22px rgba(0,0,0,.8)">
+          <iframe title="Mapa — Grodziski Rzeźnik" src="https://maps.google.com/maps?q=Grodziski%20Rze%C5%BAnik%2C%20Krzysztofa%20Arciszewskiego%201%2C%2005-827%20Grodzisk%20Mazowiecki&amp;z=16&amp;output=embed" style="width:100%;height:240px;border:0;display:block;pointer-events:{{ mapPointer }};filter:grayscale(.25) contrast(1.05) brightness(.92)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <sc-if value="{{ mapOverlay }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ activateMap }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(12,8,5,.32);border:none;cursor:pointer">
+              <span style="display:flex;align-items:center;gap:8px;background:rgba(18,12,8,.88);border:1px solid rgba(198,161,94,.42);color:#F0E7D8;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:999px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C6A15E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Dotknij, aby aktywować mapę</span>
+            </button>
+          </sc-if>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="https://www.google.pl/maps/dir//Grodziski+Rze%C5%BAnik,+Krzysztofa+Arciszewskiego+1,+05-827+Grodzisk+Mazowiecki/@52.1091435,20.6223024,15z" target="_blank" rel="noopener" class="gr-btn" style="flex:1;min-width:150px;text-align:center;background:#872B2F;color:#F5ECDD;padding:14px;border-radius:12px;font-weight:700;font-size:14px">Wyznacz trasę</a>
+          <a href="https://maps.app.goo.gl/dtkfF8sSwej8EvR39" target="_blank" rel="noopener" class="gr-btn" style="flex:1;min-width:150px;text-align:center;background:rgba(240,231,216,.05);color:#F0E7D8;padding:14px;border-radius:12px;font-weight:700;font-size:14px;border:1px solid rgba(198,161,94,.4)">Zobacz na mapie</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="font-size:14px;color:#C4B8A3">Obserwuj nas:</span>
+          <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" aria-label="Facebook" class="gr-icon" style="display:flex;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid rgba(198,161,94,.3);border-radius:50%;color:#C6A15E">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.6H6.61v3.56h3.07V22h3.68v-9.14h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73z"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- right form (sticky within the Kontakt section) -->
+      <div class="gr-form-sticky" style="position:sticky;top:96px;background:linear-gradient(168deg,#251B14,#1A130E);border:1px solid rgba(198,161,94,.24);border-radius:20px;padding:clamp(26px,4vw,40px);box-shadow:0 24px 50px -24px rgba(0,0,0,.85)">
+        <p style="font-family:'Playfair Display',serif;font-size:clamp(19px,2.4vw,23px);line-height:1.45;color:#EDE3D2;margin:0 0 28px">Masz pytanie albo chcesz zamówić coś na konkretną okazję? Napisz — odpowiadamy najszybciej, jak się da.</p>
+
+        <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:40px 20px;text-align:center;border:1px dashed rgba(198,161,94,.4);border-radius:14px;background:rgba(198,161,94,.06)">
+            <div style="font-size:40px;margin-bottom:12px">✓</div>
+            <div style="font-family:'Playfair Display',serif;font-size:22px;color:#F3E9D7;margin-bottom:8px">Dziękujemy!</div>
+            <div style="color:#C4B8A3;font-size:15px">Odezwiemy się najszybciej, jak się da.</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ formVisible }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submitForm }}" style="display:flex;flex-direction:column;gap:16px">
+            <div class="gr-form-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px">
+              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">Imię i nazwisko
+                <input type="text" name="name" required="" placeholder="Jan Kowalski" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">Telefon
+                <input type="tel" name="phone" placeholder="500 000 000" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+              </label>
+            </div>
+            <div class="gr-form-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px">
+              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">E-mail
+                <input type="email" name="email" required="" placeholder="jan@przyklad.pl" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">Temat
+                <input type="text" name="subject" placeholder="np. zamówienie na przyjęcie" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+              </label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">Wiadomość
+              <textarea name="message" required="" rows="4" placeholder="W czym możemy pomóc?" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;resize:vertical;transition:border-color .25s" style-focus="border-color:#C6A15E"></textarea>
+            </label>
+            <label style="display:flex;align-items:flex-start;gap:11px;font-size:12.5px;line-height:1.5;color:#B9AB97;cursor:pointer">
+              <input type="checkbox" name="rodo" required="" style="margin-top:2px;width:17px;height:17px;accent-color:#872B2F;flex:none">
+              <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania, zgodnie z polityką prywatności (RODO).</span>
+            </label>
+            <button type="submit" style="margin-top:6px;background:#872B2F;color:#F5ECDD;border:none;border-radius:12px;padding:16px;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(135,43,47,.9);transition:transform .2s,background .25s" style-hover="transform:translateY(-2px);background:#9C343A">Wyślij wiadomość</button>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background:#100B08;padding:64px 24px 30px;border-top:1px solid rgba(198,161,94,.2)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(198,161,94,.14)">
+      <div style="max-width:340px">
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:26px;color:#F3E9D7;margin-bottom:14px">Grodziski Rzeźnik</div>
+        <p style="font-size:14px;line-height:1.65;color:#A89C88;margin:0">Grodziski Rzeźnik — premium delikatesy mięsne w Grodzisku Mazowieckim. Mięso, wędliny, sery i wina dobierane osobiście, nie z automatu.</p>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:18px">Na skróty</div>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px">
+          <a href="#start" class="gr-flink" style="color:#C4B8A3">Start</a>
+          <a href="#onas" class="gr-flink" style="color:#C4B8A3">O nas</a>
+          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Oferta</a>
+          <a href="#galeria" class="gr-flink" style="color:#C4B8A3">Galeria</a>
+          <a href="#kontakt" class="gr-flink" style="color:#C4B8A3">Kontakt</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:18px">Oferta</div>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px">
+          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Sery</a>
+          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Wędliny</a>
+          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Wyroby garmażeryjne</a>
+          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Wina</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:18px">Obserwuj nas</div>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px">
+          <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" class="gr-flink" style="color:#C4B8A3">Facebook</a>
+        </div>
+        <div style="margin-top:20px;font-size:13.5px;color:#A89C88;line-height:1.7">
+          <div>ul. Krzysztofa Arciszewskiego 1</div>
+          <div>05-827 Grodzisk Mazowiecki</div>
+          <a href="tel:513300130" style="color:#C6A15E;font-weight:700">513 300 130</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding-top:24px;font-size:13px;color:#8A7E6C">
+      <span>© 2026 Grodziski Rzeźnik. Wszelkie prawa zastrzeżone.</span>
+      <span style="display:flex;gap:20px"><a href="#" class="gr-hoverbrass" style="color:#8A7E6C">Polityka prywatności</a><a href="#" class="gr-hoverbrass" style="color:#8A7E6C">Regulamin sklepu</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CART PANEL ============ -->
+<sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeCart }}" style="position:fixed;inset:0;z-index:90;background:rgba(8,5,3,.62);backdrop-filter:blur(3px);animation:gr-fade .3s ease"></div>
+  <aside style="position:fixed;top:0;right:0;bottom:0;z-index:91;width:min(420px,92vw);background:linear-gradient(180deg,#1E1610,#160F0A);border-left:1px solid rgba(198,161,94,.3);box-shadow:-30px 0 60px -20px rgba(0,0,0,.8);display:flex;flex-direction:column;animation:gr-slidein .35s ease">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid rgba(198,161,94,.2)">
+      <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;margin:0;color:#F3E9D7">Twój koszyk</h3>
+      <button onClick="{{ closeCart }}" aria-label="Zamknij" style="width:38px;height:38px;border-radius:10px;border:1px solid rgba(198,161,94,.3);background:transparent;color:#C6A15E;font-size:20px;cursor:pointer" style-hover="background:rgba(198,161,94,.12)">✕</button>
+    </div>
+
+    <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;gap:16px">
+        <span style="color:rgba(198,161,94,.55)"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></span>
+        <p style="color:#B9AB97;font-size:15px;margin:0">Twój koszyk jest pusty.<br>Dodaj coś pysznego z naszej oferty.</p>
+        <a href="#oferta" onClick="{{ closeCart }}" class="gr-btn" style="background:#872B2F;color:#F5ECDD;padding:13px 26px;border-radius:999px;font-weight:700;font-size:14px">Przejdź do oferty</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ cartHasItems }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ cartItems }}" as="ci" hint-placeholder-count="2">
+          <div style="display:flex;gap:14px;background:rgba(240,231,216,.04);border:1px solid rgba(198,161,94,.16);border-radius:14px;padding:12px">
+            <img src="{{ ci.img }}" alt="{{ ci.name }}" style="width:64px;height:64px;border-radius:10px;object-fit:cover;flex:none">
+            <div style="flex:1;min-width:0">
+              <div style="font-weight:700;font-size:14px;color:#F0E7D8;line-height:1.25">{{ ci.name }}</div>
+              <div style="font-size:12px;color:#9C8E7A;margin:2px 0 8px">{{ ci.weight }} · {{ ci.priceStr }}</div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(198,161,94,.3);border-radius:8px;overflow:hidden">
+                  <button onClick="{{ ci.onDec }}" aria-label="Mniej" style="width:28px;height:28px;background:transparent;border:none;color:#C6A15E;font-size:16px;cursor:pointer" style-hover="background:rgba(198,161,94,.14)">−</button>
+                  <span style="min-width:22px;text-align:center;font-weight:700;font-size:14px;color:#F0E7D8">{{ ci.qty }}</span>
+                  <button onClick="{{ ci.onInc }}" aria-label="Więcej" style="width:28px;height:28px;background:transparent;border:none;color:#C6A15E;font-size:16px;cursor:pointer" style-hover="background:rgba(198,161,94,.14)">＋</button>
+                </div>
+                <button onClick="{{ ci.onRemove }}" style="margin-left:auto;background:transparent;border:none;color:#9C7A6B;font-size:12px;cursor:pointer;text-decoration:underline" style-hover="color:#C77">Usuń</button>
+              </div>
+            </div>
+            <div style="font-weight:800;font-size:14px;color:#C6A15E;white-space:nowrap">{{ ci.lineStr }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="padding:20px 24px;border-top:1px solid rgba(198,161,94,.2);background:rgba(16,11,8,.6)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px">
+          <span style="font-size:15px;color:#C4B8A3">Razem</span>
+          <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:26px;color:#F3E9D7">{{ cartTotalStr }}</span>
+        </div>
+        <button style="width:100%;background:#872B2F;color:#F5ECDD;border:none;border-radius:12px;padding:16px;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(135,43,47,.9);transition:transform .2s,background .25s" style-hover="transform:translateY(-2px);background:#9C343A">Przejdź do zamówienia →</button>
+        <p style="text-align:center;font-size:12px;color:#8A7E6C;margin:12px 0 0">Odbiór osobisty lub dostawa wg kodu pocztowego</p>
+      </div>
+    </sc-if>
+  </aside>
+</sc-if>
+
+<!-- ============ LIGHTBOX ============ -->
+<sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:100;background:rgba(8,5,3,.9);backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5vw;animation:gr-fade .3s ease;cursor:zoom-out">
+    <img src="{{ lightboxSrc }}" alt="{{ lightboxCaption }}" style="max-width:min(90vw,900px);max-height:78vh;border-radius:16px;box-shadow:0 30px 80px -20px rgba(0,0,0,.9);border:1px solid rgba(198,161,94,.3)">
+    <div style="margin-top:20px;font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#EDE3D2;text-align:center">{{ lightboxCaption }}</div>
+    <button onClick="{{ closeLightbox }}" aria-label="Zamknij" style="position:fixed;top:24px;right:24px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(198,161,94,.4);background:rgba(18,12,8,.7);color:#F0E7D8;font-size:22px;cursor:pointer">✕</button>
+  </div>
+</sc-if>
+
+<!-- ============ ASSISTANT ============ -->
+<sc-if value="{{ chatOpen }}" hint-placeholder-val="{{ false }}">
+  <div class="gr-chat" style="position:fixed;bottom:104px;right:24px;z-index:95;width:min(370px,calc(100vw - 32px));max-height:min(560px,calc(100vh - 140px));display:flex;flex-direction:column;background:linear-gradient(180deg,#1F170F,#170F0A);border:1px solid rgba(198,161,94,.34);border-radius:22px;box-shadow:0 30px 70px -18px rgba(0,0,0,.85);overflow:hidden;animation:gr-slidein .35s ease">
+    <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(198,161,94,.2);background:rgba(135,43,47,.14)">
+      <img src="uploads/zdjecia/asystent-awatar.png" alt="Doradca" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(198,161,94,.6);background:#17100B">
+      <div style="flex:1">
+        <div style="font-weight:800;font-size:15px;color:#F3E9D7">Doradca Grodziski</div>
+        <div style="font-size:12px;color:#8FBF8F;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#6FBF6F;display:inline-block"></span>Online — odpowiada od ręki</div>
+      </div>
+      <button onClick="{{ toggleChat }}" aria-label="Zamknij czat" style="width:34px;height:34px;border-radius:9px;border:1px solid rgba(198,161,94,.3);background:transparent;color:#C6A15E;font-size:17px;cursor:pointer" style-hover="background:rgba(198,161,94,.12)">✕</button>
+    </div>
+
+    <div ref="{{ setChatScrollRef }}" style="flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ chatMessages }}" as="m" hint-placeholder-count="1">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:{{ m.align }}">
+          <div style="max-width:82%;padding:11px 15px;border-radius:{{ m.radius }};font-size:14px;line-height:1.5;white-space:pre-line;background:{{ m.bg }};color:{{ m.color }};border:{{ m.border }}">{{ m.text }}</div>
+          <sc-if value="{{ m.hasButtons }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:82%">
+              <sc-for list="{{ m.buttons }}" as="b" hint-placeholder-count="3">
+                <a href="{{ b.href }}" onClick="{{ b.onClick }}" target="{{ b.target }}" style="display:block;text-align:center;padding:11px 14px;border-radius:11px;font-size:13.5px;font-weight:700;background:rgba(198,161,94,.1);border:1px solid rgba(198,161,94,.4);color:#E3C482;transition:background .2s" style-hover="background:rgba(198,161,94,.2)">{{ b.label }}</a>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="padding:14px 16px;border-top:1px solid rgba(198,161,94,.2)">
+      <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px">
+        <sc-for list="{{ chatQuick }}" as="q" hint-placeholder-count="4">
+          <button onClick="{{ q.onClick }}" style="padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600;background:rgba(240,231,216,.05);border:1px solid rgba(198,161,94,.28);color:#C4B8A3;cursor:pointer;transition:all .2s" style-hover="border-color:#C6A15E;color:#F0E7D8">{{ q.label }}</button>
+        </sc-for>
+      </div>
+      <form onSubmit="{{ sendChatForm }}" style="display:flex;gap:9px">
+        <input value="{{ chatInput }}" onInput="{{ onChatInput }}" placeholder="Napisz wiadomość…" style="flex:1;background:rgba(18,12,8,.7);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:12px 14px;color:#F0E7D8;font-size:14px;outline:none" style-focus="border-color:#C6A15E">
+        <button type="submit" aria-label="Wyślij" style="width:46px;flex:none;background:#872B2F;border:none;border-radius:12px;color:#F5ECDD;font-size:17px;cursor:pointer;transition:background .2s" style-hover="background:#9C343A">➤</button>
+      </form>
+    </div>
+  </div>
+</sc-if>
+
+<button onClick="{{ toggleChat }}" aria-label="Doradca Grodziski" style="position:fixed;bottom:24px;right:24px;z-index:94;width:66px;height:66px;border-radius:50%;border:2px solid rgba(198,161,94,.65);background:#17100B;padding:0;cursor:pointer;overflow:hidden;animation:gr-pulse 2.6s ease-in-out infinite;transition:transform .25s" style-hover="transform:scale(1.08)">
+  <img src="uploads/zdjecia/asystent-awatar.png" alt="Doradca Grodziski" style="width:100%;height:100%;object-fit:cover;display:block">
+</button>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;flashlightEffect&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;autoplayTestimonials&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Opinie&quot;},&quot;assistantAutoOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Asystent&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = {
+      vw: (typeof window !== 'undefined') ? window.innerWidth : 1200,
+      navOpen: false,
+      activeTab: 'sery',
+      cart: {},
+      cartOpen: false,
+      galleryCount: 8,
+      lightbox: null,
+      chatOpen: false,
+      chatInput: '',
+      testi: 0,
+      formSent: false,
+      postal: '',
+      postalResult: null,
+      activeCat: null,
+      mapActive: false,
+      isTouch: false,
+      chatMessages: [
+        { from: 'bot', text: 'Cześć! Jestem Doradcą Grodziskim 🥩 Zapytaj mnie o godziny, adres albo naszą ofertę.' }
+      ]
+    };
+    this.setHeroRef = (el) => { this.heroRef = el; };
+    this.setFlashRef = (el) => { this.flashRef = el; };
+    this.setChatScrollRef = (el) => { this.chatScrollRef = el; };
+  }
+
+  products = [
+    { id:'mocarz', name:'Ser bio Mocarz', weight:'125 g', price:13.90, img:'uploads/zdjecia/sery-mocarz-bio.png', cat:'sery' },
+    { id:'blue', name:'Ser krowi pleśniowy blue', weight:'200 g', price:24.20, img:'uploads/zdjecia/sery-plesniowy-blue.png', cat:'sery' },
+    { id:'twarog', name:'Twaróg wiejski tłusty', weight:'350 g', price:20.39, img:'uploads/zdjecia/sery-twarog-wiejski.png', cat:'sery' },
+    { id:'owczy', name:'Ser owczy dojrzewający naturalny', weight:'200 g', price:44.99, img:'uploads/zdjecia/sery-owczy-dojrzewajacy.png', cat:'sery' },
+    { id:'sz-debowa', name:'Szynka dębowa', weight:'350 g', price:28.60, img:'uploads/zdjecia/wedliny-szynka-debowa.png', cat:'wedliny' },
+    { id:'sz-dojrz', name:'Szynka dojrzewająca', weight:'300 g', price:35.29, img:'uploads/zdjecia/wedliny-szynka-dojrzewajaca.png', cat:'wedliny' },
+    { id:'sz-piecz', name:'Szynka pieczona bez konserwantów', weight:'500 g', price:51.90, img:'uploads/zdjecia/wedliny-szynka-pieczona.png', cat:'wedliny' },
+    { id:'schab', name:'Schab pieczony EKO', weight:'90 g', price:25.90, img:'uploads/zdjecia/wedliny-schab-eko.png', cat:'wedliny' },
+    { id:'poledwica', name:'Polędwica drobiowa', weight:'300 g', price:23.10, img:'uploads/zdjecia/wedliny-poledwica-drobiowa.png', cat:'wedliny' },
+    { id:'baleron', name:'Baleron dębowy', weight:'350 g', price:27.50, img:'uploads/zdjecia/wedliny-baleron-debowy.png', cat:'wedliny' },
+    { id:'frank', name:'Frankfurterka', weight:'250 g', price:16.39, img:'uploads/zdjecia/wedliny-frankfurterka.png', cat:'wedliny' },
+    { id:'kabanos', name:'Kabanos premium', weight:'150 g', price:18.90, img:'uploads/zdjecia/wedliny-kabanos-premium.png', cat:'wedliny' },
+    { id:'pasztet', name:'Pasztet z gęsi w słoiku', weight:'250 g', price:20.90, img:'uploads/zdjecia/wedliny-pasztet-gesi.png', cat:'garmaz' },
+    { id:'pasztetowa', name:'Pasztetowa wędzona', weight:'450 g', price:21.90, img:'uploads/zdjecia/wedliny-pasztetowa-wedzona.png', cat:'garmaz' },
+    { id:'kaszanka', name:'Kaszanka', weight:'300 g', price:12.00, img:'uploads/zdjecia/wedliny-kaszanka.png', cat:'garmaz' }
+  ];
+
+  categories = [
+    { img:'uploads/zdjecia/onas-mieso.png', title:'Mięso', desc:'Świeże mięso i wołowina sezonowana na sucho, dobierana pod konkretne danie.' },
+    { img:'uploads/zdjecia/onas-wedliny.png', title:'Wędliny', desc:'Szynki, kabanosy i pasztety krojone na miejscu według tradycyjnych receptur.' },
+    { img:'uploads/zdjecia/onas-sery.png', title:'Sery', desc:'Od polskiego twarogu po halloumi, fetę i sery pleśniowe z zagranicy.' },
+    { img:'uploads/zdjecia/onas-produkty-swiata.png', title:'Produkty ze świata', desc:'Oliwy, makarony, przetwory pomidorowe i inne włoskie specjały.' },
+    { img:'uploads/zdjecia/onas-steki.png', title:'Steki', desc:'Marynowane na miejscu z ziołami i czosnkiem, gotowe na patelnię lub grill.' },
+    { img:'uploads/zdjecia/onas-wina.png', title:'Wina', desc:'Starannie wyselekcjonowane wina, głównie z Włoch.' }
+  ];
+
+  testimonials = [
+    { text:'Świeże i naprawdę dobre mięso — na pewno tu wrócę, brakowało takiego sklepu w okolicy.', name:'Michał' },
+    { text:'Wystrój wnętrza robi wrażenie, podobnie jak asortyment — świeże mięso, włoskie sery i wędliny, produkty z całego świata.', name:'Jakub' },
+    { text:'Kupuję tu steki regularnie od samego otwarcia — antrykot wychodzi taniej niż w dyskoncie, a jakościowo nie ma porównania.', name:'Albert' },
+    { text:'Polecam z całego serca — wędliny i mięso zawsze świeże, a obsługa chętnie doradzi coś smacznego.', name:'Marlena' },
+    { text:'Atmosfera i wystrój sklepu robią robotę, a wybór mięsa, serów i wędlin jest naprawdę duży — ceny dopasowane do różnych budżetów.', name:'Oliwka' },
+    { text:'Grodzisk w końcu doczekał się porządnego sklepu mięsnego — dobre zaopatrzenie, w tym też sery, także te włoskie.', name:'Joanna' },
+    { text:'Miło zaskoczona bogatym asortymentem — można tu kupić również włoskie i hiszpańskie specjały.', name:'Anna' },
+    { text:'Jakość wędlin i mięsa to absolutny top, a do tego wystrój i kultura obsługi na bardzo wysokim poziomie.', name:'Sławomir' },
+    { text:'Świetny wybór serów i wyrobów garmażeryjnych — burgery z świeżej wołowiny wychodzą naprawdę dobrze.', name:'Katarzyna' },
+    { text:'Bardzo miło zaskoczona tym miejscem — bogaty asortyment i profesjonalna, pomocna obsługa.', name:'Aldona' }
+  ];
+
+  galleryAll = [
+    { src:'uploads/zdjecia/hero-glowna.png', caption:'Deska serów, wędlin i wina' },
+    { src:'uploads/zdjecia/onas-mieso.png', caption:'Świeże mięso i wołowina' },
+    { src:'uploads/zdjecia/onas-wedliny.png', caption:'Wędliny własnej roboty' },
+    { src:'uploads/zdjecia/onas-sery.png', caption:'Sery z Polski i ze świata' },
+    { src:'uploads/zdjecia/onas-steki.png', caption:'Steki marynowane na miejscu' },
+    { src:'uploads/zdjecia/onas-wina.png', caption:'Wina, głównie z Włoch' },
+    { src:'uploads/zdjecia/onas-produkty-swiata.png', caption:'Włoskie specjały i przetwory' },
+    { src:'uploads/zdjecia/sery-mocarz-bio.png', caption:'Ser bio Mocarz' },
+    { src:'uploads/zdjecia/sery-plesniowy-blue.png', caption:'Ser pleśniowy blue' },
+    { src:'uploads/zdjecia/sery-owczy-dojrzewajacy.png', caption:'Ser owczy dojrzewający' },
+    { src:'uploads/zdjecia/wedliny-szynka-dojrzewajaca.png', caption:'Szynka dojrzewająca' },
+    { src:'uploads/zdjecia/wedliny-kabanos-premium.png', caption:'Kabanos premium' },
+    { src:'uploads/zdjecia/wedliny-szynka-debowa.png', caption:'Szynka dębowa' },
+    { src:'uploads/zdjecia/wedliny-baleron-debowy.png', caption:'Baleron dębowy' },
+    { src:'uploads/zdjecia/wedliny-pasztet-gesi.png', caption:'Pasztet z gęsi' },
+    { src:'uploads/zdjecia/sery-twarog-wiejski.png', caption:'Twaróg wiejski' }
+  ];
+
+  navLinks = [
+    { href:'#start', label:'Start' },
+    { href:'#onas', label:'O nas' },
+    { href:'#oferta', label:'Oferta' },
+    { href:'#galeria', label:'Galeria' },
+    { href:'#kontakt', label:'Kontakt' }
+  ];
+
+  tabDefs = [
+    { id:'sery', label:'Sery' },
+    { id:'wedliny', label:'Wędliny' },
+    { id:'garmaz', label:'Wyroby garmażeryjne' }
+  ];
+
+  componentDidMount(){
+    this._onResize = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    // preload every product + gallery image so tab switching never re-loads
+    try {
+      const urls = this.products.map(p => p.img).concat(this.galleryAll.map(g => g.src));
+      urls.forEach(u => { const im = new Image(); im.src = u; });
+    } catch (e) {}
+    if (this.props.autoplayTestimonials !== false) {
+      this._testiTimer = setInterval(() => {
+        this.setState(s => ({ testi: (s.testi + 1) % this.testimonials.length }));
+      }, 4800);
+    }
+    this.setupFlashlight();
+    try { this.setState({ isTouch: !!(window.matchMedia && window.matchMedia('(hover: none)').matches) }); } catch(e){}
+    // refresh open/closed status every minute
+    this._clock = setInterval(() => this.setState({ clock: Date.now() }), 60000);
+    if (this.props.assistantAutoOpen === true) {
+      this._autoOpen = setTimeout(() => this.setState({ chatOpen: true }), 6000);
+    }
+  }
+  componentWillUnmount(){
+    window.removeEventListener('resize', this._onResize);
+    if (this._testiTimer) clearInterval(this._testiTimer);
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._clock) clearInterval(this._clock);
+    if (this._autoOpen) clearTimeout(this._autoOpen);
+  }
+  componentDidUpdate(prevProps, prevState){
+    if (this.state.chatMessages.length !== prevState.chatMessages.length && this.chatScrollRef){
+      this.chatScrollRef.scrollTop = this.chatScrollRef.scrollHeight;
+    }
+  }
+
+  setupFlashlight(){
+    const overlay = this.flashRef, hero = this.heroRef;
+    if (!overlay || !hero) return;
+    if (this.props.flashlightEffect === false) return;
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
+    // constant dark veil over the whole hero; a soft round "hole" follows the cursor
+    // and reveals the image's original brightness only around the pointer.
+    const DARK = 0.62;                 // veil strength everywhere off the hole
+    let tx = 0.5, ty = 0.45, cx = 0.5, cy = 0.45;
+    let ti = 0, ci = 0;                // target / current reveal intensity (0..1)
+    hero.addEventListener('mouseenter', (e) => {
+      const r = hero.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width; ty = (e.clientY - r.top) / r.height;
+      cx = tx; cy = ty; ti = 1;
+    });
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width; ty = (e.clientY - r.top) / r.height;
+      ti = 1;
+    });
+    hero.addEventListener('mouseleave', () => { ti = 0; });
+    const loop = () => {
+      cx += (tx - cx) * 0.10; cy += (ty - cy) * 0.10;
+      ci += (ti - ci) * 0.08;
+      const x = (cx * 100).toFixed(1), y = (cy * 100).toFixed(1);
+      const inner = (DARK * (1 - ci)).toFixed(3);        // center: fully clear when revealed
+      const mid   = (DARK * (1 - 0.55 * ci)).toFixed(3);
+      overlay.style.background = 'radial-gradient(circle 22vw at ' + x + '% ' + y + '%, rgba(6,4,2,' + inner + ') 0%, rgba(6,4,2,' + mid + ') 34%, rgba(6,4,2,' + DARK + ') 68%)';
+      this._raf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  money(n){ return n.toFixed(2).replace('.', ',') + ' zł'; }
+
+  checkDelivery(e){
+    if (e && e.preventDefault) e.preventDefault();
+    const v = (this.state.postal || '').trim();
+    let result;
+    if (!/^\d{2}-\d{3}$/.test(v)) result = 'invalid';
+    else if (v.replace(/\s/g,'').startsWith('05-82')) result = 'yes';
+    else result = 'no';
+    this.setState({ postalResult: result });
+  }
+  deliveryVals(){
+    const k = this.state.postalResult;
+    if (!k) return { show:false };
+    if (k === 'yes') return { show:true, ok:true, notOk:false,
+      bg:'rgba(90,150,90,.14)', border:'rgba(120,190,120,.42)', color:'#BCE2B4', iconColor:'#6FBF6F',
+      text:'Dowozimy do Ciebie! Dodaj produkty do koszyka i wybierz dostawę przy zamówieniu.' };
+    if (k === 'no') return { show:true, ok:false, notOk:true,
+      bg:'rgba(198,161,94,.08)', border:'rgba(198,161,94,.3)', color:'#C9BCA6', iconColor:'#C6A15E',
+      text:'Niestety nie dostarczamy jeszcze w tym rejonie, ale zapraszamy do odbioru osobistego w sklepie.' };
+    return { show:true, ok:false, notOk:true,
+      bg:'rgba(198,161,94,.05)', border:'rgba(198,161,94,.24)', color:'#B9AB97', iconColor:'#9C8E7A',
+      text:'Wpisz poprawny kod pocztowy w formacie XX-XXX (np. 05-825).' };
+  }
+
+  // opening hours in minutes-from-midnight, keyed by JS getDay() (0=Sun..6=Sat)
+  openHours = { 1:[480,1140], 2:[480,1140], 3:[480,1140], 4:[480,1140], 5:[480,1140], 6:[420,900], 0:null };
+  dayNames = ['niedzielę','poniedziałek','wtorek','środę','czwartek','piątek','sobotę'];
+
+  fmtTime(min){ const h = Math.floor(min/60), m = min%60; return h + ':' + (m<10?'0':'') + m; }
+
+  computeStatus(){
+    const now = new Date();
+    const day = now.getDay();
+    const cur = now.getHours()*60 + now.getMinutes();
+    const today = this.openHours[day];
+    const open = !!(today && cur >= today[0] && cur < today[1]);
+    // find next opening
+    let nextText = '';
+    if (!open){
+      for (let i = 0; i < 8; i++){
+        const d = (day + i) % 7;
+        const hrs = this.openHours[d];
+        if (!hrs) continue;
+        if (i === 0 && cur >= hrs[0]) continue; // today already closed for the day
+        const when = (i === 0) ? 'dziś' : (i === 1 ? 'jutro' : 'w ' + this.dayNames[d]);
+        nextText = 'Otwieramy ' + when + ' o ' + this.fmtTime(hrs[0]);
+        break;
+      }
+    }
+    if (open){
+      return { open:true, closed:false, label:'Otwarte teraz',
+        shopLabel:'Sklep obecnie otwarty', subline:'Zamówienia realizujemy na bieżąco w godzinach otwarcia.',
+        pillBg:'rgba(90,150,90,.16)', pillBorder:'rgba(120,190,120,.45)', pillColor:'#B7E0B0',
+        dotColor:'#6FBF6F', dotClass:'gr-openpulse', nextText:'', nextSuffix:'' };
+    }
+    return { open:false, closed:true, label:'Zamknięte',
+      shopLabel:'Sklep obecnie zamknięty', subline: (nextText ? nextText + '. ' : '') + 'Ofertę możesz przeglądać, a zamówienia realizujemy w godzinach otwarcia.',
+      pillBg:'rgba(120,110,100,.14)', pillBorder:'rgba(198,161,94,.3)', pillColor:'#C4B8A3',
+      dotColor:'#8A7E6C', dotClass:'', nextText:nextText, nextSuffix: nextText ? (' — ' + nextText.toLowerCase()) : '' };
+  }
+
+  addToCart(id){ this.setState(s => ({ cart: { ...s.cart, [id]: (s.cart[id] || 0) + 1 } })); }
+  incItem(id){ this.setState(s => ({ cart: { ...s.cart, [id]: (s.cart[id] || 0) + 1 } })); }
+  decItem(id){
+    this.setState(s => {
+      const q = (s.cart[id] || 0) - 1;
+      const c = { ...s.cart };
+      if (q <= 0) delete c[id]; else c[id] = q;
+      return { cart: c };
+    });
+  }
+  removeItem(id){ this.setState(s => { const c = { ...s.cart }; delete c[id]; return { cart: c }; }); }
+
+  botReply(text){
+    const t = text.toLowerCase();
+    const has = (arr) => arr.some(w => t.includes(w));
+    if (has(['godzin','otwar','czynne','kiedy','otwart'])) {
+      return { from:'bot', text:'Nasze godziny otwarcia:\n• Pon–Pt: 8:00–19:00\n• Sobota: 7:00–15:00\n• Niedziela: nieczynne' };
+    }
+    if (has(['adres','gdzie','dojazd','trafi','lokal','znajd','ulic'])) {
+      return { from:'bot', text:'Znajdziesz nas przy ul. Krzysztofa Arciszewskiego 1, 05-827 Grodzisk Mazowiecki. Wjazd i wejście bezpośrednio od ulicy.' };
+    }
+    if (has(['parking','zaparkow','samochod','auto'])) {
+      return { from:'bot', text:'Tak! Parking jest bezpłatny i znajduje się bezpośrednio przed sklepem. 🅿' };
+    }
+    if (has(['kategor','oferta','produkt','co macie','asortyment','sery','wedlin','wędlin','wino','wina','mięso','mieso','stek'])) {
+      return { from:'bot', text:'W ofercie mamy: mięso i steki, wędliny własnej roboty, sery z Polski i ze świata, wina (głównie włoskie) oraz produkty ze świata — oliwy, makarony, przetwory. Zajrzyj do sekcji „Oferta", by zamówić online.' };
+    }
+    if (has(['zamów','zamow','online','koszyk','dostaw','odbi','kupi','płatn','platn'])) {
+      return { from:'bot', text:'Zamówienie złożysz w sekcji „Oferta" — wybierz produkty, dodaj do koszyka i przejdź do zamówienia. Możliwy odbiór osobisty lub dostawa wg kodu pocztowego.' };
+    }
+    if (has(['dzień dobry','dzien dobry','cześć','czesc','hej','witam','siema','hello'])) {
+      return { from:'bot', text:'Dzień dobry! W czym mogę pomóc? Zapytaj o godziny, adres, parking albo naszą ofertę. 🥩' };
+    }
+    return {
+      from:'bot',
+      text:'Tego akurat nie wiem, ale chętnie pomoże Ci nasza obsługa:',
+      buttons:[
+        { label:'📞 Zadzwoń: 513 300 130', href:'tel:513300130' },
+        { label:'✉ Napisz e-mail', href:'mailto:sklep@grodziskirzeznik.pl' },
+        { label:'📝 Otwórz formularz kontaktowy', action:'contact' }
+      ]
+    };
+  }
+
+  pushUserAndReply(text){
+    if (!text || !text.trim()) return;
+    const reply = this.botReply(text);
+    this.setState(s => ({
+      chatMessages: [...s.chatMessages, { from:'user', text: text }, reply],
+      chatInput: ''
+    }));
+  }
+
+  renderVals(){
+    const s = this.state;
+    const isMobile = s.vw <= 1024;
+    const cartCount = Object.values(s.cart).reduce((a, b) => a + b, 0);
+    const hasCart = cartCount > 0;
+
+    // render ALL products; toggle display by tab so images never re-mount / re-load
+    const allProducts = this.products
+      .map(p => ({ ...p, priceStr: this.money(p.price), display: (p.cat === s.activeTab ? 'flex' : 'none'), onAdd: () => this.addToCart(p.id) }));
+
+    const cartItems = Object.keys(s.cart).map(id => {
+      const p = this.products.find(x => x.id === id);
+      const qty = s.cart[id];
+      return {
+        img: p.img, name: p.name, weight: p.weight, qty,
+        priceStr: this.money(p.price),
+        lineStr: this.money(p.price * qty),
+        onInc: () => this.incItem(id),
+        onDec: () => this.decItem(id),
+        onRemove: () => this.removeItem(id)
+      };
+    });
+    const cartTotal = Object.keys(s.cart).reduce((sum, id) => {
+      const p = this.products.find(x => x.id === id);
+      return sum + p.price * s.cart[id];
+    }, 0);
+
+    const catCards = this.categories.map((c, i) => ({
+      ...c,
+      onToggle: () => this.setState(st => ({ activeCat: st.activeCat === i ? null : i })),
+      ovlOpen: s.activeCat === i ? 'is-open' : '',
+      titleOpen: s.activeCat === i ? 'is-open' : ''
+    }));
+
+    const tabs = this.tabDefs.map(t => {
+      const active = t.id === s.activeTab;
+      return {
+        label: t.label,
+        onClick: () => this.setState({ activeTab: t.id }),
+        bg: active ? '#872B2F' : 'rgba(240,231,216,.04)',
+        color: active ? '#F5ECDD' : '#C4B8A3',
+        border: active ? '#872B2F' : 'rgba(198,161,94,.3)'
+      };
+    });
+
+    const testiDots = this.testimonials.map((t, i) => ({
+      onClick: () => this.setState({ testi: i }),
+      w: i === s.testi ? '26px' : '9px',
+      bg: i === s.testi ? '#C6A15E' : 'rgba(198,161,94,.3)'
+    }));
+
+    const visibleGallery = this.galleryAll.slice(0, s.galleryCount).map(g => ({
+      ...g, onOpen: () => this.setState({ lightbox: g })
+    }));
+
+    const chatQuick = [
+      { label:'🕒 Godziny', q:'godziny otwarcia' },
+      { label:'📍 Adres', q:'jaki adres' },
+      { label:'🅿 Parking', q:'czy jest parking' },
+      { label:'🛒 Jak zamówić', q:'jak zamówić online' }
+    ].map(x => ({ label:x.label, onClick: () => this.pushUserAndReply(x.q) }));
+
+    const chatMessages = s.chatMessages.map(m => {
+      const isBot = m.from === 'bot';
+      return {
+        text: m.text,
+        align: isBot ? 'flex-start' : 'flex-end',
+        bg: isBot ? 'rgba(240,231,216,.06)' : '#872B2F',
+        color: isBot ? '#EDE3D2' : '#F5ECDD',
+        border: isBot ? '1px solid rgba(198,161,94,.22)' : 'none',
+        radius: isBot ? '4px 16px 16px 16px' : '16px 4px 16px 16px',
+        hasButtons: !!(m.buttons && m.buttons.length),
+        buttons: (m.buttons || []).map(b => ({
+          label: b.label,
+          href: b.href || '#kontakt',
+          target: b.href && b.href.startsWith('mailto') ? '_self' : '_self',
+          onClick: b.action === 'contact' ? () => this.setState({ chatOpen: false }) : (b.href ? undefined : (e) => { if(e&&e.preventDefault) e.preventDefault(); })
+        }))
+      };
+    });
+
+    return {
+      status: this.computeStatus(),
+      postal: s.postal,
+      onPostalInput: (e) => {
+        const digits = e.target.value.replace(/\D/g, '').slice(0, 5);
+        const f = digits.length > 2 ? digits.slice(0, 2) + '-' + digits.slice(2) : digits;
+        this.setState({ postal: f, postalResult: null });
+      },
+      checkDelivery: (e) => this.checkDelivery(e),
+      delivery: this.deliveryVals(),
+      isMobile, isDesktop: !isMobile,
+      navLinks: this.navLinks,
+      navDropdownOpen: isMobile && s.navOpen,
+      toggleNav: () => this.setState(st => ({ navOpen: !st.navOpen })),
+      closeNav: () => this.setState({ navOpen: false }),
+
+      cartCount, hasCart,
+      cartBtnLabel: hasCart ? 'Koszyk' : 'Zamów online',
+      cartBtnBg: hasCart ? '#872B2F' : 'rgba(135,43,47,.9)',
+      toggleCart: () => this.setState(st => ({ cartOpen: !st.cartOpen, navOpen:false })),
+      closeCart: () => this.setState({ cartOpen: false }),
+      openCartCta: () => {},
+      cartOpen: s.cartOpen,
+      cartEmpty: cartItems.length === 0,
+      cartHasItems: cartItems.length > 0,
+      cartItems,
+      cartTotalStr: this.money(cartTotal),
+
+      categories: catCards,
+
+      testimonials: this.testimonials,
+      testiTransform: 'translateX(-' + (s.testi * 100) + '%)',
+      testiDots,
+      onTestiTouchStart: (e) => { this._tsx = (e.touches && e.touches[0]) ? e.touches[0].clientX : 0; },
+      onTestiTouchEnd: (e) => {
+        const x = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : 0;
+        const dx = x - (this._tsx || 0);
+        if (Math.abs(dx) > 40) this.setState(st => ({ testi: (st.testi + (dx < 0 ? 1 : -1) + this.testimonials.length) % this.testimonials.length }));
+      },
+
+      mapPointer: (s.isTouch && !s.mapActive) ? 'none' : 'auto',
+      mapOverlay: s.isTouch && !s.mapActive,
+      activateMap: () => this.setState({ mapActive: true }),
+
+      tabs,
+      allProducts,
+
+      visibleGallery,
+      hasMoreGallery: s.galleryCount < this.galleryAll.length,
+      loadMore: () => this.setState(st => ({ galleryCount: Math.min(st.galleryCount + 8, this.galleryAll.length) })),
+
+      lightboxOpen: !!s.lightbox,
+      lightboxSrc: s.lightbox ? s.lightbox.src : '',
+      lightboxCaption: s.lightbox ? s.lightbox.caption : '',
+      closeLightbox: () => this.setState({ lightbox: null }),
+
+      chatOpen: s.chatOpen,
+      toggleChat: () => this.setState(st => ({ chatOpen: !st.chatOpen })),
+      chatMessages,
+      chatQuick,
+      chatInput: s.chatInput,
+      onChatInput: (e) => this.setState({ chatInput: e.target.value }),
+      sendChatForm: (e) => { e.preventDefault(); this.pushUserAndReply(s.chatInput); },
+
+      formVisible: !s.formSent,
+      formSent: s.formSent,
+      submitForm: (e) => { e.preventDefault(); this.setState({ formSent: true }); },
+
+      setHeroRef: this.setHeroRef,
+      setFlashRef: this.setFlashRef,
+      setChatScrollRef: this.setChatScrollRef
+    };
+  }
+}
+</script>
+</body>
+</html>
