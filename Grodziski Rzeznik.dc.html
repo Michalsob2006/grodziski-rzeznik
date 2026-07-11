@@ -80,7 +80,7 @@
     #onas,#opinie,#oferta,#galeria,#kontakt{padding-top:62px !important;padding-bottom:62px !important;padding-left:16px !important;padding-right:16px !important}
   }
   @media (max-width:600px){
-    .gr-hero-bg{background-position:22% center !important}
+    .gr-hero-bg{background-position:75% center !important}
     .gr-cta2{background:rgba(12,8,5,.5) !important}
     .gr-shopimg{height:auto !important;max-height:none !important}
     .gr-tabs{padding-right:20px}
@@ -594,7 +594,7 @@
       <button onClick="{{ toggleChat }}" aria-label="Zamknij czat" style="width:34px;height:34px;border-radius:9px;border:1px solid rgba(198,161,94,.3);background:transparent;color:#C6A15E;font-size:17px;cursor:pointer" style-hover="background:rgba(198,161,94,.12)">✕</button>
     </div>
 
-    <div ref="{{ setChatScrollRef }}" style="flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px">
+    <div ref="{{ setChatScrollRef }}" data-chat-scroll="true" style="flex:1;min-height:0;max-height:calc(min(560px,100vh - 140px) - 152px);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px;display:flex;flex-direction:column;gap:12px">
       <sc-for list="{{ chatMessages }}" as="m" hint-placeholder-count="1">
         <div style="display:flex;flex-direction:column;gap:8px;align-items:{{ m.align }}">
           <div style="max-width:82%;padding:11px 15px;border-radius:{{ m.radius }};font-size:14px;line-height:1.5;white-space:pre-line;background:{{ m.bg }};color:{{ m.color }};border:{{ m.border }}">{{ m.text }}</div>
@@ -760,10 +760,22 @@ class Component extends DCLogic {
     if (this._clock) clearInterval(this._clock);
     if (this._autoOpen) clearTimeout(this._autoOpen);
   }
+  scrollChatToBottom(){
+    const doScroll = () => {
+      const el = document.querySelector('[data-chat-scroll]');
+      if (el) el.scrollTop = el.scrollHeight;
+    };
+    doScroll();
+    requestAnimationFrame(() => { doScroll(); requestAnimationFrame(doScroll); });
+    setTimeout(doScroll, 50);
+    setTimeout(doScroll, 160);
+    setTimeout(doScroll, 320);
+  }
   componentDidUpdate(prevProps, prevState){
-    if (this.state.chatMessages.length !== prevState.chatMessages.length && this.chatScrollRef){
-      this.chatScrollRef.scrollTop = this.chatScrollRef.scrollHeight;
-    }
+    // wywoływane PO wstawieniu nowych wiadomości (użytkownika + asystenta) do DOM
+    const newMsg = this.state.chatMessages.length !== prevState.chatMessages.length;
+    const justOpened = this.state.chatOpen && !prevState.chatOpen;
+    if (newMsg || justOpened) this.scrollChatToBottom();
   }
 
   setupFlashlight(){
@@ -876,6 +888,26 @@ class Component extends DCLogic {
   botReply(text){
     const t = text.toLowerCase();
     const has = (arr) => arr.some(w => t.includes(w));
+    if (has(['kontakt','skontaktow','napisać','napisac','zadzwoni'])) {
+      return { from:'bot', text:'Oto jak możesz się z nami skontaktować:',
+        buttons:[
+          { label:'📞 Zadzwoń: 513 300 130', href:'tel:513300130' },
+          { label:'✉ Napisz e-mail', href:'mailto:sklep@grodziskirzeznik.pl' },
+          { label:'📝 Przejdź do formularza', href:'#kontakt', scroll:true }
+        ] };
+    }
+    if (has(['dojazd','jak dojechać','jak dojechac','gdzie jesteście','gdzie jestescie','lokalizacj','mapa','trasa'])) {
+      return { from:'bot', text:'Znajdziesz nas pod adresem ul. Krzysztofa Arciszewskiego 1, 05-827 Grodzisk Mazowiecki. W sekcji Kontakt masz mapę z przyciskami „Wyznacz trasę" i „Zobacz na mapie".',
+        buttons:[ { label:'🗺 Pokaż mapę', href:'#kontakt', scroll:true } ] };
+    }
+    if (has(['dostaw','dowozicie','dowóz','dowoz','wysyłk','wysylk','gdzie dowozicie'])) {
+      return { from:'bot', text:'Dowozimy na terenie Grodziska Mazowieckiego (kody pocztowe zaczynające się na 05-82). W sekcji Oferta możesz sprawdzić swój kod pocztowy w polu „Sprawdź, czy dowozimy do Ciebie".',
+        buttons:[ { label:'🚚 Sprawdź dostawę', href:'#oferta', scroll:true } ] };
+    }
+    if (has(['oferta','co macie','co mogę kupić','co moge kupic','produkt','asortyment'])) {
+      return { from:'bot', text:'W naszej ofercie online znajdziesz sery, wędliny i wyroby garmażeryjne — zajrzyj do sekcji Oferta, żeby zobaczyć pełną listę produktów z cenami i dodać je do koszyka.',
+        buttons:[ { label:'🛒 Przejdź do oferty', href:'#oferta', scroll:true } ] };
+    }
     if (has(['godzin','otwar','czynne','kiedy','otwart'])) {
       return { from:'bot', text:'Nasze godziny otwarcia:\n• Pon–Pt: 8:00–19:00\n• Sobota: 7:00–15:00\n• Niedziela: nieczynne' };
     }
@@ -912,6 +944,7 @@ class Component extends DCLogic {
       chatMessages: [...s.chatMessages, { from:'user', text: text }, reply],
       chatInput: ''
     }));
+    this.scrollChatToBottom();
   }
 
   renderVals(){
@@ -973,7 +1006,9 @@ class Component extends DCLogic {
       { label:'🕒 Godziny', q:'godziny otwarcia' },
       { label:'📍 Adres', q:'jaki adres' },
       { label:'🅿 Parking', q:'czy jest parking' },
-      { label:'🛒 Jak zamówić', q:'jak zamówić online' }
+      { label:'🛒 Jak zamówić', q:'jak zamówić online' },
+      { label:'📞 Kontakt', q:'jak się z wami skontaktować' },
+      { label:'🚚 Dostawa', q:'gdzie dowozicie' }
     ].map(x => ({ label:x.label, onClick: () => this.pushUserAndReply(x.q) }));
 
     const chatMessages = s.chatMessages.map(m => {
@@ -990,7 +1025,7 @@ class Component extends DCLogic {
           label: b.label,
           href: b.href || '#kontakt',
           target: b.href && b.href.startsWith('mailto') ? '_self' : '_self',
-          onClick: b.action === 'contact' ? () => this.setState({ chatOpen: false }) : (b.href ? undefined : (e) => { if(e&&e.preventDefault) e.preventDefault(); })
+          onClick: (b.action === 'contact' || b.scroll) ? () => this.setState({ chatOpen: false }) : (b.href ? undefined : (e) => { if(e&&e.preventDefault) e.preventDefault(); })
         }))
       };
     });
