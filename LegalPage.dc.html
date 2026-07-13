@@ -14,12 +14,34 @@
 <style>
   *{box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:96px}
-  body{margin:0;background:#16100C;color:#F0E7D8;font-family:'Mulish',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  :root{
+    --bg-1:#16100C; --bg-2:#1B140F; --bg-3:#120C08; --bg-4:#100B08;
+    --fg-strong:#F3E9D7; --fg-body:#C4B8A3; --fg-muted:#B9AB97; --fg-faint:#8A7E6C;
+    --card2:linear-gradient(165deg,#241A13,#1A130E);
+    --header-bg:rgba(20,14,10,.9); --header-bd:rgba(198,161,94,.22);
+  }
+  [data-theme="light"]{
+    --bg-1:#F3ECDE; --bg-2:#ECE3D2; --bg-3:#E7DDC9; --bg-4:#E4D9C4;
+    --fg-strong:#241E17; --fg-body:#514639; --fg-muted:#6E6355; --fg-faint:#8A7F6E;
+    --card2:linear-gradient(165deg,#FFFFFF,#F8F2E6);
+    --header-bg:rgba(245,239,228,.9); --header-bd:rgba(160,120,50,.28);
+  }
+  .gr-root, .gr-root section, .gr-root header, .gr-root footer, .gr-root article, .gr-root aside,
+  .gr-root h1, .gr-root h2, .gr-root h3, .gr-root h4, .gr-root p, .gr-root span, .gr-root a,
+  .gr-root li, .gr-root div, .gr-root button, .gr-root summary{
+    transition:background-color .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .gr-header{background:var(--header-bg) !important;border-bottom-color:var(--header-bd) !important}
+  .gr-root{background:var(--bg-1)}
+  [data-theme="light"] details.gr-toc{box-shadow:0 16px 36px -22px rgba(74,48,20,.28) !important}
+  .gr-themebtn{transition:transform .25s ease,border-color .25s ease,color .25s ease,background .25s ease}
+  .gr-themebtn:hover{transform:translateY(-2px) scale(1.06);border-color:#C6A15E;color:#E3C482}
+  body{margin:0;background:var(--bg-1);color:var(--fg-strong);font-family:'Mulish',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   a{color:#C6A15E;text-decoration:none}
   a:hover{color:#E3C482}
-  ::selection{background:#872B2F;color:#F5ECDD}
+  ::selection{background:#872B2F;color:var(--fg-strong)}
   .gr-nav{background-image:linear-gradient(#C6A15E,#C6A15E);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1.5px;transition:background-size .35s ease,color .3s ease}
-  .gr-nav:hover{background-size:100% 1.5px;color:#F3E9D7}
+  .gr-nav:hover{background-size:100% 1.5px;color:var(--fg-strong)}
   .gr-hoverbrass{transition:color .25s ease}
   .gr-hoverbrass:hover{color:#C6A15E}
   .gr-btn{transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
@@ -27,8 +49,8 @@
   .gr-icon{transition:transform .25s ease,border-color .25s ease,color .25s ease}
   .gr-icon:hover{transform:translateY(-2px) scale(1.06);border-color:#C6A15E;color:#E3C482}
   .gr-toc a{transition:color .25s ease,border-color .25s ease,background .25s ease}
-  .gr-legal-body p{margin:0 0 15px;line-height:1.8;color:#CBBFA9;font-size:16px}
-  .gr-legal-body ul,.gr-legal-body ol{margin:0 0 18px;padding-left:22px;color:#CBBFA9}
+  .gr-legal-body p{margin:0 0 15px;line-height:1.8;color:var(--fg-body);font-size:16px}
+  .gr-legal-body ul,.gr-legal-body ol{margin:0 0 18px;padding-left:22px;color:var(--fg-body)}
   .gr-legal-body li{line-height:1.8;font-size:16px;margin-bottom:9px;padding-left:4px}
   .gr-legal-body li::marker{color:#C6A15E}
   @keyframes gr-openpulse{0%,100%{box-shadow:0 0 0 0 rgba(198,161,94,.45),0 14px 30px -8px rgba(0,0,0,.75)}50%{box-shadow:0 0 0 12px rgba(198,161,94,0),0 14px 30px -8px rgba(0,0,0,.75)}}
@@ -41,15 +63,15 @@
   }
   @media (min-width:961px){ .gr-mobile-only{display:none !important} }
   ::-webkit-scrollbar{width:10px;height:10px}
-  ::-webkit-scrollbar-track{background:#120C08}
+  ::-webkit-scrollbar-track{background:var(--bg-3)}
   ::-webkit-scrollbar-thumb{background:#3a2d22;border-radius:6px}
 </style>
 </helmet>
 
-<div style="min-height:100vh">
+<div class="gr-root" data-theme="{{ theme }}" style="min-height:100vh">
 
 <!-- HEADER -->
-<header style="position:sticky;top:0;z-index:60;background:rgba(20,14,10,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(198,161,94,.22)">
+<header class="gr-header" style="position:sticky;top:0;z-index:60;background:var(--header-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--header-bd)">
   <div style="max-width:1280px;margin:0 auto;padding:0 24px;height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px">
     <a href="Grodziski%20Rzeznik.dc.html#start" style="display:flex;align-items:center;flex:none">
       <img src="uploads/logo-17c7c13c.png" alt="Grodziski Rzeźnik" class="gr-logo" style="height:96px;width:auto;margin:6px 0 -22px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.65))">
@@ -57,36 +79,44 @@
 
     <nav class="gr-desktop-nav" style="display:flex;align-items:center;gap:30px;margin-left:auto">
       <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
-        <a href="{{ link.href }}" class="gr-nav" style="font-size:13.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#E7DDCC;padding-bottom:3px">{{ link.label }}</a>
+        <a href="{{ link.href }}" class="gr-nav" style="font-size:13.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--fg-strong);padding-bottom:3px">{{ link.label }}</a>
       </sc-for>
     </nav>
 
     <div class="gr-desktop-nav" style="display:flex;align-items:center;gap:16px;flex:none">
-      <a href="tel:513300130" class="gr-hoverbrass" style="display:flex;align-items:center;gap:9px;color:#F0E7D8;font-weight:700;font-size:14px">
+      <a href="tel:513300130" class="gr-hoverbrass" style="display:flex;align-items:center;gap:9px;color:var(--fg-strong);font-weight:700;font-size:14px">
         <span style="display:flex;width:34px;height:34px;align-items:center;justify-content:center;border:1px solid rgba(198,161,94,.4);border-radius:50%;color:#C6A15E"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
         513 300 130
       </a>
-      <a href="Grodziski%20Rzeznik.dc.html#oferta" class="gr-btn" style="display:flex;align-items:center;gap:9px;background:#872B2F;color:#F5ECDD;border:1px solid rgba(198,161,94,.5);border-radius:999px;padding:9px 18px;font-weight:700;font-size:13.5px;box-shadow:0 8px 18px -8px rgba(135,43,47,.7)">
+      <a href="Grodziski%20Rzeznik.dc.html#oferta" class="gr-btn" style="display:flex;align-items:center;gap:9px;background:#872B2F;color:var(--fg-strong);border:1px solid rgba(198,161,94,.5);border-radius:999px;padding:9px 18px;font-weight:700;font-size:13.5px;box-shadow:0 8px 18px -8px rgba(135,43,47,.7)">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         Zamów online
       </a>
+      <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" title="{{ themeLabel }}" class="gr-themebtn" style="display:flex;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid rgba(198,161,94,.3);border-radius:50%;color:#C6A15E;background:transparent;cursor:pointer">
+        <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></sc-if>
+        <sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></sc-if>
+      </button>
     </div>
 
-    <button onClick="{{ toggleNav }}" aria-label="Menu" class="gr-mobile-only" style="margin-left:auto;display:flex;flex-direction:column;gap:5px;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(198,161,94,.4);border-radius:12px;cursor:pointer">
-      <span style="width:20px;height:2px;background:#E7DDCC;border-radius:2px"></span>
-      <span style="width:20px;height:2px;background:#E7DDCC;border-radius:2px"></span>
-      <span style="width:20px;height:2px;background:#E7DDCC;border-radius:2px"></span>
+    <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" class="gr-themebtn gr-mobile-only" style="margin-left:auto;display:flex;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid rgba(198,161,94,.4);border-radius:12px;color:#C6A15E;background:transparent;cursor:pointer">
+      <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></sc-if>
+      <sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></sc-if>
+    </button>
+    <button onClick="{{ toggleNav }}" aria-label="Menu" class="gr-mobile-only" style="display:flex;flex-direction:column;gap:5px;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(198,161,94,.4);border-radius:12px;cursor:pointer">
+      <span style="width:20px;height:2px;background:var(--fg-strong);border-radius:2px"></span>
+      <span style="width:20px;height:2px;background:var(--fg-strong);border-radius:2px"></span>
+      <span style="width:20px;height:2px;background:var(--fg-strong);border-radius:2px"></span>
     </button>
   </div>
 
   <sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
-    <div class="gr-mobile-only" style="border-top:1px solid rgba(198,161,94,.2);background:rgba(18,12,8,.98);padding:14px 24px 22px">
+    <div class="gr-mobile-only" style="border-top:1px solid rgba(198,161,94,.2);background:var(--header-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:14px 24px 22px">
       <nav style="display:flex;flex-direction:column;gap:2px">
         <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
-          <a href="{{ link.href }}" style="font-size:16px;font-weight:600;color:#E7DDCC;padding:12px 6px;border-bottom:1px solid rgba(198,161,94,.12)">{{ link.label }}</a>
+          <a href="{{ link.href }}" style="font-size:16px;font-weight:600;color:var(--fg-strong);padding:12px 6px;border-bottom:1px solid rgba(198,161,94,.12)">{{ link.label }}</a>
         </sc-for>
       </nav>
-      <a href="tel:513300130" style="display:flex;align-items:center;gap:9px;margin-top:14px;color:#F0E7D8;font-weight:700"><span style="display:flex;color:#C6A15E"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>513 300 130</a>
+      <a href="tel:513300130" style="display:flex;align-items:center;gap:9px;margin-top:14px;color:var(--fg-strong);font-weight:700"><span style="display:flex;color:#C6A15E"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>513 300 130</a>
     </div>
   </sc-if>
 </header>
@@ -95,9 +125,9 @@
 <section style="padding:70px 24px 40px;border-bottom:1px solid rgba(198,161,94,.14)">
   <div style="max-width:1120px;margin:0 auto">
     <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:16px">{{ doc.eyebrow }}</div>
-    <h1 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(32px,5vw,52px);line-height:1.08;margin:0 0 16px;color:#F5ECDD;text-wrap:balance">{{ doc.title }}</h1>
+    <h1 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(32px,5vw,52px);line-height:1.08;margin:0 0 16px;color:var(--fg-strong);text-wrap:balance">{{ doc.title }}</h1>
     <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(17px,2.2vw,22px);color:#C6A15E;margin:0 0 14px">{{ doc.subtitle }}</p>
-    <div style="display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#9C8E7A;padding:7px 15px;border:1px solid rgba(198,161,94,.24);border-radius:999px">
+    <div style="display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--fg-muted);padding:7px 15px;border:1px solid rgba(198,161,94,.24);border-radius:999px">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C6A15E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
       {{ doc.date }}
     </div>
@@ -118,11 +148,11 @@
   </aside>
 
   <!-- TOC mobile collapsible -->
-  <details class="gr-mobile-only gr-toc" style="background:linear-gradient(165deg,#241A13,#1A130E);border:1px solid rgba(198,161,94,.22);border-radius:14px;padding:6px 4px;margin-bottom:8px">
+  <details class="gr-mobile-only gr-toc" style="background:var(--card2);border:1px solid rgba(198,161,94,.22);border-radius:14px;padding:6px 4px;margin-bottom:8px">
     <summary style="cursor:pointer;list-style:none;padding:12px 16px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#C6A15E;font-weight:700">Spis treści</summary>
     <nav style="display:flex;flex-direction:column;gap:1px;padding:4px 8px 10px">
       <sc-for list="{{ toc }}" as="t" hint-placeholder-count="9">
-        <a href="{{ t.href }}" style="display:block;font-size:14px;padding:10px 12px;color:#CBBFA9;border-bottom:1px solid rgba(198,161,94,.1)">{{ t.label }}</a>
+        <a href="{{ t.href }}" style="display:block;font-size:14px;padding:10px 12px;color:var(--fg-body);border-bottom:1px solid rgba(198,161,94,.1)">{{ t.label }}</a>
       </sc-for>
     </nav>
   </details>
@@ -146,59 +176,59 @@
           <sc-if value="{{ b.isOl }}" hint-placeholder-val="{{ false }}"><ol><sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3"><li>{{ it }}</li></sc-for></ol></sc-if>
           <sc-if value="{{ b.isBox }}" hint-placeholder-val="{{ false }}">
             <div style="margin:6px 0 18px;padding:20px 24px;background:rgba(198,161,94,.06);border:1px solid rgba(198,161,94,.22);border-radius:14px">
-              <sc-for list="{{ b.lines }}" as="ln" hint-placeholder-count="4"><div style="font-size:15px;line-height:1.7;color:#DCD0BA">{{ ln }}</div></sc-for>
+              <sc-for list="{{ b.lines }}" as="ln" hint-placeholder-count="4"><div style="font-size:15px;line-height:1.7;color:var(--fg-body)">{{ ln }}</div></sc-for>
             </div>
           </sc-if>
         </sc-for>
       </section>
     </sc-for>
 
-    <div style="margin-top:34px;padding-top:24px;border-top:1px solid rgba(198,161,94,.16);font-size:14px;color:#9C8E7A">
+    <div style="margin-top:34px;padding-top:24px;border-top:1px solid rgba(198,161,94,.16);font-size:14px;color:var(--fg-muted)">
       <a href="Grodziski%20Rzeznik.dc.html#start" class="gr-hoverbrass" style="color:#C6A15E;font-weight:600">← Powrót na stronę główną</a>
     </div>
   </article>
 </div>
 
 <!-- FOOTER -->
-<footer style="background:#100B08;padding:60px 24px 30px;border-top:1px solid rgba(198,161,94,.2)">
+<footer style="background:var(--bg-4);padding:60px 24px 30px;border-top:1px solid rgba(198,161,94,.2)">
   <div style="max-width:1200px;margin:0 auto">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(198,161,94,.14)">
       <div style="max-width:340px">
-        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:24px;color:#F3E9D7;margin-bottom:14px">Grodziski Rzeźnik</div>
-        <p style="font-size:14px;line-height:1.65;color:#A89C88;margin:0">Grodziski Rzeźnik — premium delikatesy mięsne w Grodzisku Mazowieckim. Mięso, wędliny, sery i wina dobierane osobiście, nie z automatu.</p>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:24px;color:var(--fg-strong);margin-bottom:14px">Grodziski Rzeźnik</div>
+        <p style="font-size:14px;line-height:1.65;color:var(--fg-muted);margin:0">Grodziski Rzeźnik — premium delikatesy mięsne w Grodzisku Mazowieckim. Mięso, wędliny, sery i wina dobierane osobiście, nie z automatu.</p>
       </div>
       <div>
         <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:18px">Na skróty</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px">
-          <a href="Grodziski%20Rzeznik.dc.html#start" class="gr-hoverbrass" style="color:#C4B8A3">Start</a>
-          <a href="Grodziski%20Rzeznik.dc.html#onas" class="gr-hoverbrass" style="color:#C4B8A3">O nas</a>
-          <a href="Grodziski%20Rzeznik.dc.html#oferta" class="gr-hoverbrass" style="color:#C4B8A3">Oferta</a>
-          <a href="Grodziski%20Rzeznik.dc.html#galeria" class="gr-hoverbrass" style="color:#C4B8A3">Galeria</a>
-          <a href="Grodziski%20Rzeznik.dc.html#kontakt" class="gr-hoverbrass" style="color:#C4B8A3">Kontakt</a>
+          <a href="Grodziski%20Rzeznik.dc.html#start" class="gr-hoverbrass" style="color:var(--fg-body)">Start</a>
+          <a href="Grodziski%20Rzeznik.dc.html#onas" class="gr-hoverbrass" style="color:var(--fg-body)">O nas</a>
+          <a href="Grodziski%20Rzeznik.dc.html#oferta" class="gr-hoverbrass" style="color:var(--fg-body)">Oferta</a>
+          <a href="Grodziski%20Rzeznik.dc.html#galeria" class="gr-hoverbrass" style="color:var(--fg-body)">Galeria</a>
+          <a href="Grodziski%20Rzeznik.dc.html#kontakt" class="gr-hoverbrass" style="color:var(--fg-body)">Kontakt</a>
         </div>
       </div>
       <div>
         <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:18px">Dokumenty</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px">
-          <a href="Polityka%20Prywatnosci.dc.html" class="gr-hoverbrass" style="color:#C4B8A3">Polityka prywatności</a>
-          <a href="Regulamin%20Sklepu.dc.html" class="gr-hoverbrass" style="color:#C4B8A3">Regulamin sklepu</a>
+          <a href="Polityka%20Prywatnosci.dc.html" class="gr-hoverbrass" style="color:var(--fg-body)">Polityka prywatności</a>
+          <a href="Regulamin%20Sklepu.dc.html" class="gr-hoverbrass" style="color:var(--fg-body)">Regulamin sklepu</a>
         </div>
       </div>
       <div>
         <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:18px">Obserwuj nas</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px">
-          <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" class="gr-hoverbrass" style="color:#C4B8A3">Facebook</a>
+          <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" class="gr-hoverbrass" style="color:var(--fg-body)">Facebook</a>
         </div>
-        <div style="margin-top:20px;font-size:13.5px;color:#A89C88;line-height:1.7">
+        <div style="margin-top:20px;font-size:13.5px;color:var(--fg-muted);line-height:1.7">
           <div>ul. Krzysztofa Arciszewskiego 1</div>
           <div>05-827 Grodzisk Mazowiecki</div>
           <a href="tel:513300130" style="color:#C6A15E;font-weight:700">513 300 130</a>
         </div>
       </div>
     </div>
-    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding-top:24px;font-size:13px;color:#8A7E6C">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding-top:24px;font-size:13px;color:var(--fg-faint)">
       <span>© 2026 Grodziski Rzeźnik. Wszelkie prawa zastrzeżone.</span>
-      <span style="display:flex;gap:20px"><a href="Polityka%20Prywatnosci.dc.html" class="gr-hoverbrass" style="color:#8A7E6C">Polityka prywatności</a><a href="Regulamin%20Sklepu.dc.html" class="gr-hoverbrass" style="color:#8A7E6C">Regulamin sklepu</a></span>
+      <span style="display:flex;gap:20px"><a href="Polityka%20Prywatnosci.dc.html" class="gr-hoverbrass" style="color:var(--fg-faint)">Polityka prywatności</a><a href="Regulamin%20Sklepu.dc.html" class="gr-hoverbrass" style="color:var(--fg-faint)">Regulamin sklepu</a></span>
     </div>
   </div>
 </footer>
@@ -211,7 +241,15 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:900},&quot;which&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;privacy&quot;,&quot;terms&quot;],&quot;default&quot;:&quot;privacy&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { navOpen:false, activeId:null };
+  state = { navOpen:false, activeId:null, theme:(()=>{ try { return localStorage.getItem('gr-theme')==='light'?'light':'dark'; } catch(e){ return 'dark'; } })() };
+
+  toggleTheme(){
+    this.setState(s => {
+      const next = s.theme === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('gr-theme', next); } catch(e){}
+      return { theme: next };
+    });
+  }
 
   navLinks = [
     { href:'Grodziski%20Rzeznik.dc.html#start', label:'Start' },
@@ -311,20 +349,24 @@ class Component extends DCLogic {
   };
 
   componentDidMount(){
-    this._onScroll = () => {
+    try { const t = localStorage.getItem('gr-theme'); if ((t==='light'?'light':'dark') !== this.state.theme) this.setState({ theme: t==='light'?'light':'dark' }); } catch(e){}
+    this._visible = {};
+    this._io = new IntersectionObserver((entries) => {
+      for (const e of entries) this._visible[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0;
       const secs = this.currentDoc().sections;
-      const y = window.scrollY + 130;
       let cur = secs.length ? secs[0].id : null;
+      // first section whose top is at/above the trigger line, latest one wins
       for (const s of secs){
         const el = document.getElementById(s.id);
-        if (el && el.offsetTop <= y) cur = s.id;
+        if (el && el.getBoundingClientRect().top <= 150) cur = s.id;
       }
       if (cur !== this.state.activeId) this.setState({ activeId: cur });
-    };
-    window.addEventListener('scroll', this._onScroll, { passive:true });
-    this._onScroll();
+    }, { rootMargin: '-140px 0px -55% 0px', threshold: [0, 1] });
+    setTimeout(() => {
+      this.currentDoc().sections.forEach(s => { const el = document.getElementById(s.id); if (el) this._io.observe(el); });
+    }, 50);
   }
-  componentWillUnmount(){ window.removeEventListener('scroll', this._onScroll); }
+  componentWillUnmount(){ if (this._io) this._io.disconnect(); }
 
   currentDoc(){ return this.docs[this.props.which === 'terms' ? 'terms' : 'privacy']; }
 
@@ -337,7 +379,7 @@ class Component extends DCLogic {
       return {
         href:'#'+s.id,
         label: s.num + ' ' + s.title,
-        color: on ? '#F3E9D7' : '#9C8E7A',
+        color: on ? 'var(--fg-strong)' : 'var(--fg-muted)',
         weight: on ? '700' : '500',
         bar: on ? '#C6A15E' : 'rgba(198,161,94,.18)',
         bg: on ? 'rgba(198,161,94,.08)' : 'transparent'
@@ -347,7 +389,7 @@ class Component extends DCLogic {
     const sections = doc.sections.map(s => ({
       id: s.id, num: s.num, title: s.title,
       highlight: !!s.highlight,
-      titleColor: s.highlight ? '#F3E1DA' : '#F5ECDD',
+      titleColor: s.highlight ? '#F3E1DA' : 'var(--fg-strong)',
       cardBg: s.highlight ? 'linear-gradient(165deg,rgba(135,43,47,.14),rgba(135,43,47,.05))' : 'transparent',
       cardBorder: s.highlight ? '1px solid rgba(135,43,47,.5)' : 'none',
       radius: s.highlight ? '18px' : '0',
@@ -364,6 +406,11 @@ class Component extends DCLogic {
       navLinks: this.navLinks,
       toc, sections,
       navOpen: this.state.navOpen,
+      theme: this.state.theme,
+      isDark: this.state.theme !== 'light',
+      isLight: this.state.theme === 'light',
+      themeLabel: this.state.theme === 'light' ? 'Przełącz na tryb ciemny' : 'Przełącz na tryb jasny',
+      toggleTheme: () => this.toggleTheme(),
       toggleNav: () => this.setState(s => ({ navOpen: !s.navOpen }))
     };
   }

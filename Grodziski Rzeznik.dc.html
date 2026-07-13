@@ -14,16 +14,84 @@
 <style>
   *{box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:88px}
-  body{margin:0;background:#16100C;color:#F0E7D8;font-family:'Mulish',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  :root{
+    --bg-1:#16100C; --bg-2:#1B140F; --bg-3:#120C08; --bg-4:#100B08;
+    --fg-strong:#F3E9D7; --fg-body:#C4B8A3; --fg-muted:#B9AB97; --fg-faint:#8A7E6C;
+    --card:linear-gradient(168deg,#2C2118,#211812);
+    --card2:linear-gradient(165deg,#241A13,#1A130E);
+    --card-testi:linear-gradient(165deg,#221913,#1A130E);
+    --card-form:linear-gradient(168deg,#251B14,#1A130E);
+    --header-bg:rgba(20,14,10,.86); --header-bd:rgba(198,161,94,.22);
+    --hairline:rgba(198,161,94,.14);
+    --on-accent:#F5ECDD; --price:#C6A15E;
+    --field-bg:rgba(18,12,8,.6); --field-bd:rgba(198,161,94,.28); --field-ph:rgba(240,231,216,.5);
+    --chat-bot-bg:rgba(240,231,216,.06);
+  }
+  [data-theme="light"]{
+    --bg-1:#F0E8D8; --bg-2:#E9DFCB; --bg-3:#E4D8C0; --bg-4:#E0D3B9;
+    --fg-strong:#231C13; --fg-body:#4C4234; --fg-muted:#6A5F4E; --fg-faint:#877B67;
+    --card:linear-gradient(168deg,#FFFCF6,#FBF4E7);
+    --card2:linear-gradient(165deg,#FFFCF6,#F7F0E1);
+    --card-testi:linear-gradient(165deg,#FFFCF6,#F7F0E1);
+    --card-form:linear-gradient(168deg,#FFFCF6,#F6EFDF);
+    --header-bg:rgba(240,232,216,.9); --header-bd:rgba(150,110,45,.3);
+    --hairline:rgba(150,110,45,.22);
+    --on-accent:#F5ECDD; --price:#7A1E22;
+    --field-bg:#FFFDF7; --field-bd:rgba(150,110,45,.5); --field-ph:rgba(80,66,50,.55);
+    --chat-bot-bg:#EFE5D2;
+  }
+  /* regions that stay dark in BOTH themes (over photos / floating glass panels) */
+  .gr-ink{
+    --bg-1:#16100C; --bg-2:#1B140F; --bg-3:#120C08; --bg-4:#100B08;
+    --fg-strong:#F3E9D7; --fg-body:#C4B8A3; --fg-muted:#B9AB97; --fg-faint:#8A7E6C;
+    --card:linear-gradient(168deg,#2C2118,#211812);
+    --card2:linear-gradient(165deg,#241A13,#1A130E);
+    --card-testi:linear-gradient(165deg,#221913,#1A130E);
+    --card-form:linear-gradient(168deg,#251B14,#1A130E);
+    --on-accent:#F5ECDD; --price:#C6A15E;
+    --field-bg:rgba(18,12,8,.6); --field-bd:rgba(198,161,94,.28); --field-ph:rgba(240,231,216,.5);
+    --chat-bot-bg:rgba(240,231,216,.06);
+  }
+  .gr-root, .gr-root section, .gr-root header, .gr-root footer, .gr-root article, .gr-root aside,
+  .gr-root h1, .gr-root h2, .gr-root h3, .gr-root h4, .gr-root p, .gr-root span, .gr-root a,
+  .gr-root li, .gr-root div, .gr-root button, .gr-root input, .gr-root textarea, .gr-root label{
+    transition:background-color .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .gr-header{background:var(--header-bg) !important;border-bottom-color:var(--header-bd) !important}
+  [data-theme="light"] .gr-card{box-shadow:0 16px 38px -20px rgba(74,48,20,.30) !important}
+  [data-theme="light"] .gr-card:hover{box-shadow:0 26px 52px -22px rgba(74,48,20,.36) !important;border-color:rgba(160,120,50,.5) !important}
+  [data-theme="light"] .gr-tile{box-shadow:0 16px 34px -20px rgba(74,48,20,.26) !important}
+  [data-theme="light"] .gr-tile:hover{box-shadow:0 24px 44px -22px rgba(74,48,20,.32) !important}
+  [data-theme="light"] .gr-soft{box-shadow:0 18px 40px -22px rgba(74,48,20,.28) !important}
+  [data-theme="light"] .gr-hero-veil{background:linear-gradient(90deg,rgba(200,182,143,.98) 0%,rgba(206,189,152,.9) 36%,rgba(214,199,166,.42) 66%,rgba(214,199,166,.5) 100%) !important}
+  .gr-field{background:var(--field-bg);border:1px solid var(--field-bd);color:var(--fg-strong)}
+  .gr-field::placeholder{color:var(--field-ph)}
+  [data-theme="light"] .gr-hero-flash{background:transparent}
+  [data-theme="light"] .gr-hero-bg{background-image:url('uploads/hero-glowna-jasna.png') !important;background-position:right center !important}
+  [data-theme="light"] .gr-shopimg-swap{content:url('uploads/kontakt-budynek-jasna.png')}
+  [data-theme="light"] .gr-avatar-swap{content:url('uploads/asystent-awatar-jasna.png.png')}
+  [data-theme="light"] .gr-hero-veil{background:linear-gradient(90deg,rgba(12,8,5,.9) 0%,rgba(12,8,5,.58) 44%,rgba(12,8,5,.12) 74%,rgba(12,8,5,.24) 100%) !important}
+  [data-theme="light"] .gr-hero-copy,[data-theme="light"] .gr-hero-copy p,[data-theme="light"] .gr-hero-copy a,[data-theme="light"] .gr-hero-copy strong{color:#EFE3CE !important}
+  [data-theme="light"] .gr-hero-copy .gr-hero-h1{color:#D6A73F !important}
+  [data-theme="light"] .gr-hero-copy .gr-hero-sub{color:#D6A73F !important}
+  [data-theme="light"] .gr-hero-copy .gr-badge{color:#EFE3CE !important;border-color:rgba(239,227,206,.55) !important}
+  [data-theme="light"] .gr-hero-copy .gr-cta2{color:#17100B !important}
+  [data-theme="light"] .gr-hero-copy .gr-trust{color:#EFE3CE !important}
+  [data-theme="light"] .gr-hero-copy .gr-trust strong{color:#F5ECDD !important}
+  [data-theme="light"] .gr-hero-h1{color:#B98A34 !important;text-shadow:0 1px 2px rgba(255,255,255,.35) !important}
+  [data-theme="light"] .gr-hero-sub{color:#9A6E28 !important}
+  .gr-themebtn{transition:transform .25s ease,border-color .25s ease,color .25s ease,background .25s ease}
+  .gr-themebtn:hover{transform:translateY(-2px) scale(1.06);border-color:#C6A15E;color:#E3C482}
+  body{margin:0;background:var(--bg-1);color:var(--fg-strong);font-family:'Mulish',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   a{color:#C6A15E;text-decoration:none}
   a:hover{color:#E3C482}
-  ::selection{background:#872B2F;color:#F5ECDD}
+  ::selection{background:#872B2F;color:var(--on-accent)}
   input,textarea,button{font-family:inherit}
   @keyframes gr-pulse{0%,100%{box-shadow:0 0 0 0 rgba(198,161,94,.45),0 14px 30px -8px rgba(0,0,0,.75)}50%{box-shadow:0 0 0 12px rgba(198,161,94,0),0 14px 30px -8px rgba(0,0,0,.75)}}
   @keyframes gr-fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
   @keyframes gr-slidein{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
   .gr-nav{background-image:linear-gradient(#C6A15E,#C6A15E);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1.5px;transition:background-size .35s ease,color .3s ease}
-  .gr-nav:hover{background-size:100% 1.5px;color:#F3E9D7}
+  .gr-nav:hover{background-size:100% 1.5px;color:var(--fg-strong)}
   .gr-hoverbrass{transition:color .25s ease}
   .gr-hoverbrass:hover{color:#C6A15E}
   .gr-btn{transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
@@ -36,8 +104,8 @@
   .gr-card:hover .gr-reveal{opacity:1}
   .gr-zoom{transition:transform .6s ease}
   .gr-reveal{opacity:0;transition:opacity .4s ease}
-  .gr-catovl{opacity:0;transition:opacity .4s ease}
-  .gr-cattitle{overflow:hidden;max-height:82px;transition:max-height .42s cubic-bezier(.2,.7,.3,1),opacity .3s ease,padding .42s ease}
+  .gr-root .gr-catovl{opacity:0;transition:opacity .45s ease-in-out}
+  .gr-root .gr-cattitle{overflow:hidden;max-height:82px;transition:max-height .45s ease-in-out,opacity .45s ease-in-out,padding .45s ease-in-out}
   @media(hover:hover){
     .gr-card:hover .gr-catovl{opacity:1}
     .gr-card:hover .gr-cattitle{max-height:0;opacity:0;padding-top:0 !important;padding-bottom:0 !important}
@@ -50,11 +118,11 @@
   .gr-tile:hover .gr-mag{opacity:1}
   .gr-mag{opacity:0;transition:opacity .35s ease}
   .gr-flink{transition:color .25s ease}
-  .gr-flink:hover{color:#F0E7D8}
+  .gr-flink:hover{color:var(--fg-strong)}
   .gr-logo{transition:transform .3s ease,filter .3s ease}
   .gr-logo:hover{transform:scale(1.04)}
   .gr-cta1{transition:transform .28s ease,background .28s ease,color .28s ease,box-shadow .28s ease}
-  .gr-cta1:hover{background:#F0E7D8 !important;color:#872B2F !important;border-color:#F0E7D8 !important;transform:translateY(-3px) scale(1.03);box-shadow:0 20px 40px -12px rgba(0,0,0,.6)}
+  .gr-cta1:hover{background:#6E2226 !important;color:#F5ECDD !important;border-color:#6E2226 !important;transform:translateY(-3px) scale(1.03);box-shadow:0 20px 40px -12px rgba(110,34,38,.55)}
   .gr-cta2{transition:transform .28s ease,background .28s ease,color .28s ease,box-shadow .28s ease}
   .gr-cta2:hover{background:#C6A15E !important;color:#17100B !important;border-color:#C6A15E !important;transform:translateY(-3px) scale(1.03);box-shadow:0 20px 40px -12px rgba(198,161,94,.4)}
   .gr-openpulse{animation:gr-openpulse 2.2s ease-in-out infinite}
@@ -76,43 +144,49 @@
     .gr-cta-btn{width:100%;justify-content:center}
     .gr-tabs{flex-wrap:nowrap !important;justify-content:flex-start !important;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
     .gr-tabs > *{flex:0 0 auto}
+    .gr-dots{display:none !important}
+    html,body{scrollbar-width:none !important}
+    html::-webkit-scrollbar,body::-webkit-scrollbar{width:0 !important;height:0 !important;display:none !important}
     .gr-chat{left:10px !important;right:10px !important;width:auto !important;bottom:94px !important}
     #onas,#opinie,#oferta,#galeria,#kontakt{padding-top:62px !important;padding-bottom:62px !important;padding-left:16px !important;padding-right:16px !important}
   }
   @media (max-width:600px){
-    .gr-hero-bg{background-position:75% center !important}
-    .gr-cta2{background:rgba(12,8,5,.5) !important}
+    .gr-hero-bg{background-position:74% center !important}
+    [data-theme="light"] .gr-hero-bg{background-position:74% center !important}
+    .gr-cta2{background:rgba(16,11,7,.55) !important;color:#E3C482 !important;border:1.5px solid #C6A15E !important}
+    [data-theme="light"] .gr-cta2{background:#C6A15E !important}
     .gr-shopimg{height:auto !important;max-height:none !important}
     .gr-tabs{padding-right:20px}
     .gr-tabs::after{content:'';flex:0 0 6px}
   }
   ::-webkit-scrollbar{width:10px;height:10px}
-  ::-webkit-scrollbar-track{background:#120C08}
+  ::-webkit-scrollbar-track{background:var(--bg-3)}
   ::-webkit-scrollbar-thumb{background:#3a2d22;border-radius:6px}
 </style>
+<script src="gr-preloader.js"></script>
 </helmet>
 
-<div style="min-height:100vh;position:relative;overflow-x:clip">
+<div class="gr-root" data-theme="{{ theme }}" style="min-height:100vh;position:relative;overflow-x:clip">
 
 <!-- ============ HEADER ============ -->
-<header style="position:sticky;top:0;z-index:60;background:rgba(20,14,10,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(198,161,94,.22)">
+<header class="gr-header" style="position:sticky;top:0;z-index:60;background:var(--header-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--header-bd)">
   <div style="max-width:1280px;margin:0 auto;padding:0 24px;height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px">
 
     <!-- logo -->
     <a href="#start" style="display:flex;align-items:center;text-decoration:none;flex:none">
-      <img src="uploads/logo-17c7c13c.png" alt="Grodziski Rzeźnik" class="gr-logo" style="height:108px;width:auto;margin:6px 0 -28px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.65))">
+      <img src="uploads/logo-17c7c13c.png" alt="Grodziski Rzeźnik" class="gr-logo" width="320" height="320" decoding="async" fetchpriority="high" style="height:108px;width:auto;margin:6px 0 -28px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.65))">
     </a>
 
     <!-- desktop nav -->
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
       <nav style="display:flex;align-items:center;gap:34px;margin-left:auto">
         <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
-          <a href="{{ link.href }}" class="gr-nav" style="font-size:13.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#E7DDCC;padding-bottom:3px">{{ link.label }}</a>
+          <a href="{{ link.href }}" class="gr-nav" style="font-size:13.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--fg-strong);padding-bottom:3px">{{ link.label }}</a>
         </sc-for>
       </nav>
 
       <div style="display:flex;align-items:center;gap:18px;flex:none">
-        <a href="tel:513300130" class="gr-hoverbrass" style="display:flex;align-items:center;gap:9px;color:#F0E7D8;font-weight:700;font-size:14px">
+        <a href="tel:513300130" class="gr-hoverbrass" style="display:flex;align-items:center;gap:9px;color:var(--fg-strong);font-weight:700;font-size:14px">
           <span style="display:flex;width:34px;height:34px;align-items:center;justify-content:center;border:1px solid rgba(198,161,94,.4);border-radius:50%;color:#C6A15E">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           </span>
@@ -122,8 +196,12 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.6H6.61v3.56h3.07V22h3.68v-9.14h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73z"></path></svg>
         </a>
 
-        <!-- cart -->
-        <button onClick="{{ toggleCart }}" class="gr-btn" style="position:relative;display:flex;align-items:center;gap:9px;background:{{ cartBtnBg }};color:#F5ECDD;border:1px solid rgba(198,161,94,.5);border-radius:999px;padding:9px 18px;font-weight:700;font-size:13.5px;cursor:pointer;box-shadow:0 8px 18px -8px rgba(135,43,47,.7)">
+        <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" title="{{ themeLabel }}" class="gr-themebtn" style="display:flex;align-items:center;gap:8px;height:38px;padding:0 15px;border:1px solid rgba(198,161,94,.55);border-radius:999px;color:#C6A15E;background:rgba(198,161,94,.1);cursor:pointer;font-weight:700;font-size:13px;letter-spacing:.4px;white-space:nowrap">
+          <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></sc-if>
+          <sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></sc-if>
+          <span>{{ themePill }}</span>
+        </button>
+        <button onClick="{{ toggleCart }}" class="gr-btn" style="position:relative;display:flex;align-items:center;gap:9px;background:{{ cartBtnBg }};color:var(--on-accent);border:1px solid rgba(198,161,94,.5);border-radius:999px;padding:9px 18px;font-weight:700;font-size:13.5px;cursor:pointer;box-shadow:0 8px 18px -8px rgba(135,43,47,.7)">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
           <span>{{ cartBtnLabel }}</span>
           <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
@@ -139,16 +217,20 @@
         <a href="tel:513300130" aria-label="Zadzwoń" style="display:flex;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(198,161,94,.4);border-radius:12px;color:#C6A15E">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
         </a>
-        <button onClick="{{ toggleCart }}" aria-label="Koszyk" style="position:relative;display:flex;width:44px;height:44px;align-items:center;justify-content:center;background:{{ cartBtnBg }};border:1px solid rgba(198,161,94,.5);border-radius:12px;color:#F5ECDD;cursor:pointer">
+        <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" class="gr-themebtn" style="display:flex;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid rgba(198,161,94,.4);border-radius:12px;color:#C6A15E;background:transparent;cursor:pointer">
+          <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></sc-if>
+          <sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></sc-if>
+        </button>
+        <button onClick="{{ toggleCart }}" aria-label="Koszyk" style="position:relative;display:flex;width:44px;height:44px;align-items:center;justify-content:center;background:{{ cartBtnBg }};border:1px solid rgba(198,161,94,.5);border-radius:12px;color:var(--fg-strong);cursor:pointer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
           <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
             <span style="position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 4px;display:flex;align-items:center;justify-content:center;background:#C6A15E;color:#17100B;border-radius:999px;font-size:11px;font-weight:800">{{ cartCount }}</span>
           </sc-if>
         </button>
         <button onClick="{{ toggleNav }}" aria-label="Menu" style="display:flex;flex-direction:column;gap:5px;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(198,161,94,.4);border-radius:12px;cursor:pointer">
-          <span style="width:20px;height:2px;background:#E7DDCC;border-radius:2px"></span>
-          <span style="width:20px;height:2px;background:#E7DDCC;border-radius:2px"></span>
-          <span style="width:20px;height:2px;background:#E7DDCC;border-radius:2px"></span>
+          <span style="width:20px;height:2px;background:var(--fg-strong);border-radius:2px"></span>
+          <span style="width:20px;height:2px;background:var(--fg-strong);border-radius:2px"></span>
+          <span style="width:20px;height:2px;background:var(--fg-strong);border-radius:2px"></span>
         </button>
       </div>
     </sc-if>
@@ -156,41 +238,41 @@
 
   <!-- mobile dropdown -->
   <sc-if value="{{ navDropdownOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="border-top:1px solid rgba(198,161,94,.2);background:rgba(18,12,8,.98);padding:14px 24px 22px;animation:gr-fade .3s ease">
+    <div style="border-top:1px solid rgba(198,161,94,.2);background:var(--header-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:14px 24px 22px;animation:gr-fade .3s ease">
       <nav style="display:flex;flex-direction:column;gap:4px">
         <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
-          <a href="{{ link.href }}" onClick="{{ closeNav }}" style="font-size:16px;font-weight:600;color:#E7DDCC;padding:12px 6px;border-bottom:1px solid rgba(198,161,94,.12)">{{ link.label }}</a>
+          <a href="{{ link.href }}" onClick="{{ closeNav }}" style="font-size:16px;font-weight:600;color:var(--fg-strong);padding:12px 6px;border-bottom:1px solid rgba(198,161,94,.12)">{{ link.label }}</a>
         </sc-for>
       </nav>
       <div style="margin-top:8px">
-        <a href="tel:513300130" style="display:flex;align-items:center;gap:11px;color:#E7DDCC;font-weight:600;font-size:16px;padding:12px 6px;border-bottom:1px solid rgba(198,161,94,.12)"><span style="display:flex;color:#C6A15E"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>513 300 130</a>
-        <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:11px;color:#E7DDCC;font-weight:600;font-size:16px;padding:12px 6px"><span style="display:flex;color:#C6A15E"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.6H6.61v3.56h3.07V22h3.68v-9.14h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73z"></path></svg></span>Odwiedź nas na Facebooku</a>
+        <a href="tel:513300130" style="display:flex;align-items:center;gap:11px;color:var(--fg-strong);font-weight:600;font-size:16px;padding:12px 6px;border-bottom:1px solid rgba(198,161,94,.12)"><span style="display:flex;color:#C6A15E"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>513 300 130</a>
+        <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:11px;color:var(--fg-strong);font-weight:600;font-size:16px;padding:12px 6px"><span style="display:flex;color:#C6A15E"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.6H6.61v3.56h3.07V22h3.68v-9.14h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73z"></path></svg></span>Odwiedź nas na Facebooku</a>
       </div>
     </div>
   </sc-if>
 </header>
 
 <!-- ============ 1. HERO ============ -->
-<section id="start" ref="{{ setHeroRef }}" style="position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;background:#100B08">
+<section id="start" ref="{{ setHeroRef }}" style="position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;background:var(--bg-4)">
   <div style="position:absolute;inset:0;background-image:url('uploads/zdjecia/hero-glowna.png');background-size:cover;background-position:center right" class="gr-hero-bg"></div>
-  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,8,5,.92) 0%,rgba(12,8,5,.6) 42%,rgba(12,8,5,.1) 74%,rgba(12,8,5,.2) 100%)"></div>
-  <div ref="{{ setFlashRef }}" style="position:absolute;inset:0;pointer-events:none;background:rgba(6,4,2,0.55)"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,8,5,.92) 0%,rgba(12,8,5,.6) 42%,rgba(12,8,5,.1) 74%,rgba(12,8,5,.2) 100%)" class="gr-hero-veil"></div>
+  <div ref="{{ setFlashRef }}" class="gr-hero-flash" style="position:absolute;inset:0;pointer-events:none;background:rgba(6,4,2,0.55)"></div>
 
-  <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;padding:80px 24px;width:100%">
+  <div class="gr-hero-copy" style="position:relative;z-index:3;max-width:1280px;margin:0 auto;padding:80px 24px;width:100%">
     <div style="max-width:640px;animation:gr-fade .8s ease both">
-      <div style="display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border:1px solid rgba(198,161,94,.4);border-radius:999px;font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:26px">Delikatesy · Grodzisk Mazowiecki</div>
-      <h1 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(48px,7vw,86px);line-height:.98;margin:0 0 20px;color:#F5ECDD;text-shadow:0 4px 30px rgba(0,0,0,.5)">Grodziski<br>Rzeźnik</h1>
-      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(20px,2.6vw,27px);color:#C6A15E;margin:0 0 18px;font-weight:500">Premium delikatesy mięsne w Grodzisku Mazowieckim</p>
-      <p style="font-size:clamp(15px,1.7vw,18px);line-height:1.65;color:#D7CBB6;max-width:520px;margin:0 0 34px">Wołowina sezonowana na sucho, wędliny własnej roboty, sery i wina z całego świata — dobierane osobiście, nie z automatu.</p>
+      <div class="gr-badge" style="display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border:1px solid rgba(198,161,94,.4);border-radius:999px;font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:26px">Delikatesy · Grodzisk Mazowiecki</div>
+      <h1 class="gr-hero-h1" style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(48px,7vw,86px);line-height:.98;margin:0 0 20px;color:var(--fg-strong);text-shadow:0 4px 30px rgba(0,0,0,.5)">Grodziski<br>Rzeźnik</h1>
+      <p class="gr-hero-sub" style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(20px,2.6vw,27px);color:#C6A15E;margin:0 0 18px;font-weight:500">Premium delikatesy mięsne w Grodzisku Mazowieckim</p>
+      <p style="font-size:clamp(15px,1.7vw,18px);line-height:1.65;color:var(--fg-body);max-width:520px;margin:0 0 34px">Wołowina sezonowana na sucho, wędliny własnej roboty, sery i wina z całego świata — dobierane osobiście, nie z automatu.</p>
       <div class="gr-hero-cta" style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px">
-        <a href="#oferta" class="gr-cta1 gr-cta-btn" style="display:inline-flex;align-items:center;gap:10px;background:#872B2F;color:#F5ECDD;padding:16px 32px;border-radius:999px;font-weight:700;font-size:15px;border:1px solid #872B2F;box-shadow:0 14px 30px -10px rgba(135,43,47,.8)">Zobacz ofertę →</a>
-        <a href="#oferta" onClick="{{ openCartCta }}" class="gr-cta2 gr-cta-btn" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#F0E7D8;padding:16px 32px;border-radius:999px;font-weight:700;font-size:15px;border:1px solid rgba(198,161,94,.55)">Zamów online</a>
+        <a href="#oferta" class="gr-cta1 gr-cta-btn" style="display:inline-flex;align-items:center;gap:10px;background:#872B2F;color:var(--on-accent);padding:16px 32px;border-radius:999px;font-weight:700;font-size:15px;border:1px solid #872B2F;box-shadow:0 14px 30px -10px rgba(135,43,47,.8)">Zobacz ofertę →</a>
+        <a href="#oferta" onClick="{{ openCartCta }}" class="gr-cta2 gr-cta-btn" style="display:inline-flex;align-items:center;gap:10px;background:#C6A15E;color:#17100B;padding:16px 32px;border-radius:999px;font-weight:700;font-size:15px;border:1.5px solid #C6A15E">Zamów online</a>
       </div>
       <!-- trust bar -->
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;padding-top:26px;border-top:1px solid rgba(198,161,94,.22);font-size:13.5px;color:#C4B8A3">
-        <span style="display:inline-flex;align-items:center;gap:7px"><span style="color:#C6A15E;letter-spacing:1px">★★★★★</span><strong style="color:#F0E7D8">4,6</strong> · 42 opinie Google</span>
+      <div class="gr-trust" style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;padding-top:26px;border-top:1px solid rgba(198,161,94,.22);font-size:13.5px;color:var(--fg-body)">
+        <span style="display:inline-flex;align-items:center;gap:7px"><span style="color: rgb(198, 161, 94); letter-spacing: 1px;">★★★★★</span><strong style="color: var(--fg-strong);">4,6</strong> · 49&nbsp;opinie Google</span>
         <span style="width:4px;height:4px;border-radius:50%;background:rgba(198,161,94,.5)"></span>
-        <a href="https://maps.app.goo.gl/dtkfF8sSwej8EvR39" target="_blank" rel="noopener" class="gr-hoverbrass" style="color:#C4B8A3">ul. Krzysztofa Arciszewskiego 1, Grodzisk Mazowiecki</a>
+        <a href="https://maps.app.goo.gl/dtkfF8sSwej8EvR39" target="_blank" rel="noopener" class="gr-hoverbrass" style="color:var(--fg-body)">ul. Krzysztofa Arciszewskiego 1, Grodzisk Mazowiecki</a>
         <span style="width:4px;height:4px;border-radius:50%;background:rgba(198,161,94,.5)"></span>
         <span>Pon–Pt 8:00–19:00 · Sob 7:00–15:00</span>
         <span style="display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;background:{{ status.pillBg }};border:1px solid {{ status.pillBorder }};color:{{ status.pillColor }};font-weight:700;font-size:12.5px">
@@ -202,28 +284,28 @@
 </section>
 
 <!-- ============ 2. O NAS ============ -->
-<section id="onas" style="background:#1B140F;padding:96px 24px;border-top:1px solid rgba(198,161,94,.14)">
+<section id="onas" style="background:var(--bg-2);padding:96px 24px;border-top:1px solid rgba(198,161,94,.14)">
   <div style="max-width:1200px;margin:0 auto">
     <div style="max-width:760px;margin-bottom:56px">
       <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:16px">O nas</div>
-      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.2vw,46px);line-height:1.08;margin:0 0 22px;color:#F5ECDD;text-wrap:balance">Więcej niż sklep mięsny</h2>
-      <p style="font-size:17px;line-height:1.7;color:#CFC3AE;margin:0">Grodziski Rzeźnik to coś więcej niż sklep mięsny. Mięso i wędliny dobieramy osobiście, nie z automatu — a obok nich znajdziesz sery, wina i przetwory z całego świata. Wpadnij, powiedz co gotujesz, a doradzimy odpowiedni kawałek.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.2vw,46px);line-height:1.08;margin:0 0 22px;color:var(--fg-strong);text-wrap:balance">Więcej niż sklep mięsny</h2>
+      <p style="font-size:17px;line-height:1.7;color:var(--fg-body);margin:0">Grodziski Rzeźnik to coś więcej niż sklep mięsny. Mięso i wędliny dobieramy osobiście, nie z automatu — a obok nich znajdziesz sery, wina i przetwory z całego świata. Wpadnij, powiedz co gotujesz, a doradzimy odpowiedni kawałek.</p>
     </div>
 
     <div class="gr-grid-cat" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px">
       <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
-        <div class="gr-card" onClick="{{ cat.onToggle }}" style="display:flex;flex-direction:column;height:404px;cursor:pointer;background:linear-gradient(168deg,#2C2118,#211812);border:1px solid rgba(198,161,94,.24);border-radius:18px;overflow:hidden;box-shadow:0 20px 44px -22px rgba(0,0,0,.8)">
+        <div class="gr-card" onClick="{{ cat.onToggle }}" style="display:flex;flex-direction:column;height:404px;cursor:pointer;background:var(--card);border:1px solid rgba(198,161,94,.24);border-radius:18px;overflow:hidden;box-shadow:0 20px 44px -22px rgba(0,0,0,.8)">
           <div style="position:relative;flex:1;min-height:0;overflow:hidden;background:#17100B">
-            <img class="gr-zoom" src="{{ cat.img }}" alt="{{ cat.title }}" style="width:100%;height:100%;object-fit:cover;display:block">
-            <div class="gr-catovl {{ cat.ovlOpen }}" style="position:absolute;inset:0;background:rgba(8,5,3,.68);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px">
+            <sc-if value="{{ cat.img }}" hint-placeholder-val="{{ false }}"><img class="gr-zoom" src="{{ cat.img }}" alt="{{ cat.title }}" width="600" height="600" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></sc-if>
+            <div class="gr-catovl gr-ink {{ cat.ovlOpen }}" style="position:absolute;inset:0;background:rgba(8,5,3,.68);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px">
               <span style="width:36px;height:2px;background:#C6A15E;margin-bottom:16px"></span>
-              <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:26px;margin:0 0 12px;color:#F5ECDD">{{ cat.title }}</h3>
-              <p style="font-size:14.5px;line-height:1.6;color:#E4D9C6;margin:0;max-width:270px">{{ cat.desc }}</p>
+              <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:26px;margin:0 0 12px;color:var(--fg-strong)">{{ cat.title }}</h3>
+              <p style="font-size:14.5px;line-height:1.6;color:var(--fg-strong);margin:0;max-width:270px">{{ cat.desc }}</p>
             </div>
           </div>
           <div class="gr-cattitle {{ cat.titleOpen }}" style="flex:none;padding:20px 24px 22px;display:flex;align-items:center;gap:12px">
             <span style="width:26px;height:2px;background:#C6A15E;flex:none"></span>
-            <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:24px;margin:0;color:#F3E9D7">{{ cat.title }}</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:24px;margin:0;color:var(--fg-strong)">{{ cat.title }}</h3>
           </div>
         </div>
       </sc-for>
@@ -232,18 +314,18 @@
 </section>
 
 <!-- ============ 3. OPINIE ============ -->
-<section id="opinie" style="background:#16100C;padding:90px 24px;border-top:1px solid rgba(198,161,94,.14)">
+<section id="opinie" style="background:var(--bg-1);padding:90px 24px;border-top:1px solid rgba(198,161,94,.14)">
   <div style="max-width:1000px;margin:0 auto;text-align:center">
     <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:14px">Opinie</div>
-    <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(26px,3.6vw,40px);margin:0 0 8px;color:#F5ECDD"><span style="color:#C6A15E;letter-spacing:2px">★★★★★</span> 4,6 na Google</h2>
-    <a href="https://www.google.com/search?q=Grodziski+Rze%C5%BAnik+Opinie" target="_blank" rel="noopener" style="display:inline-block;font-size:14px;font-weight:600;margin-bottom:44px">Zobacz wszystkie opinie →</a>
+    <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(26px,3.6vw,40px);margin:0 0 8px;color:var(--fg-strong)"><span style="color:#C6A15E;letter-spacing:2px">★★★★★</span> 4,6 na Google</h2>
+    <a href="https://www.google.pl/maps/place/Grodziski+Rze%C5%BAnik/@52.1091435,20.6223024,15z/data=!4m8!3m7!1s0x47194900137d05cf:0xcbdd65b6ae3b5099!8m2!3d52.1145337!4d20.6441094!9m1!1b1!16s%2Fg%2F11z7mh0h8z?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="display:inline-block;font-size:14px;font-weight:600;margin-bottom:44px">Zobacz wszystkie opinie →</a>
 
-    <div onTouchStart="{{ onTestiTouchStart }}" onTouchEnd="{{ onTestiTouchEnd }}" style="position:relative;overflow:hidden;border:1px solid rgba(198,161,94,.2);border-radius:22px;background:linear-gradient(165deg,#221913,#1A130E);box-shadow:0 24px 50px -24px rgba(0,0,0,.8)">
+    <div onTouchStart="{{ onTestiTouchStart }}" onTouchEnd="{{ onTestiTouchEnd }}" style="position:relative;overflow:hidden;border:1px solid rgba(198,161,94,.2);border-radius:22px;background:var(--card-testi);box-shadow:0 24px 50px -24px rgba(0,0,0,.8)">
       <div style="display:flex;transition:transform .7s cubic-bezier(.4,0,.2,1);transform:{{ testiTransform }}">
         <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="6">
           <div style="flex:0 0 100%;padding:54px 8vw 46px;display:flex;flex-direction:column;align-items:center">
             <div style="color:#C6A15E;font-size:19px;letter-spacing:2px;margin-bottom:22px">★★★★★</div>
-            <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);line-height:1.55;color:#EDE3D2;margin:0 0 26px;max-width:680px;text-wrap:pretty">„{{ t.text }}”</p>
+            <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);line-height:1.55;color:var(--fg-strong);margin:0 0 26px;max-width:680px;text-wrap:pretty">„{{ t.text }}”</p>
             <div style="width:40px;height:1px;background:rgba(198,161,94,.55);margin-bottom:16px"></div>
             <div style="font-weight:700;font-size:15px;letter-spacing:1px;color:#C6A15E">{{ t.name }}</div>
           </div>
@@ -251,7 +333,7 @@
       </div>
     </div>
 
-    <div style="display:flex;justify-content:center;gap:10px;margin-top:26px">
+    <div class="gr-dots" style="display:flex;justify-content:center;gap:10px;margin-top:26px">
       <sc-for list="{{ testiDots }}" as="dot" hint-placeholder-count="6">
         <button onClick="{{ dot.onClick }}" aria-label="Opinia" style="width:{{ dot.w }};height:9px;border-radius:999px;border:none;background:{{ dot.bg }};cursor:pointer;transition:all .3s;padding:0"></button>
       </sc-for>
@@ -260,12 +342,23 @@
 </section>
 
 <!-- ============ 4. OFERTA ============ -->
-<section id="oferta" style="background:#120C08;padding:96px 24px;border-top:1px solid rgba(198,161,94,.18)">
+<section id="oferta" style="background:var(--bg-3);padding:96px 24px;border-top:1px solid rgba(198,161,94,.18)">
   <div style="max-width:1240px;margin:0 auto">
     <div style="text-align:center;max-width:680px;margin:0 auto 44px">
       <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:16px">Sklep online</div>
-      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);margin:0 0 16px;color:#F5ECDD;text-wrap:balance">Zamów bezpośrednio online</h2>
-      <p style="font-size:16.5px;line-height:1.65;color:#C4B8A3;margin:0">Wybierz produkty i dodaj do koszyka — odbiór osobisty lub dostawa wg kodu pocztowego.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);margin:0 0 16px;color:var(--fg-strong);text-wrap:balance">Zamów bezpośrednio online</h2>
+      <p style="font-size:16.5px;line-height:1.65;color:var(--fg-body);margin:0">Wybierz produkty i dodaj do koszyka — odbiór osobisty lub dostawa wg kodu pocztowego.</p>
+    </div>
+
+    <!-- soon banner -->
+    <div class="gr-soon-banner" style="display:flex;align-items:center;gap:16px;max-width:940px;margin:0 auto 24px;padding:18px 24px;background:linear-gradient(165deg,rgba(198,161,94,.12),rgba(198,161,94,.04));border:1px solid rgba(198,161,94,.4);border-radius:16px">
+      <span style="flex:none;display:flex;width:46px;height:46px;align-items:center;justify-content:center;border-radius:50%;background:rgba(198,161,94,.14);border:1px solid rgba(198,161,94,.4);color:#C6A15E">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+      </span>
+      <div style="flex:1;min-width:0">
+        <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:18px;color:var(--fg-strong);margin-bottom:3px">Zamówienia online uruchamiamy wkrótce</div>
+        <div style="font-size:14px;line-height:1.5;color:var(--fg-body)">Na razie zapraszamy do sklepu stacjonarnego — ofertę możesz już teraz przeglądać poniżej.</div>
+      </div>
     </div>
 
     <!-- status otwarcia + sprawdzarka dostawy -->
@@ -276,19 +369,19 @@
           <span class="{{ status.dotClass }}" style="width:13px;height:13px;border-radius:50%;background:{{ status.dotColor }};display:inline-block"></span>
         </span>
         <div>
-          <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:19px;color:#F3E9D7;line-height:1.2">{{ status.shopLabel }}</div>
-          <div style="font-size:13px;line-height:1.5;color:#B9AB97;margin-top:3px">{{ status.subline }}</div>
+          <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:19px;color:var(--fg-strong);line-height:1.2">{{ status.shopLabel }}</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--fg-muted);margin-top:3px">{{ status.subline }}</div>
         </div>
       </div>
       <!-- delivery checker -->
       <div style="padding:20px 24px;background:linear-gradient(165deg,rgba(240,231,216,.04),rgba(240,231,216,.015));border:1px solid rgba(198,161,94,.24);border-radius:16px">
-        <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;font-weight:700;font-size:15.5px;color:#F0E7D8">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;font-weight:700;font-size:15.5px;color:var(--fg-strong)">
           <span style="flex:none;color:#C6A15E;display:flex"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"></rect><path d="M16 8h4l3 3v5h-7z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></span>
           Sprawdź, czy dowozimy do Ciebie
         </div>
         <form onSubmit="{{ checkDelivery }}" style="display:flex;gap:10px;flex-wrap:wrap">
-          <input value="{{ postal }}" onInput="{{ onPostalInput }}" placeholder="np. 05-825" maxlength="6" inputmode="numeric" aria-label="Kod pocztowy" style="flex:1;min-width:120px;background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.3);border-radius:12px;padding:12px 15px;color:#F0E7D8;font-size:15px;letter-spacing:.5px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
-          <button type="submit" class="gr-btn" style="background:#872B2F;color:#F5ECDD;border:none;border-radius:12px;padding:12px 26px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 10px 22px -12px rgba(135,43,47,.9)">Sprawdź</button>
+          <input value="{{ postal }}" onInput="{{ onPostalInput }}" placeholder="np. 05-825" maxlength="6" inputmode="numeric" aria-label="Kod pocztowy" class="gr-field" style="flex:1;min-width:120px;background:var(--field-bg);border:1px solid rgba(198,161,94,.3);border-radius:12px;padding:12px 15px;color:var(--fg-strong);font-size:15px;letter-spacing:.5px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+          <button type="submit" class="gr-btn" style="background:#872B2F;color:var(--on-accent);border:none;border-radius:12px;padding:12px 26px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 10px 22px -12px rgba(135,43,47,.9)">Sprawdź</button>
         </form>
         <sc-if value="{{ delivery.show }}" hint-placeholder-val="{{ false }}">
           <div style="margin-top:12px;display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border-radius:12px;background:{{ delivery.bg }};border:1px solid {{ delivery.border }};font-size:13px;line-height:1.5;color:{{ delivery.color }};animation:gr-fade .3s ease">
@@ -312,17 +405,17 @@
     <!-- product grid -->
     <div class="gr-grid-prod" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px">
       <sc-for list="{{ allProducts }}" as="p" hint-placeholder-count="8">
-        <div class="gr-card" style="display:{{ p.display }};flex-direction:column;background:linear-gradient(168deg,#2C2118,#211812);border:1px solid rgba(198,161,94,.28);border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -20px rgba(0,0,0,.85)">
+        <div class="gr-card" style="display:{{ p.display }};flex-direction:column;background:var(--card);border:1px solid rgba(198,161,94,.28);border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -20px rgba(0,0,0,.85)">
           <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#17100B">
-            <img class="gr-zoom" src="{{ p.img }}" alt="{{ p.name }}" loading="eager" style="width:100%;height:100%;object-fit:cover">
+            <img class="gr-zoom" src="{{ p.img }}" alt="{{ p.name }}" width="600" height="600" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover">
             <span style="position:absolute;top:12px;left:12px;background:rgba(18,12,8,.82);backdrop-filter:blur(4px);border:1px solid rgba(198,161,94,.35);color:#C6A15E;font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 11px;border-radius:999px;white-space:nowrap">{{ p.weight }}</span>
           </div>
           <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
-            <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:19px;line-height:1.22;margin:0 0 4px;color:#F3E9D7;min-height:46px">{{ p.name }}</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:19px;line-height:1.22;margin:0 0 4px;color:var(--fg-strong);min-height:46px">{{ p.name }}</h3>
             <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:auto;padding-top:12px">
-              <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:24px;color:#C6A15E">{{ p.priceStr }}</span>
+              <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:24px;color:var(--price)">{{ p.priceStr }}</span>
             </div>
-            <button onClick="{{ p.onAdd }}" class="gr-btn" style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#872B2F;color:#F5ECDD;border:none;border-radius:12px;padding:13px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 10px 22px -12px rgba(135,43,47,.9)">＋ Dodaj do koszyka</button>
+            <button onClick="{{ p.onAdd }}" class="gr-btn" style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#872B2F;color:var(--on-accent);border:none;border-radius:12px;padding:13px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 10px 22px -12px rgba(135,43,47,.9)">＋ Dodaj do koszyka</button>
           </div>
         </div>
       </sc-for>
@@ -331,19 +424,19 @@
 </section>
 
 <!-- ============ 5. GALERIA ============ -->
-<section id="galeria" style="background:#1B140F;padding:96px 24px;border-top:1px solid rgba(198,161,94,.14)">
+<section id="galeria" style="background:var(--bg-2);padding:96px 24px;border-top:1px solid rgba(198,161,94,.14)">
   <div style="max-width:1240px;margin:0 auto">
     <div style="text-align:center;margin-bottom:48px">
       <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:16px">Galeria</div>
-      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);margin:0;color:#F5ECDD">Zajrzyj do środka</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);margin:0;color:var(--fg-strong)">Zajrzyj do środka</h2>
     </div>
 
     <div class="gr-grid-gal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">
       <sc-for list="{{ visibleGallery }}" as="g" hint-placeholder-count="8">
         <button onClick="{{ g.onOpen }}" class="gr-tile" style="position:relative;padding:0;border:1px solid rgba(198,161,94,.2);border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:1/1;background:#17100B;box-shadow:0 14px 30px -18px rgba(0,0,0,.8);animation:gr-fade .5s ease both">
-          <img class="gr-zoom" src="{{ g.src }}" alt="{{ g.caption }}" style="width:100%;height:100%;object-fit:cover;display:block">
+          <img class="gr-zoom" src="{{ g.src }}" alt="{{ g.caption }}" width="600" height="600" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
           <div class="gr-mag" style="position:absolute;inset:0;background:rgba(11,7,4,.5);display:flex;align-items:center;justify-content:center">
-            <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(242,236,221,.85);color:#F2ECDD;background:rgba(20,14,10,.35)">
+            <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(242,236,221,.85);color:var(--fg-strong);background:rgba(20,14,10,.35)">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
             </span>
           </div>
@@ -356,55 +449,55 @@
 
     <sc-if value="{{ hasMoreGallery }}" hint-placeholder-val="{{ true }}">
       <div style="text-align:center;margin-top:40px">
-        <button onClick="{{ loadMore }}" class="gr-btn" style="display:inline-flex;align-items:center;gap:10px;background:rgba(240,231,216,.05);color:#F0E7D8;padding:15px 34px;border-radius:999px;font-weight:700;font-size:14.5px;border:1px solid rgba(198,161,94,.45);cursor:pointer">Zobacz więcej ↓</button>
+        <button onClick="{{ loadMore }}" class="gr-btn" style="display:inline-flex;align-items:center;gap:10px;background:rgba(240,231,216,.05);color:var(--fg-strong);padding:15px 34px;border-radius:999px;font-weight:700;font-size:14.5px;border:1px solid rgba(198,161,94,.45);cursor:pointer">Zobacz więcej ↓</button>
       </div>
     </sc-if>
   </div>
 </section>
 
 <!-- ============ 6. KONTAKT ============ -->
-<section id="kontakt" style="background:#16100C;padding:96px 24px;border-top:1px solid rgba(198,161,94,.18)">
+<section id="kontakt" style="background:var(--bg-1);padding:96px 24px;border-top:1px solid rgba(198,161,94,.18)">
   <div style="max-width:1200px;margin:0 auto">
     <div style="text-align:center;margin-bottom:56px">
       <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:16px">Kontakt</div>
-      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);margin:0;color:#F5ECDD">Odwiedź nas</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);margin:0;color:var(--fg-strong)">Odwiedź nas</h2>
     </div>
 
     <div class="gr-contact-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px;align-items:start">
       <!-- left -->
       <div style="display:flex;flex-direction:column;gap:24px">
         <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(198,161,94,.22);box-shadow:0 20px 44px -22px rgba(0,0,0,.8)">
-          <img src="./lokal-mrghfios.png" alt="Wnętrze sklepu Grodziski Rzeźnik" class="gr-shopimg" style="width: 100%; height: 300px; object-fit: cover; display: block">
+          <img src="./lokal-mrghfios.png" alt="Wnętrze sklepu Grodziski Rzeźnik" class="gr-shopimg gr-shopimg-swap" width="800" height="600" loading="lazy" decoding="async" style="width: 100%; height: 300px; object-fit: cover; display: block">
         </div>
 
-        <div style="background:linear-gradient(165deg,#241A13,#1A130E);border:1px solid rgba(198,161,94,.22);border-radius:18px;padding:26px 28px">
+        <div style="background:var(--card2);border:1px solid rgba(198,161,94,.22);border-radius:18px;padding:26px 28px">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 18px">
-            <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:21px;margin:0;color:#F3E9D7">Godziny otwarcia</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:21px;margin:0;color:var(--fg-strong)">Godziny otwarcia</h3>
             <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:{{ status.pillBg }};border:1px solid {{ status.pillBorder }};color:{{ status.pillColor }};font-weight:700;font-size:13px">
               <span class="{{ status.dotClass }}" style="width:8px;height:8px;border-radius:50%;background:{{ status.dotColor }};display:inline-block"></span>{{ status.label }}
             </span>
           </div>
           <sc-if value="{{ status.closed }}" hint-placeholder-val="{{ false }}">
-            <div style="margin:-4px 0 16px;font-size:13px;color:#B9AB97">{{ status.nextText }}</div>
+            <div style="margin:-4px 0 16px;font-size:13px;color:var(--fg-muted)">{{ status.nextText }}</div>
           </sc-if>
           <div style="display:flex;flex-direction:column;gap:11px;font-size:15px">
-            <div style="display:flex;justify-content:space-between;gap:12px;padding-bottom:11px;border-bottom:1px solid rgba(198,161,94,.14)"><span style="color:#C4B8A3">Poniedziałek – Piątek</span><strong style="color:#F0E7D8">8:00 – 19:00</strong></div>
-            <div style="display:flex;justify-content:space-between;gap:12px;padding-bottom:11px;border-bottom:1px solid rgba(198,161,94,.14)"><span style="color:#C4B8A3">Sobota</span><strong style="color:#F0E7D8">7:00 – 15:00</strong></div>
-            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#C4B8A3">Niedziela</span><strong style="color:#9C7A6B">Nieczynne</strong></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;padding-bottom:11px;border-bottom:1px solid rgba(198,161,94,.14)"><span style="color:var(--fg-body)">Poniedziałek – Piątek</span><strong style="color:var(--fg-strong)">8:00 – 19:00</strong></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;padding-bottom:11px;border-bottom:1px solid rgba(198,161,94,.14)"><span style="color:var(--fg-body)">Sobota</span><strong style="color:var(--fg-strong)">7:00 – 15:00</strong></div>
+            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:var(--fg-body)">Niedziela</span><strong style="color:var(--fg-faint)">Nieczynne</strong></div>
           </div>
-          <div style="margin-top:20px;display:flex;align-items:center;gap:11px;padding:13px 16px;background:rgba(198,161,94,.08);border:1px solid rgba(198,161,94,.2);border-radius:12px;font-size:14px;color:#D7CBB6">
+          <div style="margin-top:20px;display:flex;align-items:center;gap:11px;padding:13px 16px;background:rgba(198,161,94,.08);border:1px solid rgba(198,161,94,.2);border-radius:12px;font-size:14px;color:var(--fg-body)">
             <span style="font-size:18px">🅿</span> Parking: bezpłatny, bezpośrednio przed sklepem
           </div>
           <div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(198,161,94,.14);display:flex;flex-direction:column;gap:12px;font-size:14.5px">
-            <a href="https://maps.app.goo.gl/dtkfF8sSwej8EvR39" target="_blank" rel="noopener" class="gr-hoverbrass" style="color:#D7CBB6;display:flex;align-items:flex-start;gap:11px">
+            <a href="https://maps.app.goo.gl/dtkfF8sSwej8EvR39" target="_blank" rel="noopener" class="gr-hoverbrass" style="color:var(--fg-body);display:flex;align-items:flex-start;gap:11px">
               <span style="display:flex;flex:none;color:#C6A15E;margin-top:1px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
-              ul. Krzysztofa Arciszewskiego 1, 05-827 Grodzisk Mazowiecki
+              ul. Krzysztofa Arciszewskiego 1, 05-825 Grodzisk Mazowiecki
             </a>
-            <a href="tel:513300130" class="gr-hoverbrass" style="color:#D7CBB6;display:flex;align-items:center;gap:11px">
+            <a href="tel:513300130" class="gr-hoverbrass" style="color:var(--fg-body);display:flex;align-items:center;gap:11px">
               <span style="display:flex;flex:none;color:#C6A15E"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
               513 300 130
             </a>
-            <a href="mailto:sklep@grodziskirzeznik.pl" class="gr-hoverbrass" style="color:#D7CBB6;display:flex;align-items:center;gap:11px">
+            <a href="mailto:sklep@grodziskirzeznik.pl" class="gr-hoverbrass" style="color:var(--fg-body);display:flex;align-items:center;gap:11px">
               <span style="display:flex;flex:none;color:#C6A15E"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg></span>
               sklep@grodziskirzeznik.pl
             </a>
@@ -413,19 +506,19 @@
 
         <!-- map -->
         <div style="position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(198,161,94,.22);box-shadow:0 20px 44px -22px rgba(0,0,0,.8)">
-          <iframe title="Mapa — Grodziski Rzeźnik" src="https://maps.google.com/maps?q=Grodziski%20Rze%C5%BAnik%2C%20Krzysztofa%20Arciszewskiego%201%2C%2005-827%20Grodzisk%20Mazowiecki&amp;z=16&amp;output=embed" style="width:100%;height:240px;border:0;display:block;pointer-events:{{ mapPointer }};filter:grayscale(.25) contrast(1.05) brightness(.92)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe title="Mapa — Grodziski Rzeźnik" src="https://maps.google.com/maps?q=Grodziski%20Rze%C5%BAnik%2C%20Krzysztofa%20Arciszewskiego%201%2C%2005-825%20Grodzisk%20Mazowiecki&amp;z=16&amp;output=embed" style="width:100%;height:240px;border:0;display:block;pointer-events:{{ mapPointer }};filter:grayscale(.25) contrast(1.05) brightness(.92)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <sc-if value="{{ mapOverlay }}" hint-placeholder-val="{{ false }}">
             <button onClick="{{ activateMap }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(12,8,5,.32);border:none;cursor:pointer">
-              <span style="display:flex;align-items:center;gap:8px;background:rgba(18,12,8,.88);border:1px solid rgba(198,161,94,.42);color:#F0E7D8;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:999px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C6A15E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Dotknij, aby aktywować mapę</span>
+              <span style="display:flex;align-items:center;gap:8px;background:rgba(18,12,8,.88);border:1px solid rgba(198,161,94,.42);color:var(--fg-strong);font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:999px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C6A15E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Dotknij, aby aktywować mapę</span>
             </button>
           </sc-if>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:12px">
-          <a href="https://www.google.pl/maps/dir//Grodziski+Rze%C5%BAnik,+Krzysztofa+Arciszewskiego+1,+05-827+Grodzisk+Mazowiecki/@52.1091435,20.6223024,15z" target="_blank" rel="noopener" class="gr-btn" style="flex:1;min-width:150px;text-align:center;background:#872B2F;color:#F5ECDD;padding:14px;border-radius:12px;font-weight:700;font-size:14px">Wyznacz trasę</a>
-          <a href="https://maps.app.goo.gl/dtkfF8sSwej8EvR39" target="_blank" rel="noopener" class="gr-btn" style="flex:1;min-width:150px;text-align:center;background:rgba(240,231,216,.05);color:#F0E7D8;padding:14px;border-radius:12px;font-weight:700;font-size:14px;border:1px solid rgba(198,161,94,.4)">Zobacz na mapie</a>
+          <a href="https://www.google.pl/maps/dir//Grodziski+Rze%C5%BAnik,+Krzysztofa+Arciszewskiego+1,+05-825+Grodzisk+Mazowiecki/@52.1091435,20.6223024,15z" target="_blank" rel="noopener" class="gr-btn" style="flex:1;min-width:150px;text-align:center;background:#872B2F;color:var(--on-accent);padding:14px;border-radius:12px;font-weight:700;font-size:14px">Wyznacz trasę</a>
+          <a href="https://maps.app.goo.gl/dtkfF8sSwej8EvR39" target="_blank" rel="noopener" class="gr-btn" style="flex:1;min-width:150px;text-align:center;background:rgba(240,231,216,.05);color:var(--fg-strong);padding:14px;border-radius:12px;font-weight:700;font-size:14px;border:1px solid rgba(198,161,94,.4)">Zobacz na mapie</a>
         </div>
         <div style="display:flex;align-items:center;gap:14px">
-          <span style="font-size:14px;color:#C4B8A3">Obserwuj nas:</span>
+          <span style="font-size:14px;color:var(--fg-body)">Obserwuj nas:</span>
           <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" aria-label="Facebook" class="gr-icon" style="display:flex;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid rgba(198,161,94,.3);border-radius:50%;color:#C6A15E">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.6H6.61v3.56h3.07V22h3.68v-9.14h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73z"></path></svg>
           </a>
@@ -433,43 +526,43 @@
       </div>
 
       <!-- right form (sticky within the Kontakt section) -->
-      <div class="gr-form-sticky" style="position:sticky;top:96px;background:linear-gradient(168deg,#251B14,#1A130E);border:1px solid rgba(198,161,94,.24);border-radius:20px;padding:clamp(26px,4vw,40px);box-shadow:0 24px 50px -24px rgba(0,0,0,.85)">
-        <p style="font-family:'Playfair Display',serif;font-size:clamp(19px,2.4vw,23px);line-height:1.45;color:#EDE3D2;margin:0 0 28px">Masz pytanie albo chcesz zamówić coś na konkretną okazję? Napisz — odpowiadamy najszybciej, jak się da.</p>
+      <div class="gr-form-sticky gr-soft" style="position:sticky;top:96px;background:var(--card-form);border:1px solid rgba(198,161,94,.24);border-radius:20px;padding:clamp(26px,4vw,40px);box-shadow:0 24px 50px -24px rgba(0,0,0,.85)">
+        <p style="font-family:'Playfair Display',serif;font-size:clamp(19px,2.4vw,23px);line-height:1.45;color:var(--fg-strong);margin:0 0 28px">Masz pytanie albo chcesz zamówić coś na konkretną okazję? Napisz — odpowiadamy najszybciej, jak się da.</p>
 
         <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
           <div style="padding:40px 20px;text-align:center;border:1px dashed rgba(198,161,94,.4);border-radius:14px;background:rgba(198,161,94,.06)">
             <div style="font-size:40px;margin-bottom:12px">✓</div>
-            <div style="font-family:'Playfair Display',serif;font-size:22px;color:#F3E9D7;margin-bottom:8px">Dziękujemy!</div>
-            <div style="color:#C4B8A3;font-size:15px">Odezwiemy się najszybciej, jak się da.</div>
+            <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--fg-strong);margin-bottom:8px">Dziękujemy!</div>
+            <div style="color:var(--fg-body);font-size:15px">Odezwiemy się najszybciej, jak się da.</div>
           </div>
         </sc-if>
 
         <sc-if value="{{ formVisible }}" hint-placeholder-val="{{ true }}">
           <form onSubmit="{{ submitForm }}" style="display:flex;flex-direction:column;gap:16px">
             <div class="gr-form-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px">
-              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">Imię i nazwisko
-                <input type="text" name="name" required="" placeholder="Jan Kowalski" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:var(--fg-body)">Imię i nazwisko
+                <input type="text" name="name" required="" placeholder="Jan Kowalski" class="gr-field" style="background:var(--field-bg);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:var(--fg-strong);font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
               </label>
-              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">Telefon
-                <input type="tel" name="phone" placeholder="500 000 000" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:var(--fg-body)">Telefon
+                <input type="tel" name="phone" placeholder="500 000 000" class="gr-field" style="background:var(--field-bg);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:var(--fg-strong);font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
               </label>
             </div>
             <div class="gr-form-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px">
-              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">E-mail
-                <input type="email" name="email" required="" placeholder="jan@przyklad.pl" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:var(--fg-body)">E-mail
+                <input type="email" name="email" required="" placeholder="jan@przyklad.pl" class="gr-field" style="background:var(--field-bg);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:var(--fg-strong);font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
               </label>
-              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">Temat
-                <input type="text" name="subject" placeholder="np. zamówienie na przyjęcie" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
+              <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:var(--fg-body)">Temat
+                <input type="text" name="subject" placeholder="np. zamówienie na przyjęcie" class="gr-field" style="background:var(--field-bg);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:var(--fg-strong);font-size:15px;outline:none;transition:border-color .25s" style-focus="border-color:#C6A15E">
               </label>
             </div>
-            <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#C4B8A3">Wiadomość
-              <textarea name="message" required="" rows="4" placeholder="W czym możemy pomóc?" style="background:rgba(18,12,8,.6);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:#F0E7D8;font-size:15px;outline:none;resize:vertical;transition:border-color .25s" style-focus="border-color:#C6A15E"></textarea>
+            <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:var(--fg-body)">Wiadomość
+              <textarea name="message" required="" rows="4" placeholder="W czym możemy pomóc?" class="gr-field" style="background:var(--field-bg);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:13px 15px;color:var(--fg-strong);font-size:15px;outline:none;resize:vertical;transition:border-color .25s" style-focus="border-color:#C6A15E"></textarea>
             </label>
-            <label style="display:flex;align-items:flex-start;gap:11px;font-size:12.5px;line-height:1.5;color:#B9AB97;cursor:pointer">
+            <label style="display:flex;align-items:flex-start;gap:11px;font-size:12.5px;line-height:1.5;color:var(--fg-muted);cursor:pointer">
               <input type="checkbox" name="rodo" required="" style="margin-top:2px;width:17px;height:17px;accent-color:#872B2F;flex:none">
               <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania, zgodnie z polityką prywatności (RODO).</span>
             </label>
-            <button type="submit" style="margin-top:6px;background:#872B2F;color:#F5ECDD;border:none;border-radius:12px;padding:16px;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(135,43,47,.9);transition:transform .2s,background .25s" style-hover="transform:translateY(-2px);background:#9C343A">Wyślij wiadomość</button>
+            <button type="submit" style="margin-top:6px;background:#872B2F;color:var(--on-accent);border:none;border-radius:12px;padding:16px;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(135,43,47,.9);transition:transform .2s,background .25s" style-hover="transform:translateY(-2px);background:#9C343A">Wyślij wiadomość</button>
           </form>
         </sc-if>
       </div>
@@ -478,47 +571,47 @@
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer style="background:#100B08;padding:64px 24px 30px;border-top:1px solid rgba(198,161,94,.2)">
+<footer style="background:var(--bg-4);padding:64px 24px 30px;border-top:1px solid rgba(198,161,94,.2)">
   <div style="max-width:1200px;margin:0 auto">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(198,161,94,.14)">
       <div style="max-width:340px">
-        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:26px;color:#F3E9D7;margin-bottom:14px">Grodziski Rzeźnik</div>
-        <p style="font-size:14px;line-height:1.65;color:#A89C88;margin:0">Grodziski Rzeźnik — premium delikatesy mięsne w Grodzisku Mazowieckim. Mięso, wędliny, sery i wina dobierane osobiście, nie z automatu.</p>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:26px;color:var(--fg-strong);margin-bottom:14px">Grodziski Rzeźnik</div>
+        <p style="font-size:14px;line-height:1.65;color:var(--fg-muted);margin:0">Grodziski Rzeźnik — premium delikatesy mięsne w Grodzisku Mazowieckim. Mięso, wędliny, sery i wina dobierane osobiście, nie z automatu.</p>
       </div>
       <div>
         <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:18px">Na skróty</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px">
-          <a href="#start" class="gr-flink" style="color:#C4B8A3">Start</a>
-          <a href="#onas" class="gr-flink" style="color:#C4B8A3">O nas</a>
-          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Oferta</a>
-          <a href="#galeria" class="gr-flink" style="color:#C4B8A3">Galeria</a>
-          <a href="#kontakt" class="gr-flink" style="color:#C4B8A3">Kontakt</a>
+          <a href="#start" class="gr-flink" style="color:var(--fg-body)">Start</a>
+          <a href="#onas" class="gr-flink" style="color:var(--fg-body)">O nas</a>
+          <a href="#oferta" class="gr-flink" style="color:var(--fg-body)">Oferta</a>
+          <a href="#galeria" class="gr-flink" style="color:var(--fg-body)">Galeria</a>
+          <a href="#kontakt" class="gr-flink" style="color:var(--fg-body)">Kontakt</a>
         </div>
       </div>
       <div>
         <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:18px">Oferta</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px">
-          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Sery</a>
-          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Wędliny</a>
-          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Wyroby garmażeryjne</a>
-          <a href="#oferta" class="gr-flink" style="color:#C4B8A3">Wina</a>
+          <a href="#oferta" class="gr-flink" style="color:var(--fg-body)">Sery</a>
+          <a href="#oferta" class="gr-flink" style="color:var(--fg-body)">Wędliny</a>
+          <a href="#oferta" class="gr-flink" style="color:var(--fg-body)">Wyroby garmażeryjne</a>
+          <a href="#oferta" class="gr-flink" style="color:var(--fg-body)">Wina</a>
         </div>
       </div>
       <div>
         <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C6A15E;font-weight:700;margin-bottom:18px">Obserwuj nas</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px">
-          <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" class="gr-flink" style="color:#C4B8A3">Facebook</a>
+          <a href="https://www.facebook.com/profile.php?id=61589702889145" target="_blank" rel="noopener" class="gr-flink" style="color:var(--fg-body)">Facebook</a>
         </div>
-        <div style="margin-top:20px;font-size:13.5px;color:#A89C88;line-height:1.7">
+        <div style="margin-top:20px;font-size:13.5px;color:var(--fg-muted);line-height:1.7">
           <div>ul. Krzysztofa Arciszewskiego 1</div>
-          <div>05-827 Grodzisk Mazowiecki</div>
+          <div>05-825 Grodzisk Mazowiecki</div>
           <a href="tel:513300130" style="color:#C6A15E;font-weight:700">513 300 130</a>
         </div>
       </div>
     </div>
-    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding-top:24px;font-size:13px;color:#8A7E6C">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding-top:24px;font-size:13px;color:var(--fg-faint)">
       <span>© 2026 Grodziski Rzeźnik. Wszelkie prawa zastrzeżone.</span>
-      <span style="display:flex;gap:20px"><a href="#" class="gr-hoverbrass" style="color:#8A7E6C">Polityka prywatności</a><a href="#" class="gr-hoverbrass" style="color:#8A7E6C">Regulamin sklepu</a></span>
+      <span style="display:flex;gap:20px"><a href="Polityka%20Prywatnosci.dc.html" class="gr-hoverbrass" style="color:var(--fg-faint)">Polityka prywatności</a><a href="Regulamin%20Sklepu.dc.html" class="gr-hoverbrass" style="color:var(--fg-faint)">Regulamin sklepu</a></span>
     </div>
   </div>
 </footer>
@@ -526,69 +619,87 @@
 <!-- ============ CART PANEL ============ -->
 <sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ closeCart }}" style="position:fixed;inset:0;z-index:90;background:rgba(8,5,3,.62);backdrop-filter:blur(3px);animation:gr-fade .3s ease"></div>
-  <aside style="position:fixed;top:0;right:0;bottom:0;z-index:91;width:min(420px,92vw);background:linear-gradient(180deg,#1E1610,#160F0A);border-left:1px solid rgba(198,161,94,.3);box-shadow:-30px 0 60px -20px rgba(0,0,0,.8);display:flex;flex-direction:column;animation:gr-slidein .35s ease">
+  <aside style="position:fixed;top:0;right:0;bottom:0;z-index:91;width:min(420px,92vw);background:var(--card2);border-left:1px solid rgba(198,161,94,.3);box-shadow:-30px 0 60px -20px rgba(0,0,0,.8);display:flex;flex-direction:column;animation:gr-slidein .35s ease">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid rgba(198,161,94,.2)">
-      <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;margin:0;color:#F3E9D7">Twój koszyk</h3>
+      <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;margin:0;color:var(--fg-strong)">Twój koszyk</h3>
       <button onClick="{{ closeCart }}" aria-label="Zamknij" style="width:38px;height:38px;border-radius:10px;border:1px solid rgba(198,161,94,.3);background:transparent;color:#C6A15E;font-size:20px;cursor:pointer" style-hover="background:rgba(198,161,94,.12)">✕</button>
     </div>
 
     <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ true }}">
       <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;gap:16px">
         <span style="color:rgba(198,161,94,.55)"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></span>
-        <p style="color:#B9AB97;font-size:15px;margin:0">Twój koszyk jest pusty.<br>Dodaj coś pysznego z naszej oferty.</p>
-        <a href="#oferta" onClick="{{ closeCart }}" class="gr-btn" style="background:#872B2F;color:#F5ECDD;padding:13px 26px;border-radius:999px;font-weight:700;font-size:14px">Przejdź do oferty</a>
+        <p style="color:var(--fg-muted);font-size:15px;margin:0">Twój koszyk jest pusty.<br>Dodaj coś pysznego z naszej oferty.</p>
+        <a href="#oferta" onClick="{{ closeCart }}" class="gr-btn" style="background:#872B2F;color:var(--on-accent);padding:13px 26px;border-radius:999px;font-weight:700;font-size:14px">Przejdź do oferty</a>
       </div>
     </sc-if>
 
     <sc-if value="{{ cartHasItems }}" hint-placeholder-val="{{ false }}">
       <div style="flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px">
         <sc-for list="{{ cartItems }}" as="ci" hint-placeholder-count="2">
-          <div style="display:flex;gap:14px;background:rgba(240,231,216,.04);border:1px solid rgba(198,161,94,.16);border-radius:14px;padding:12px">
-            <img src="{{ ci.img }}" alt="{{ ci.name }}" style="width:64px;height:64px;border-radius:10px;object-fit:cover;flex:none">
+          <div style="display:flex;gap:14px;background:var(--chat-bot-bg);border:1px solid var(--field-bd);border-radius:14px;padding:12px">
+            <img src="{{ ci.img }}" alt="{{ ci.name }}" width="64" height="64" loading="lazy" decoding="async" style="width:64px;height:64px;border-radius:10px;object-fit:cover;flex:none">
             <div style="flex:1;min-width:0">
-              <div style="font-weight:700;font-size:14px;color:#F0E7D8;line-height:1.25">{{ ci.name }}</div>
-              <div style="font-size:12px;color:#9C8E7A;margin:2px 0 8px">{{ ci.weight }} · {{ ci.priceStr }}</div>
+              <div style="font-weight:700;font-size:14px;color:var(--fg-strong);line-height:1.25">{{ ci.name }}</div>
+              <div style="font-size:12px;color:var(--fg-muted);margin:2px 0 8px">{{ ci.weight }} · {{ ci.priceStr }}</div>
               <div style="display:flex;align-items:center;gap:10px">
                 <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(198,161,94,.3);border-radius:8px;overflow:hidden">
                   <button onClick="{{ ci.onDec }}" aria-label="Mniej" style="width:28px;height:28px;background:transparent;border:none;color:#C6A15E;font-size:16px;cursor:pointer" style-hover="background:rgba(198,161,94,.14)">−</button>
-                  <span style="min-width:22px;text-align:center;font-weight:700;font-size:14px;color:#F0E7D8">{{ ci.qty }}</span>
+                  <span style="min-width:22px;text-align:center;font-weight:700;font-size:14px;color:var(--fg-strong)">{{ ci.qty }}</span>
                   <button onClick="{{ ci.onInc }}" aria-label="Więcej" style="width:28px;height:28px;background:transparent;border:none;color:#C6A15E;font-size:16px;cursor:pointer" style-hover="background:rgba(198,161,94,.14)">＋</button>
                 </div>
-                <button onClick="{{ ci.onRemove }}" style="margin-left:auto;background:transparent;border:none;color:#9C7A6B;font-size:12px;cursor:pointer;text-decoration:underline" style-hover="color:#C77">Usuń</button>
+                <button onClick="{{ ci.onRemove }}" style="margin-left:auto;background:transparent;border:none;color:var(--fg-faint);font-size:12px;cursor:pointer;text-decoration:underline" style-hover="color:#C77">Usuń</button>
               </div>
             </div>
             <div style="font-weight:800;font-size:14px;color:#C6A15E;white-space:nowrap">{{ ci.lineStr }}</div>
           </div>
         </sc-for>
       </div>
-      <div style="padding:20px 24px;border-top:1px solid rgba(198,161,94,.2);background:rgba(16,11,8,.6)">
+      <div style="padding:20px 24px;border-top:1px solid rgba(198,161,94,.2);background:var(--card2)">
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px">
-          <span style="font-size:15px;color:#C4B8A3">Razem</span>
-          <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:26px;color:#F3E9D7">{{ cartTotalStr }}</span>
+          <span style="font-size:15px;color:var(--fg-body)">Razem</span>
+          <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:26px;color:var(--fg-strong)">{{ cartTotalStr }}</span>
         </div>
-        <button style="width:100%;background:#872B2F;color:#F5ECDD;border:none;border-radius:12px;padding:16px;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(135,43,47,.9);transition:transform .2s,background .25s" style-hover="transform:translateY(-2px);background:#9C343A">Przejdź do zamówienia →</button>
-        <p style="text-align:center;font-size:12px;color:#8A7E6C;margin:12px 0 0">Odbiór osobisty lub dostawa wg kodu pocztowego</p>
+        <button style="width:100%;background:#872B2F;color:var(--on-accent);border:none;border-radius:12px;padding:16px;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(135,43,47,.9);transition:transform .2s,background .25s" style-hover="transform:translateY(-2px);background:#9C343A">Przejdź do zamówienia →</button>
+        <p style="text-align:center;font-size:12px;color:var(--fg-faint);margin:12px 0 0">Odbiór osobisty lub dostawa wg kodu pocztowego</p>
       </div>
     </sc-if>
   </aside>
 </sc-if>
 
+<!-- ============ SOON MODAL ============ -->
+<sc-if value="{{ soonOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeSoon }}" style="position:fixed;inset:0;z-index:110;background:rgba(8,5,3,.66);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;animation:gr-fade .3s ease">
+    <div onClick="{{ stopProp }}" class="gr-soft" style="position:relative;width:min(430px,100%);background:var(--card2);border:1px solid rgba(198,161,94,.4);border-radius:22px;padding:38px 32px 30px;text-align:center;animation:gr-slidein .35s ease">
+      <span style="display:inline-flex;width:60px;height:60px;align-items:center;justify-content:center;border-radius:50%;background:rgba(198,161,94,.14);border:1px solid rgba(198,161,94,.4);color:#C6A15E;margin-bottom:18px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+      </span>
+      <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:27px;margin:0 0 12px;color:var(--fg-strong)">Już wkrótce!</h3>
+      <p style="font-size:15px;line-height:1.65;color:var(--fg-body);margin:0 0 10px">Zamówienia online nie są jeszcze dostępne — pracujemy nad tym. Na razie zapraszamy do sklepu stacjonarnego lub o kontakt telefoniczny.</p>
+      <a href="tel:513300130" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;color:#C6A15E;margin-bottom:24px">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        513 300 130
+      </a>
+      <button onClick="{{ closeSoon }}" class="gr-btn" style="display:block;width:100%;background:#872B2F;color:var(--on-accent);border:none;border-radius:12px;padding:15px;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(135,43,47,.9)">Rozumiem</button>
+    </div>
+  </div>
+</sc-if>
+
 <!-- ============ LIGHTBOX ============ -->
 <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:100;background:rgba(8,5,3,.9);backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5vw;animation:gr-fade .3s ease;cursor:zoom-out">
-    <img src="{{ lightboxSrc }}" alt="{{ lightboxCaption }}" style="max-width:min(90vw,900px);max-height:78vh;border-radius:16px;box-shadow:0 30px 80px -20px rgba(0,0,0,.9);border:1px solid rgba(198,161,94,.3)">
-    <div style="margin-top:20px;font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#EDE3D2;text-align:center">{{ lightboxCaption }}</div>
-    <button onClick="{{ closeLightbox }}" aria-label="Zamknij" style="position:fixed;top:24px;right:24px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(198,161,94,.4);background:rgba(18,12,8,.7);color:#F0E7D8;font-size:22px;cursor:pointer">✕</button>
+    <sc-if value="{{ lightboxSrc }}" hint-placeholder-val="{{ false }}"><img src="{{ lightboxSrc }}" alt="{{ lightboxCaption }}" decoding="async" style="max-width:min(90vw,900px);max-height:78vh;border-radius:16px;box-shadow:0 30px 80px -20px rgba(0,0,0,.9);border:1px solid rgba(198,161,94,.3)"></sc-if>
+    <div style="margin-top:20px;font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:var(--fg-strong);text-align:center">{{ lightboxCaption }}</div>
+    <button onClick="{{ closeLightbox }}" aria-label="Zamknij" style="position:fixed;top:24px;right:24px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(198,161,94,.4);background:rgba(18,12,8,.7);color:var(--fg-strong);font-size:22px;cursor:pointer">✕</button>
   </div>
 </sc-if>
 
 <!-- ============ ASSISTANT ============ -->
 <sc-if value="{{ chatOpen }}" hint-placeholder-val="{{ false }}">
-  <div class="gr-chat" style="position:fixed;bottom:104px;right:24px;z-index:95;width:min(370px,calc(100vw - 32px));max-height:min(560px,calc(100vh - 140px));display:flex;flex-direction:column;background:linear-gradient(180deg,#1F170F,#170F0A);border:1px solid rgba(198,161,94,.34);border-radius:22px;box-shadow:0 30px 70px -18px rgba(0,0,0,.85);overflow:hidden;animation:gr-slidein .35s ease">
+  <div class="gr-chat" style="position:fixed;bottom:104px;right:24px;z-index:95;width:min(370px,calc(100vw - 32px));max-height:min(560px,calc(100vh - 140px));display:flex;flex-direction:column;background:var(--card2);border:1px solid rgba(198,161,94,.34);border-radius:22px;box-shadow:0 30px 70px -18px rgba(0,0,0,.85);overflow:hidden;animation:gr-slidein .35s ease">
     <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(198,161,94,.2);background:rgba(135,43,47,.14)">
-      <img src="uploads/zdjecia/asystent-awatar.png" alt="Doradca" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(198,161,94,.6);background:#17100B">
+      <img src="uploads/zdjecia/asystent-awatar.png" alt="Doradca" class="gr-avatar-swap" width="88" height="88" loading="lazy" decoding="async" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(198,161,94,.6);background:#17100B">
       <div style="flex:1">
-        <div style="font-weight:800;font-size:15px;color:#F3E9D7">Doradca Grodziski</div>
+        <div style="font-weight:800;font-size:15px;color:var(--fg-strong)">Doradca Grodziski</div>
         <div style="font-size:12px;color:#8FBF8F;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#6FBF6F;display:inline-block"></span>Online — odpowiada od ręki</div>
       </div>
       <button onClick="{{ toggleChat }}" aria-label="Zamknij czat" style="width:34px;height:34px;border-radius:9px;border:1px solid rgba(198,161,94,.3);background:transparent;color:#C6A15E;font-size:17px;cursor:pointer" style-hover="background:rgba(198,161,94,.12)">✕</button>
@@ -612,19 +723,19 @@
     <div style="padding:14px 16px;border-top:1px solid rgba(198,161,94,.2)">
       <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px">
         <sc-for list="{{ chatQuick }}" as="q" hint-placeholder-count="4">
-          <button onClick="{{ q.onClick }}" style="padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600;background:rgba(240,231,216,.05);border:1px solid rgba(198,161,94,.28);color:#C4B8A3;cursor:pointer;transition:all .2s" style-hover="border-color:#C6A15E;color:#F0E7D8">{{ q.label }}</button>
+          <button onClick="{{ q.onClick }}" style="padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600;background:rgba(240,231,216,.05);border:1px solid rgba(198,161,94,.28);color:var(--fg-body);cursor:pointer;transition:all .2s" style-hover="border-color:#C6A15E;color:var(--fg-strong)">{{ q.label }}</button>
         </sc-for>
       </div>
       <form onSubmit="{{ sendChatForm }}" style="display:flex;gap:9px">
-        <input value="{{ chatInput }}" onInput="{{ onChatInput }}" placeholder="Napisz wiadomość…" style="flex:1;background:rgba(18,12,8,.7);border:1px solid rgba(198,161,94,.28);border-radius:12px;padding:12px 14px;color:#F0E7D8;font-size:14px;outline:none" style-focus="border-color:#C6A15E">
-        <button type="submit" aria-label="Wyślij" style="width:46px;flex:none;background:#872B2F;border:none;border-radius:12px;color:#F5ECDD;font-size:17px;cursor:pointer;transition:background .2s" style-hover="background:#9C343A">➤</button>
+        <input value="{{ chatInput }}" onInput="{{ onChatInput }}" placeholder="Napisz wiadomość…" class="gr-field" style="flex:1;background:var(--field-bg);border:1px solid var(--field-bd);border-radius:12px;padding:12px 14px;color:var(--fg-strong);font-size:14px;outline:none" style-focus="border-color:#C6A15E">
+        <button type="submit" aria-label="Wyślij" style="width:46px;flex:none;background:#872B2F;border:none;border-radius:12px;color:var(--on-accent);font-size:17px;cursor:pointer;transition:background .2s" style-hover="background:#9C343A">➤</button>
       </form>
     </div>
   </div>
 </sc-if>
 
 <button onClick="{{ toggleChat }}" aria-label="Doradca Grodziski" style="position:fixed;bottom:24px;right:24px;z-index:94;width:66px;height:66px;border-radius:50%;border:2px solid rgba(198,161,94,.65);background:#17100B;padding:0;cursor:pointer;overflow:hidden;animation:gr-pulse 2.6s ease-in-out infinite;transition:transform .25s" style-hover="transform:scale(1.08)">
-  <img src="uploads/zdjecia/asystent-awatar.png" alt="Doradca Grodziski" style="width:100%;height:100%;object-fit:cover;display:block">
+  <img src="uploads/zdjecia/asystent-awatar.png" alt="Doradca Grodziski" class="gr-avatar-swap" width="132" height="132" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
 </button>
 
 </div>
@@ -641,6 +752,7 @@ class Component extends DCLogic {
       cartOpen: false,
       galleryCount: 8,
       lightbox: null,
+      soon: false,
       chatOpen: false,
       chatInput: '',
       testi: 0,
@@ -650,6 +762,7 @@ class Component extends DCLogic {
       activeCat: null,
       mapActive: false,
       isTouch: false,
+      theme: (() => { try { return localStorage.getItem('gr-theme') === 'light' ? 'light' : 'dark'; } catch(e){ return 'dark'; } })(),
       chatMessages: [
         { from: 'bot', text: 'Cześć! Jestem Doradcą Grodziskim 🥩 Zapytaj mnie o godziny, adres albo naszą ofertę.' }
       ]
@@ -660,10 +773,10 @@ class Component extends DCLogic {
   }
 
   products = [
-    { id:'mocarz', name:'Ser bio Mocarz', weight:'125 g', price:13.90, img:'uploads/zdjecia/sery-mocarz-bio.png', cat:'sery' },
-    { id:'blue', name:'Ser krowi pleśniowy blue', weight:'200 g', price:24.20, img:'uploads/zdjecia/sery-plesniowy-blue.png', cat:'sery' },
-    { id:'twarog', name:'Twaróg wiejski tłusty', weight:'350 g', price:20.39, img:'uploads/zdjecia/sery-twarog-wiejski.png', cat:'sery' },
-    { id:'owczy', name:'Ser owczy dojrzewający naturalny', weight:'200 g', price:44.99, img:'uploads/zdjecia/sery-owczy-dojrzewajacy.png', cat:'sery' },
+    { id:'mocarz', name:'Ser bio Mocarz', weight:'125 g', price:13.90, img:'uploads/zdjecia/sery-mocarz-bio.png', imgLight:'uploads/sery-mocarz-bio-jasna.png', cat:'sery' },
+    { id:'blue', name:'Ser krowi pleśniowy blue', weight:'200 g', price:24.20, img:'uploads/zdjecia/sery-plesniowy-blue.png', imgLight:'uploads/sery-plesniowy-blue-jasna.png', cat:'sery' },
+    { id:'twarog', name:'Twaróg wiejski tłusty', weight:'350 g', price:20.39, img:'uploads/zdjecia/sery-twarog-wiejski.png', imgLight:'uploads/sery-twarog-wiejski-jasna.png', cat:'sery' },
+    { id:'owczy', name:'Ser owczy dojrzewający naturalny', weight:'200 g', price:44.99, img:'uploads/zdjecia/sery-owczy-dojrzewajacy.png', imgLight:'uploads/sery-owczy-dojrzewajacy-jasna.png', cat:'sery' },
     { id:'sz-debowa', name:'Szynka dębowa', weight:'350 g', price:28.60, img:'uploads/zdjecia/wedliny-szynka-debowa.png', cat:'wedliny' },
     { id:'sz-dojrz', name:'Szynka dojrzewająca', weight:'300 g', price:35.29, img:'uploads/zdjecia/wedliny-szynka-dojrzewajaca.png', cat:'wedliny' },
     { id:'sz-piecz', name:'Szynka pieczona bez konserwantów', weight:'500 g', price:51.90, img:'uploads/zdjecia/wedliny-szynka-pieczona.png', cat:'wedliny' },
@@ -678,12 +791,12 @@ class Component extends DCLogic {
   ];
 
   categories = [
-    { img:'uploads/zdjecia/onas-mieso.png', title:'Mięso', desc:'Świeże mięso i wołowina sezonowana na sucho, dobierana pod konkretne danie.' },
-    { img:'uploads/zdjecia/onas-wedliny.png', title:'Wędliny', desc:'Szynki, kabanosy i pasztety krojone na miejscu według tradycyjnych receptur.' },
-    { img:'uploads/zdjecia/onas-sery.png', title:'Sery', desc:'Od polskiego twarogu po halloumi, fetę i sery pleśniowe z zagranicy.' },
-    { img:'uploads/zdjecia/onas-produkty-swiata.png', title:'Produkty ze świata', desc:'Oliwy, makarony, przetwory pomidorowe i inne włoskie specjały.' },
-    { img:'uploads/zdjecia/onas-steki.png', title:'Steki', desc:'Marynowane na miejscu z ziołami i czosnkiem, gotowe na patelnię lub grill.' },
-    { img:'uploads/zdjecia/onas-wina.png', title:'Wina', desc:'Starannie wyselekcjonowane wina, głównie z Włoch.' }
+    { img:'uploads/zdjecia/onas-mieso.png', imgLight:'uploads/onas-mieso-jasna.png', title:'Mięso', desc:'Świeże mięso i wołowina sezonowana na sucho, dobierana pod konkretne danie.' },
+    { img:'uploads/zdjecia/onas-wedliny.png', imgLight:'uploads/onas-wedliny-jasna.png', title:'Wędliny', desc:'Szynki, kabanosy i pasztety krojone na miejscu według tradycyjnych receptur.' },
+    { img:'uploads/zdjecia/onas-sery.png', imgLight:'uploads/onas-sery-jasna.png', title:'Sery', desc:'Od polskiego twarogu po halloumi, fetę i sery pleśniowe z zagranicy.' },
+    { img:'uploads/zdjecia/onas-produkty-swiata.png', imgLight:'uploads/onas-produkty-swiata-jasna.png', title:'Produkty ze świata', desc:'Oliwy, makarony, przetwory pomidorowe i inne włoskie specjały.' },
+    { img:'uploads/zdjecia/onas-steki.png', imgLight:'uploads/onas-steki-jasna.png', title:'Steki', desc:'Marynowane na miejscu z ziołami i czosnkiem, gotowe na patelnię lub grill.' },
+    { img:'uploads/zdjecia/onas-wina.png', imgLight:'uploads/onas-wina-jasna.png', title:'Wina', desc:'Starannie wyselekcjonowane wina, głównie z Włoch.' }
   ];
 
   testimonials = [
@@ -737,7 +850,7 @@ class Component extends DCLogic {
     window.addEventListener('resize', this._onResize);
     // preload every product + gallery image so tab switching never re-loads
     try {
-      const urls = this.products.map(p => p.img).concat(this.galleryAll.map(g => g.src));
+      const urls = this.products.map(p => p.img).concat(this.products.filter(p => p.imgLight).map(p => p.imgLight)).concat(this.galleryAll.map(g => g.src));
       urls.forEach(u => { const im = new Image(); im.src = u; });
     } catch (e) {}
     if (this.props.autoplayTestimonials !== false) {
@@ -803,12 +916,26 @@ class Component extends DCLogic {
       cx += (tx - cx) * 0.10; cy += (ty - cy) * 0.10;
       ci += (ti - ci) * 0.08;
       const x = (cx * 100).toFixed(1), y = (cy * 100).toFixed(1);
-      const inner = (DARK * (1 - ci)).toFixed(3);        // center: fully clear when revealed
-      const mid   = (DARK * (1 - 0.55 * ci)).toFixed(3);
-      overlay.style.background = 'radial-gradient(circle 22vw at ' + x + '% ' + y + '%, rgba(6,4,2,' + inner + ') 0%, rgba(6,4,2,' + mid + ') 34%, rgba(6,4,2,' + DARK + ') 68%)';
+      if (this.state.theme === 'light') {
+        // no cursor shadow in light mode
+        overlay.style.background = 'transparent';
+      } else {
+        // DARK: constant veil; flashlight reveals brightness around the cursor
+        const inner = (DARK * (1 - ci)).toFixed(3);
+        const mid   = (DARK * (1 - 0.55 * ci)).toFixed(3);
+        overlay.style.background = 'radial-gradient(circle 22vw at ' + x + '% ' + y + '%, rgba(6,4,2,' + inner + ') 0%, rgba(6,4,2,' + mid + ') 34%, rgba(6,4,2,' + DARK + ') 68%)';
+      }
       this._raf = requestAnimationFrame(loop);
     };
     loop();
+  }
+
+  toggleTheme(){
+    this.setState(s => {
+      const next = s.theme === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('gr-theme', next); } catch(e){}
+      return { theme: next };
+    });
   }
 
   money(n){ return n.toFixed(2).replace('.', ',') + ' zł'; }
@@ -829,10 +956,10 @@ class Component extends DCLogic {
       bg:'rgba(90,150,90,.14)', border:'rgba(120,190,120,.42)', color:'#BCE2B4', iconColor:'#6FBF6F',
       text:'Dowozimy do Ciebie! Dodaj produkty do koszyka i wybierz dostawę przy zamówieniu.' };
     if (k === 'no') return { show:true, ok:false, notOk:true,
-      bg:'rgba(198,161,94,.08)', border:'rgba(198,161,94,.3)', color:'#C9BCA6', iconColor:'#C6A15E',
+      bg:'rgba(198,161,94,.08)', border:'rgba(198,161,94,.3)', color:'var(--fg-body)', iconColor:'#C6A15E',
       text:'Niestety nie dostarczamy jeszcze w tym rejonie, ale zapraszamy do odbioru osobistego w sklepie.' };
     return { show:true, ok:false, notOk:true,
-      bg:'rgba(198,161,94,.05)', border:'rgba(198,161,94,.24)', color:'#B9AB97', iconColor:'#9C8E7A',
+      bg:'rgba(198,161,94,.05)', border:'rgba(198,161,94,.24)', color:'var(--fg-muted)', iconColor:'var(--fg-muted)',
       text:'Wpisz poprawny kod pocztowy w formacie XX-XXX (np. 05-825).' };
   }
 
@@ -869,11 +996,11 @@ class Component extends DCLogic {
     }
     return { open:false, closed:true, label:'Zamknięte',
       shopLabel:'Sklep obecnie zamknięty', subline: (nextText ? nextText + '. ' : '') + 'Ofertę możesz przeglądać, a zamówienia realizujemy w godzinach otwarcia.',
-      pillBg:'rgba(120,110,100,.14)', pillBorder:'rgba(198,161,94,.3)', pillColor:'#C4B8A3',
-      dotColor:'#8A7E6C', dotClass:'', nextText:nextText, nextSuffix: nextText ? (' — ' + nextText.toLowerCase()) : '' };
+      pillBg:'rgba(120,110,100,.14)', pillBorder:'rgba(198,161,94,.3)', pillColor:'var(--fg-body)',
+      dotColor:'var(--fg-faint)', dotClass:'', nextText:nextText, nextSuffix: nextText ? (' — ' + nextText.toLowerCase()) : '' };
   }
 
-  addToCart(id){ this.setState(s => ({ cart: { ...s.cart, [id]: (s.cart[id] || 0) + 1 } })); }
+  addToCart(id){ this.setState({ soon: true }); }
   incItem(id){ this.setState(s => ({ cart: { ...s.cart, [id]: (s.cart[id] || 0) + 1 } })); }
   decItem(id){
     this.setState(s => {
@@ -897,7 +1024,7 @@ class Component extends DCLogic {
         ] };
     }
     if (has(['dojazd','jak dojechać','jak dojechac','gdzie jesteście','gdzie jestescie','lokalizacj','mapa','trasa'])) {
-      return { from:'bot', text:'Znajdziesz nas pod adresem ul. Krzysztofa Arciszewskiego 1, 05-827 Grodzisk Mazowiecki. W sekcji Kontakt masz mapę z przyciskami „Wyznacz trasę" i „Zobacz na mapie".',
+      return { from:'bot', text:'Znajdziesz nas pod adresem ul. Krzysztofa Arciszewskiego 1, 05-825 Grodzisk Mazowiecki. W sekcji Kontakt masz mapę z przyciskami „Wyznacz trasę" i „Zobacz na mapie".',
         buttons:[ { label:'🗺 Pokaż mapę', href:'#kontakt', scroll:true } ] };
     }
     if (has(['dostaw','dowozicie','dowóz','dowoz','wysyłk','wysylk','gdzie dowozicie'])) {
@@ -912,7 +1039,7 @@ class Component extends DCLogic {
       return { from:'bot', text:'Nasze godziny otwarcia:\n• Pon–Pt: 8:00–19:00\n• Sobota: 7:00–15:00\n• Niedziela: nieczynne' };
     }
     if (has(['adres','gdzie','dojazd','trafi','lokal','znajd','ulic'])) {
-      return { from:'bot', text:'Znajdziesz nas przy ul. Krzysztofa Arciszewskiego 1, 05-827 Grodzisk Mazowiecki. Wjazd i wejście bezpośrednio od ulicy.' };
+      return { from:'bot', text:'Znajdziesz nas przy ul. Krzysztofa Arciszewskiego 1, 05-825 Grodzisk Mazowiecki. Wjazd i wejście bezpośrednio od ulicy.' };
     }
     if (has(['parking','zaparkow','samochod','auto'])) {
       return { from:'bot', text:'Tak! Parking jest bezpłatny i znajduje się bezpośrednio przed sklepem. 🅿' };
@@ -955,7 +1082,7 @@ class Component extends DCLogic {
 
     // render ALL products; toggle display by tab so images never re-mount / re-load
     const allProducts = this.products
-      .map(p => ({ ...p, priceStr: this.money(p.price), display: (p.cat === s.activeTab ? 'flex' : 'none'), onAdd: () => this.addToCart(p.id) }));
+      .map(p => ({ ...p, img: (s.theme === 'light' && p.imgLight) ? p.imgLight : p.img, priceStr: this.money(p.price), display: (p.cat === s.activeTab ? 'flex' : 'none'), onAdd: () => this.addToCart(p.id) }));
 
     const cartItems = Object.keys(s.cart).map(id => {
       const p = this.products.find(x => x.id === id);
@@ -976,6 +1103,7 @@ class Component extends DCLogic {
 
     const catCards = this.categories.map((c, i) => ({
       ...c,
+      img: (s.theme === 'light' && c.imgLight) ? c.imgLight : c.img,
       onToggle: () => this.setState(st => ({ activeCat: st.activeCat === i ? null : i })),
       ovlOpen: s.activeCat === i ? 'is-open' : '',
       titleOpen: s.activeCat === i ? 'is-open' : ''
@@ -987,7 +1115,7 @@ class Component extends DCLogic {
         label: t.label,
         onClick: () => this.setState({ activeTab: t.id }),
         bg: active ? '#872B2F' : 'rgba(240,231,216,.04)',
-        color: active ? '#F5ECDD' : '#C4B8A3',
+        color: active ? 'var(--on-accent)' : 'var(--fg-body)',
         border: active ? '#872B2F' : 'rgba(198,161,94,.3)'
       };
     });
@@ -1016,9 +1144,9 @@ class Component extends DCLogic {
       return {
         text: m.text,
         align: isBot ? 'flex-start' : 'flex-end',
-        bg: isBot ? 'rgba(240,231,216,.06)' : '#872B2F',
-        color: isBot ? '#EDE3D2' : '#F5ECDD',
-        border: isBot ? '1px solid rgba(198,161,94,.22)' : 'none',
+        bg: isBot ? 'var(--chat-bot-bg)' : '#872B2F',
+        color: isBot ? 'var(--fg-strong)' : 'var(--on-accent)',
+        border: isBot ? '1px solid var(--field-bd)' : 'none',
         radius: isBot ? '4px 16px 16px 16px' : '16px 4px 16px 16px',
         hasButtons: !!(m.buttons && m.buttons.length),
         buttons: (m.buttons || []).map(b => ({
@@ -1049,8 +1177,11 @@ class Component extends DCLogic {
       cartCount, hasCart,
       cartBtnLabel: hasCart ? 'Koszyk' : 'Zamów online',
       cartBtnBg: hasCart ? '#872B2F' : 'rgba(135,43,47,.9)',
-      toggleCart: () => this.setState(st => ({ cartOpen: !st.cartOpen, navOpen:false })),
+      toggleCart: () => this.setState({ soon: true, navOpen:false }),
       closeCart: () => this.setState({ cartOpen: false }),
+      soonOpen: s.soon,
+      closeSoon: () => this.setState({ soon: false }),
+      stopProp: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
       openCartCta: () => {},
       cartOpen: s.cartOpen,
       cartEmpty: cartItems.length === 0,
@@ -1097,6 +1228,13 @@ class Component extends DCLogic {
       formVisible: !s.formSent,
       formSent: s.formSent,
       submitForm: (e) => { e.preventDefault(); this.setState({ formSent: true }); },
+
+      theme: s.theme,
+      isDark: s.theme !== 'light',
+      isLight: s.theme === 'light',
+      themeLabel: s.theme === 'light' ? 'Przełącz na tryb ciemny' : 'Przełącz na tryb jasny',
+      themePill: s.theme === 'light' ? 'Tryb ciemny' : 'Tryb jasny',
+      toggleTheme: () => this.toggleTheme(),
 
       setHeroRef: this.setHeroRef,
       setFlashRef: this.setFlashRef,
