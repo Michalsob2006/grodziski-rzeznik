@@ -1,11 +1,22 @@
 /* ===== GRODZISKI RZEŹNIK — PRELOADER (self-contained, portable) ===== */
 (function () {
+  // Resolve theme FIRST and stamp <html data-theme> before first paint (kills theme flash).
+  var theme = 'light';
+  try { if (localStorage.getItem('gr-theme') === 'dark') theme = 'dark'; } catch (e) {}
+  try { document.documentElement.setAttribute('data-theme', theme); } catch (e) {}
+
+  // Background-preload BOTH theme versions of key images so a theme toggle swaps instantly.
+  try {
+    ['uploads/zdjecia/hero-glowna.png', 'uploads/hero-glowna-jasna.png',
+     './lokal-mrghfios.png', 'uploads/kontakt-budynek-jasna.png',
+     'uploads/zdjecia/asystent-awatar.png', 'uploads/asystent-awatar-jasna.png.png'
+    ].forEach(function (u) { var i = new Image(); i.src = u; });
+  } catch (e) {}
+
   try {
     if (sessionStorage.getItem('gr-preloaded') === '1') return;
   } catch (e) {}
 
-  var theme = 'dark';
-  try { if (localStorage.getItem('gr-theme') === 'light') theme = 'light'; } catch (e) {}
   var reduce = false;
   try { reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
 

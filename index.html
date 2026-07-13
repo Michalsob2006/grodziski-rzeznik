@@ -762,7 +762,7 @@ class Component extends DCLogic {
       activeCat: null,
       mapActive: false,
       isTouch: false,
-      theme: (() => { try { return localStorage.getItem('gr-theme') === 'light' ? 'light' : 'dark'; } catch(e){ return 'dark'; } })(),
+      theme: (() => { try { return localStorage.getItem('gr-theme') === 'dark' ? 'dark' : 'light'; } catch(e){ return 'light'; } })(),
       chatMessages: [
         { from: 'bot', text: 'Cześć! Jestem Doradcą Grodziskim 🥩 Zapytaj mnie o godziny, adres albo naszą ofertę.' }
       ]
@@ -848,9 +848,19 @@ class Component extends DCLogic {
   componentDidMount(){
     this._onResize = () => this.setState({ vw: window.innerWidth });
     window.addEventListener('resize', this._onResize);
-    // preload every product + gallery image so tab switching never re-loads
+    // preload BOTH theme versions of every image so tab switch AND theme toggle are instant
     try {
-      const urls = this.products.map(p => p.img).concat(this.products.filter(p => p.imgLight).map(p => p.imgLight)).concat(this.galleryAll.map(g => g.src));
+      const urls = []
+        .concat(this.products.map(p => p.img))
+        .concat(this.products.filter(p => p.imgLight).map(p => p.imgLight))
+        .concat(this.categories.map(c => c.img))
+        .concat(this.categories.filter(c => c.imgLight).map(c => c.imgLight))
+        .concat(this.galleryAll.map(g => g.src))
+        .concat([
+          'uploads/zdjecia/hero-glowna.png', 'uploads/hero-glowna-jasna.png',
+          './lokal-mrghfios.png', 'uploads/kontakt-budynek-jasna.png',
+          'uploads/zdjecia/asystent-awatar.png', 'uploads/asystent-awatar-jasna.png.png'
+        ]);
       urls.forEach(u => { const im = new Image(); im.src = u; });
     } catch (e) {}
     if (this.props.autoplayTestimonials !== false) {
