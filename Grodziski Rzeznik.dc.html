@@ -67,9 +67,9 @@
   .gr-field{background:var(--field-bg);border:1px solid var(--field-bd);color:var(--fg-strong)}
   .gr-field::placeholder{color:var(--field-ph)}
   [data-theme="light"] .gr-hero-flash{background:transparent}
-  [data-theme="light"] .gr-hero-bg{background-image:url('uploads/hero-glowna-jasna.png') !important;background-position:right center !important}
-  [data-theme="light"] .gr-shopimg-swap{content:url('uploads/kontakt-budynek-jasna.png')}
-  [data-theme="light"] .gr-avatar-swap{content:url('uploads/asystent-awatar-jasna.png.png')}
+  [data-theme="light"] .gr-hero-bg{background-image:url('uploads/hero-glowna-jasna.webp') !important;background-position:right center !important}
+  [data-theme="light"] .gr-shopimg-swap{content:url('uploads/kontakt-budynek-jasna.webp')}
+  [data-theme="light"] .gr-avatar-swap{content:url('uploads/asystent-awatar-jasna.png.webp')}
   [data-theme="light"] .gr-hero-veil{background:linear-gradient(90deg,rgba(12,8,5,.9) 0%,rgba(12,8,5,.58) 44%,rgba(12,8,5,.12) 74%,rgba(12,8,5,.24) 100%) !important}
   [data-theme="light"] .gr-hero-copy,[data-theme="light"] .gr-hero-copy p,[data-theme="light"] .gr-hero-copy a,[data-theme="light"] .gr-hero-copy strong{color:#EFE3CE !important}
   [data-theme="light"] .gr-hero-copy .gr-hero-h1{color:#D6A73F !important}
@@ -254,7 +254,7 @@
 
 <!-- ============ 1. HERO ============ -->
 <section id="start" ref="{{ setHeroRef }}" style="position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;background:var(--bg-4)">
-  <div style="position:absolute;inset:0;background-image:url('uploads/zdjecia/hero-glowna.png');background-size:cover;background-position:center right" class="gr-hero-bg"></div>
+  <div style="position:absolute;inset:0;background-image:url('uploads/zdjecia/hero-glowna.webp');background-size:cover;background-position:center right" class="gr-hero-bg"></div>
   <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,8,5,.92) 0%,rgba(12,8,5,.6) 42%,rgba(12,8,5,.1) 74%,rgba(12,8,5,.2) 100%)" class="gr-hero-veil"></div>
   <div ref="{{ setFlashRef }}" class="gr-hero-flash" style="position:absolute;inset:0;pointer-events:none;background:rgba(6,4,2,0.55)"></div>
 
@@ -467,7 +467,7 @@
       <!-- left -->
       <div style="display:flex;flex-direction:column;gap:24px">
         <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(198,161,94,.22);box-shadow:0 20px 44px -22px rgba(0,0,0,.8)">
-          <img src="./lokal-mrghfios.png" alt="Wnętrze sklepu Grodziski Rzeźnik" class="gr-shopimg gr-shopimg-swap" width="800" height="600" loading="lazy" decoding="async" style="width: 100%; height: 300px; object-fit: cover; display: block">
+          <img src="./lokal-mrghfios.webp" alt="Wnętrze sklepu Grodziski Rzeźnik" class="gr-shopimg gr-shopimg-swap" width="800" height="600" loading="lazy" decoding="async" style="width: 100%; height: 300px; object-fit: cover; display: block">
         </div>
 
         <div style="background:var(--card2);border:1px solid rgba(198,161,94,.22);border-radius:18px;padding:26px 28px">
@@ -697,7 +697,7 @@
 <sc-if value="{{ chatOpen }}" hint-placeholder-val="{{ false }}">
   <div class="gr-chat" style="position:fixed;bottom:104px;right:24px;z-index:95;width:min(370px,calc(100vw - 32px));max-height:min(560px,calc(100vh - 140px));display:flex;flex-direction:column;background:var(--card2);border:1px solid rgba(198,161,94,.34);border-radius:22px;box-shadow:0 30px 70px -18px rgba(0,0,0,.85);overflow:hidden;animation:gr-slidein .35s ease">
     <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(198,161,94,.2);background:rgba(135,43,47,.14)">
-      <img src="uploads/zdjecia/asystent-awatar.png" alt="Doradca" class="gr-avatar-swap" width="88" height="88" loading="lazy" decoding="async" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(198,161,94,.6);background:#17100B">
+      <img src="uploads/zdjecia/asystent-awatar.webp" alt="Doradca" class="gr-avatar-swap" width="88" height="88" loading="lazy" decoding="async" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(198,161,94,.6);background:#17100B">
       <div style="flex:1">
         <div style="font-weight:800;font-size:15px;color:var(--fg-strong)">Doradca Grodziski</div>
         <div style="font-size:12px;color:#8FBF8F;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#6FBF6F;display:inline-block"></span>Online — odpowiada od ręki</div>
@@ -735,7 +735,7 @@
 </sc-if>
 
 <button onClick="{{ toggleChat }}" aria-label="Doradca Grodziski" style="position:fixed;bottom:24px;right:24px;z-index:94;width:66px;height:66px;border-radius:50%;border:2px solid rgba(198,161,94,.65);background:#17100B;padding:0;cursor:pointer;overflow:hidden;animation:gr-pulse 2.6s ease-in-out infinite;transition:transform .25s" style-hover="transform:scale(1.08)">
-  <img src="uploads/zdjecia/asystent-awatar.png" alt="Doradca Grodziski" class="gr-avatar-swap" width="132" height="132" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
+  <img src="uploads/zdjecia/asystent-awatar.webp" alt="Doradca Grodziski" class="gr-avatar-swap" width="132" height="132" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
 </button>
 
 </div>
@@ -773,30 +773,30 @@ class Component extends DCLogic {
   }
 
   products = [
-    { id:'mocarz', name:'Ser bio Mocarz', weight:'125 g', price:13.90, img:'uploads/zdjecia/sery-mocarz-bio.png', imgLight:'uploads/sery-mocarz-bio-jasna.png', cat:'sery' },
-    { id:'blue', name:'Ser krowi pleśniowy blue', weight:'200 g', price:24.20, img:'uploads/zdjecia/sery-plesniowy-blue.png', imgLight:'uploads/sery-plesniowy-blue-jasna.png', cat:'sery' },
-    { id:'twarog', name:'Twaróg wiejski tłusty', weight:'350 g', price:20.39, img:'uploads/zdjecia/sery-twarog-wiejski.png', imgLight:'uploads/sery-twarog-wiejski-jasna.png', cat:'sery' },
-    { id:'owczy', name:'Ser owczy dojrzewający naturalny', weight:'200 g', price:44.99, img:'uploads/zdjecia/sery-owczy-dojrzewajacy.png', imgLight:'uploads/sery-owczy-dojrzewajacy-jasna.png', cat:'sery' },
-    { id:'sz-debowa', name:'Szynka dębowa', weight:'350 g', price:28.60, img:'uploads/zdjecia/wedliny-szynka-debowa.png', cat:'wedliny' },
-    { id:'sz-dojrz', name:'Szynka dojrzewająca', weight:'300 g', price:35.29, img:'uploads/zdjecia/wedliny-szynka-dojrzewajaca.png', cat:'wedliny' },
-    { id:'sz-piecz', name:'Szynka pieczona bez konserwantów', weight:'500 g', price:51.90, img:'uploads/zdjecia/wedliny-szynka-pieczona.png', cat:'wedliny' },
-    { id:'schab', name:'Schab pieczony EKO', weight:'90 g', price:25.90, img:'uploads/zdjecia/wedliny-schab-eko.png', cat:'wedliny' },
-    { id:'poledwica', name:'Polędwica drobiowa', weight:'300 g', price:23.10, img:'uploads/zdjecia/wedliny-poledwica-drobiowa.png', cat:'wedliny' },
-    { id:'baleron', name:'Baleron dębowy', weight:'350 g', price:27.50, img:'uploads/zdjecia/wedliny-baleron-debowy.png', cat:'wedliny' },
-    { id:'frank', name:'Frankfurterka', weight:'250 g', price:16.39, img:'uploads/zdjecia/wedliny-frankfurterka.png', cat:'wedliny' },
-    { id:'kabanos', name:'Kabanos premium', weight:'150 g', price:18.90, img:'uploads/zdjecia/wedliny-kabanos-premium.png', cat:'wedliny' },
-    { id:'pasztet', name:'Pasztet z gęsi w słoiku', weight:'250 g', price:20.90, img:'uploads/zdjecia/wedliny-pasztet-gesi.png', cat:'garmaz' },
-    { id:'pasztetowa', name:'Pasztetowa wędzona', weight:'450 g', price:21.90, img:'uploads/zdjecia/wedliny-pasztetowa-wedzona.png', cat:'garmaz' },
-    { id:'kaszanka', name:'Kaszanka', weight:'300 g', price:12.00, img:'uploads/zdjecia/wedliny-kaszanka.png', cat:'garmaz' }
+    { id:'mocarz', name:'Ser bio Mocarz', weight:'125 g', price:13.90, img:'uploads/zdjecia/sery-mocarz-bio.webp', imgLight:'uploads/sery-mocarz-bio-jasna.webp', cat:'sery' },
+    { id:'blue', name:'Ser krowi pleśniowy blue', weight:'200 g', price:24.20, img:'uploads/zdjecia/sery-plesniowy-blue.webp', imgLight:'uploads/sery-plesniowy-blue-jasna.webp', cat:'sery' },
+    { id:'twarog', name:'Twaróg wiejski tłusty', weight:'350 g', price:20.39, img:'uploads/zdjecia/sery-twarog-wiejski.webp', imgLight:'uploads/sery-twarog-wiejski-jasna.webp', cat:'sery' },
+    { id:'owczy', name:'Ser owczy dojrzewający naturalny', weight:'200 g', price:44.99, img:'uploads/zdjecia/sery-owczy-dojrzewajacy.webp', imgLight:'uploads/sery-owczy-dojrzewajacy-jasna.webp', cat:'sery' },
+    { id:'sz-debowa', name:'Szynka dębowa', weight:'350 g', price:28.60, img:'uploads/zdjecia/wedliny-szynka-debowa.webp', cat:'wedliny' },
+    { id:'sz-dojrz', name:'Szynka dojrzewająca', weight:'300 g', price:35.29, img:'uploads/zdjecia/wedliny-szynka-dojrzewajaca.webp', cat:'wedliny' },
+    { id:'sz-piecz', name:'Szynka pieczona bez konserwantów', weight:'500 g', price:51.90, img:'uploads/zdjecia/wedliny-szynka-pieczona.webp', cat:'wedliny' },
+    { id:'schab', name:'Schab pieczony EKO', weight:'90 g', price:25.90, img:'uploads/zdjecia/wedliny-schab-eko.webp', cat:'wedliny' },
+    { id:'poledwica', name:'Polędwica drobiowa', weight:'300 g', price:23.10, img:'uploads/zdjecia/wedliny-poledwica-drobiowa.webp', cat:'wedliny' },
+    { id:'baleron', name:'Baleron dębowy', weight:'350 g', price:27.50, img:'uploads/zdjecia/wedliny-baleron-debowy.webp', cat:'wedliny' },
+    { id:'frank', name:'Frankfurterka', weight:'250 g', price:16.39, img:'uploads/zdjecia/wedliny-frankfurterka.webp', cat:'wedliny' },
+    { id:'kabanos', name:'Kabanos premium', weight:'150 g', price:18.90, img:'uploads/zdjecia/wedliny-kabanos-premium.webp', cat:'wedliny' },
+    { id:'pasztet', name:'Pasztet z gęsi w słoiku', weight:'250 g', price:20.90, img:'uploads/zdjecia/wedliny-pasztet-gesi.webp', cat:'garmaz' },
+    { id:'pasztetowa', name:'Pasztetowa wędzona', weight:'450 g', price:21.90, img:'uploads/zdjecia/wedliny-pasztetowa-wedzona.webp', cat:'garmaz' },
+    { id:'kaszanka', name:'Kaszanka', weight:'300 g', price:12.00, img:'uploads/zdjecia/wedliny-kaszanka.webp', cat:'garmaz' }
   ];
 
   categories = [
-    { img:'uploads/zdjecia/onas-mieso.png', imgLight:'uploads/onas-mieso-jasna.png', title:'Mięso', desc:'Świeże mięso i wołowina sezonowana na sucho, dobierana pod konkretne danie.' },
-    { img:'uploads/zdjecia/onas-wedliny.png', imgLight:'uploads/onas-wedliny-jasna.png', title:'Wędliny', desc:'Szynki, kabanosy i pasztety krojone na miejscu według tradycyjnych receptur.' },
-    { img:'uploads/zdjecia/onas-sery.png', imgLight:'uploads/onas-sery-jasna.png', title:'Sery', desc:'Od polskiego twarogu po halloumi, fetę i sery pleśniowe z zagranicy.' },
-    { img:'uploads/zdjecia/onas-produkty-swiata.png', imgLight:'uploads/onas-produkty-swiata-jasna.png', title:'Produkty ze świata', desc:'Oliwy, makarony, przetwory pomidorowe i inne włoskie specjały.' },
-    { img:'uploads/zdjecia/onas-steki.png', imgLight:'uploads/onas-steki-jasna.png', title:'Steki', desc:'Marynowane na miejscu z ziołami i czosnkiem, gotowe na patelnię lub grill.' },
-    { img:'uploads/zdjecia/onas-wina.png', imgLight:'uploads/onas-wina-jasna.png', title:'Wina', desc:'Starannie wyselekcjonowane wina, głównie z Włoch.' }
+    { img:'uploads/zdjecia/onas-mieso.webp', imgLight:'uploads/onas-mieso-jasna.webp', title:'Mięso', desc:'Świeże mięso i wołowina sezonowana na sucho, dobierana pod konkretne danie.' },
+    { img:'uploads/zdjecia/onas-wedliny.webp', imgLight:'uploads/onas-wedliny-jasna.webp', title:'Wędliny', desc:'Szynki, kabanosy i pasztety krojone na miejscu według tradycyjnych receptur.' },
+    { img:'uploads/zdjecia/onas-sery.webp', imgLight:'uploads/onas-sery-jasna.webp', title:'Sery', desc:'Od polskiego twarogu po halloumi, fetę i sery pleśniowe z zagranicy.' },
+    { img:'uploads/zdjecia/onas-produkty-swiata.webp', imgLight:'uploads/onas-produkty-swiata-jasna.webp', title:'Produkty ze świata', desc:'Oliwy, makarony, przetwory pomidorowe i inne włoskie specjały.' },
+    { img:'uploads/zdjecia/onas-steki.webp', imgLight:'uploads/onas-steki-jasna.webp', title:'Steki', desc:'Marynowane na miejscu z ziołami i czosnkiem, gotowe na patelnię lub grill.' },
+    { img:'uploads/zdjecia/onas-wina.webp', imgLight:'uploads/onas-wina-jasna.webp', title:'Wina', desc:'Starannie wyselekcjonowane wina, głównie z Włoch.' }
   ];
 
   testimonials = [
@@ -813,22 +813,22 @@ class Component extends DCLogic {
   ];
 
   galleryAll = [
-    { src:'uploads/zdjecia/hero-glowna.png', caption:'Deska serów, wędlin i wina' },
-    { src:'uploads/zdjecia/onas-mieso.png', caption:'Świeże mięso i wołowina' },
-    { src:'uploads/zdjecia/onas-wedliny.png', caption:'Wędliny własnej roboty' },
-    { src:'uploads/zdjecia/onas-sery.png', caption:'Sery z Polski i ze świata' },
-    { src:'uploads/zdjecia/onas-steki.png', caption:'Steki marynowane na miejscu' },
-    { src:'uploads/zdjecia/onas-wina.png', caption:'Wina, głównie z Włoch' },
-    { src:'uploads/zdjecia/onas-produkty-swiata.png', caption:'Włoskie specjały i przetwory' },
-    { src:'uploads/zdjecia/sery-mocarz-bio.png', caption:'Ser bio Mocarz' },
-    { src:'uploads/zdjecia/sery-plesniowy-blue.png', caption:'Ser pleśniowy blue' },
-    { src:'uploads/zdjecia/sery-owczy-dojrzewajacy.png', caption:'Ser owczy dojrzewający' },
-    { src:'uploads/zdjecia/wedliny-szynka-dojrzewajaca.png', caption:'Szynka dojrzewająca' },
-    { src:'uploads/zdjecia/wedliny-kabanos-premium.png', caption:'Kabanos premium' },
-    { src:'uploads/zdjecia/wedliny-szynka-debowa.png', caption:'Szynka dębowa' },
-    { src:'uploads/zdjecia/wedliny-baleron-debowy.png', caption:'Baleron dębowy' },
-    { src:'uploads/zdjecia/wedliny-pasztet-gesi.png', caption:'Pasztet z gęsi' },
-    { src:'uploads/zdjecia/sery-twarog-wiejski.png', caption:'Twaróg wiejski' }
+    { src:'uploads/zdjecia/hero-glowna.webp', caption:'Deska serów, wędlin i wina' },
+    { src:'uploads/zdjecia/onas-mieso.webp', caption:'Świeże mięso i wołowina' },
+    { src:'uploads/zdjecia/onas-wedliny.webp', caption:'Wędliny własnej roboty' },
+    { src:'uploads/zdjecia/onas-sery.webp', caption:'Sery z Polski i ze świata' },
+    { src:'uploads/zdjecia/onas-steki.webp', caption:'Steki marynowane na miejscu' },
+    { src:'uploads/zdjecia/onas-wina.webp', caption:'Wina, głównie z Włoch' },
+    { src:'uploads/zdjecia/onas-produkty-swiata.webp', caption:'Włoskie specjały i przetwory' },
+    { src:'uploads/zdjecia/sery-mocarz-bio.webp', caption:'Ser bio Mocarz' },
+    { src:'uploads/zdjecia/sery-plesniowy-blue.webp', caption:'Ser pleśniowy blue' },
+    { src:'uploads/zdjecia/sery-owczy-dojrzewajacy.webp', caption:'Ser owczy dojrzewający' },
+    { src:'uploads/zdjecia/wedliny-szynka-dojrzewajaca.webp', caption:'Szynka dojrzewająca' },
+    { src:'uploads/zdjecia/wedliny-kabanos-premium.webp', caption:'Kabanos premium' },
+    { src:'uploads/zdjecia/wedliny-szynka-debowa.webp', caption:'Szynka dębowa' },
+    { src:'uploads/zdjecia/wedliny-baleron-debowy.webp', caption:'Baleron dębowy' },
+    { src:'uploads/zdjecia/wedliny-pasztet-gesi.webp', caption:'Pasztet z gęsi' },
+    { src:'uploads/zdjecia/sery-twarog-wiejski.webp', caption:'Twaróg wiejski' }
   ];
 
   navLinks = [
@@ -857,9 +857,9 @@ class Component extends DCLogic {
         .concat(this.categories.filter(c => c.imgLight).map(c => c.imgLight))
         .concat(this.galleryAll.map(g => g.src))
         .concat([
-          'uploads/zdjecia/hero-glowna.png', 'uploads/hero-glowna-jasna.png',
-          './lokal-mrghfios.png', 'uploads/kontakt-budynek-jasna.png',
-          'uploads/zdjecia/asystent-awatar.png', 'uploads/asystent-awatar-jasna.png.png'
+          'uploads/zdjecia/hero-glowna.webp', 'uploads/hero-glowna-jasna.webp',
+          './lokal-mrghfios.webp', 'uploads/kontakt-budynek-jasna.webp',
+          'uploads/zdjecia/asystent-awatar.webp', 'uploads/asystent-awatar-jasna.png.webp'
         ]);
       urls.forEach(u => { const im = new Image(); im.src = u; });
     } catch (e) {}
@@ -1006,8 +1006,8 @@ class Component extends DCLogic {
     }
     return { open:false, closed:true, label:'Zamknięte',
       shopLabel:'Sklep obecnie zamknięty', subline: (nextText ? nextText + '. ' : '') + 'Ofertę możesz przeglądać, a zamówienia realizujemy w godzinach otwarcia.',
-      pillBg:'rgba(120,110,100,.14)', pillBorder:'rgba(198,161,94,.3)', pillColor:'var(--fg-body)',
-      dotColor:'var(--fg-faint)', dotClass:'', nextText:nextText, nextSuffix: nextText ? (' — ' + nextText.toLowerCase()) : '' };
+      pillBg:'rgba(190,70,70,.16)', pillBorder:'rgba(220,100,100,.45)', pillColor:'#F0AEAE',
+      dotColor:'#E06868', dotClass:'', nextText:nextText, nextSuffix: nextText ? (' — ' + nextText.toLowerCase()) : '' };
   }
 
   addToCart(id){ this.setState({ soon: true }); }
